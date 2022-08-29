@@ -1,24 +1,31 @@
-# README
+# 宣誓！
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##
+### サイトテーマ
+- 目標達成を目指して頑張る人たちを応援し合うコミュニティサイト。
 
-Things you may want to cover:
+### テーマを選んだ理由
+- 今より体重を５kg落としたい、資格試験に合格したい・・・など、思ってはいるけど継続できずに辞めてしまった経験がある人は多いと思います。
+- しかし「１週間単位で目標を設定して振り返る」「誰かに目標を話す」といったことが、継続のモチベーションに繋がることを知りました。
+- そうした「振り返り」と「宣言」をできる場があれば、継続への一助となるのではないかと考え、今回このテーマを選びました。
 
-* Ruby version
+### ターゲットユーザ
+- 達成したい目的がある人
 
-* System dependencies
+### 主な利用シーン
+- 同じ目的の人と交流したい時
+- 目的を達成するための具体的な計画を立てたい時
+- 目的に対する行動や進捗状況を記録したい時
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- FontAwesome url: https://fontawesome.com/
