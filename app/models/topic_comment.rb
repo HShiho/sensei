@@ -1,0 +1,2 @@
+class TopicComment < ApplicationRecord
+end
