@@ -3,6 +3,8 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :ensure_nomal_user, only: :update
+
 
   def after_sign_in_path_for(resource)
     public_root_path
@@ -10,6 +12,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_out_path_for(resource)
     public_root_path(resource)
+  end
+
+  def ensure_nomal_user
+    if resource.email == 'guest@sample.com'
+      redirect_to public_root_path, notice: 'ゲストユーザーの会員情報は変更できません'
+    end
   end
 
   # GET /resource/sign_up
