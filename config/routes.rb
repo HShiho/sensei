@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-
+    
+    get '/about' => 'homes#about',as: 'about'
     root :to => 'homes#top'
   end
 

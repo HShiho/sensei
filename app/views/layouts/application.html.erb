@@ -40,16 +40,16 @@
                   </li>
                 <% else %>
                   <li class="nav-item mx-3">
-                    <!--<= link_to 'About',public_about_path, class: 'nav-link text-dark border rounded' %>-->
+                    <%= link_to 'About',public_about_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <!--<= link_to '商品一覧',public_items_path, class: 'nav-link text-dark border rounded' %>-->
                   </li>
                   <li class="nav-item mx-3">
-                    <!--<= link_to '新規登録',new_customer_registration_path, class: 'nav-link text-dark border rounded' %>-->
+                    <%= link_to '新規登録',new_user_registration_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
-                    <!--<= link_to 'ログイン',new_customer_session_path, class: 'nav-link text-dark border rounded' %>-->
+                    <%= link_to 'ログイン',new_user_session_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                 <% end %>
               </ul>
