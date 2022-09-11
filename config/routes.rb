@@ -9,10 +9,17 @@ Rails.application.routes.draw do
     sessions:'public/sessions'
   }
 
+  # ゲストログイン
+  devise_scope :users do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :admin do
   end
 
   namespace :public do
+
+    root :to => 'homes#top'
   end
 
 

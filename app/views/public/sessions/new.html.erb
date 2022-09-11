@@ -28,7 +28,8 @@
   <div class="col-12 d-flex justify-content-center mt-5">
     <div class="h6 py-3 px-4 border">
       <span>体験版は未登録でご利用いただけます　</span>
-      <bottun type="button"  class='btn btn-success'>ゲストログイン</button>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post , class: 'btn btn-success' %>
+      <!--<bottun type="button"  class='btn btn-success'>ゲストログイン</button>-->
     </div>
   </div>
 
