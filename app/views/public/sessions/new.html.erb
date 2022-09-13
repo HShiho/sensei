@@ -3,7 +3,7 @@
     <div class="h6">ログイン</div>
   </div>
 
-  <div class="col-6 mx-auto border">
+  <div class="col-6 mx-auto border border-info">
     <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field my-4">
         <%= f.label :メールアドレス, class:'h6' %><br />
@@ -26,7 +26,7 @@
   </div>
 
   <div class="col-12 d-flex justify-content-center mt-5">
-    <div class="h6 py-3 px-4 border">
+    <div class="h6 py-3 px-4 border border-success">
       <span>体験版は未登録でご利用いただけます　</span>
       <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post , class: 'btn btn-success' %>
       <!--<bottun type="button"  class='btn btn-success'>ゲストログイン</button>-->

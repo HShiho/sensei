@@ -2,22 +2,17 @@
 <html>
   <head>
     <title>宣誓！</title>
-
-    <!--fontawesome-->
-    <script src="https://kit.fontawesome.com/3d818d0ed0.js" crossorigin="anonymous"></script>
-
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!--css-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <header class="border-bottom pb-2">
+  <body>
+     <header class="border-bottom pb-2">
       <div class="container col-11">
         <nav class="navbar navbar-expand-lg navbar-light mt-2 pt-4 pb-3 pr-0">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="Toggle navigation">
@@ -27,7 +22,7 @@
               <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
                   <li class="nav-item mx-3">
-                    <!--<= link_to 'マイページ',public_customer_path(@current_user.id), class: 'nav-link text-dark border rounded' %>-->
+                    <!--<= link_to 'マイページ',public_user_path(@current_customer.id), class: 'nav-link text-dark border rounded' %>-->
                   </li>
                   <li class="nav-item mx-3">
                     <!--<= link_to '商品一覧',public_items_path, class: 'nav-link text-dark border rounded' %>-->
@@ -59,35 +54,38 @@
           <div class="row col-9">
             <h2>宣誓！<i class="fa-solid fa-cookie-bite"></i></h2>
           </div>
-
           <!--検索窓-->
             <div class="search-form col-2 py-1 px-1 my-2 mr-3 ml-auto border border-secondary">
-              <!--<= form_tag({controller:"public/post", action:"index"}, method: :get) do %>-->
-                <!--<= text_field_tag( "search","",{ placeholder: "Search", class: "p-0 col-10", style: "border: none" }) %>-->
-                <%= button_tag type: 'submit', class: 'btn btn-outline-primary px-1 py-0 col-1', style: "border: none" do %>
+              <!--<= form_tag({controller:"public/posts", action:"index"}, method: :get) do %>-->
+                <%= text_field_tag( "search","",{ placeholder: "Search", class: "p-0 col-10", style: "border: none" }) %>
+                <%= button_tag type: 'submit', class: 'btn btn-outline-info px-1 py-0 col-1', style: "border: none" do %>
                   <i class="fa-solid fa-magnifying-glass"></i>
                 <% end %>
               <!--< end %>-->
             </div>
             <!------->
-
         </div>
       </div>
     </header>
 
     <main>
-      <div class="d-flex justify-content-center">
-        <div class="my-2">
-          <%= render partial: 'layouts/flash_notice' %>
-          <p class="notice"><% notice %></p>
-        </div>
+      <div>
+        <%= render partial: 'layouts/flash_notice' %>
+        <p class="notice"><% notice %></p>
       </div>
-
-      <%= yield %>
+      <div class="container">
+        <%= yield %>
+      </div>
     </main>
 
-    <footer>
+    <footer class="border-top pt-2">
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto">
+            <p>sensei!</p>
+          </div>
+        </div>
+      </div>
     </footer>
-
   </body>
 </html>
