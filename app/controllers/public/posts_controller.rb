@@ -7,6 +7,7 @@ class Public::PostsController < ApplicationController
   end
 
   def user_index
+    @posts = Post.where(user_id: "#{params[:id]}")
   end
 
   def show
@@ -31,7 +32,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :post_tag_id, :achivement, :body, :tomorrow_objective, :is_released, :image)
+    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :image, tag_ids: [ ])
   end
 
   def get_image(width, height)

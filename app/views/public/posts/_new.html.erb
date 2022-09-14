@@ -39,8 +39,15 @@
         <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12 border border-info' %>
 
       <p class="mb-0">タグ</p>
-        <div class="mx-1 mb-2">
-          <%= f.collection_select :post_tag_id, Tag.all ,:id, :name, :prompt => "選択してください"  %>
+        <div class="form-group">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
+            <div class="mx-1 mb-2 form-check">
+              <%= tag.label class: 'form-check-label' do %>
+                <%= tag.check_box class: 'form-check-input' %>
+                <%= tag.text %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
 
       <p class="mb-0">公開ステータス</p>

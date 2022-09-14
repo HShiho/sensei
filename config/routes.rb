@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about',as: 'about'
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
     resources :posts,except: [:update, :edit]
-    resources :post_tags,only: [:new]
     root :to => 'homes#top'
   end
 
