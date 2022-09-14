@@ -5,16 +5,16 @@
       <p class="mb-0">達成度</p>
         <div class="form-check form-check-inline">
           <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:excellence] %>
+            <%= f.label Post.achivement_statuses_i18n[:excellence], for: "achivement_status_excellence" %>
             <%= f.radio_button :achivement_status, :excellence, checked: true %>
           </div>
           <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:good] %>
+            <%= f.label Post.achivement_statuses_i18n[:good], for: "achivement_status_good" %>
             <%= f.radio_button :achivement_status, :good %>
           </div>
           <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:almost] %>
-            <%= f.radio_button :achivement_status, :aimost %>
+            <%= f.label Post.achivement_statuses_i18n[:almost] , for: "achivement_status_almost"%>
+            <%= f.radio_button :achivement_status, :almost %>
           </div>
         </div>
 
