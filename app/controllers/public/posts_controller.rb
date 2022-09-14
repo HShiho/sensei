@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tag = Tag.all
   end
 
   def user_index

@@ -18,18 +18,27 @@
           <div class="bd-hightlight ml-3">
             <% if post.achivement == "excellence" %>
               <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
-            <% elsif post.achivement == good %>
+            <% elsif post.achivement == "good" %>
               <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
             <% else %>
               <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
             <% end %>
           </div>
         </div>
-        <div class="border border-secondary mt-2 mx-3">
+        <div class="border border-secondary mt-2 mx-3 px-1">
           <%= post.body %>
         </div>
-        <% tag_id = post.post_tag_id %>
-        <div># <%= post.post_tag_id.name %></div>
+        <div class="ml-2">
+          <% post.tags.each do |tag| %>
+            # <%= tag.name %>
+          <% end %>
+        </div>
+        <% if post.tomorrow_objective.present? %>
+          <span class="pl-2">明日の目標</span>
+          <div class="border border-secondary mx-3 px-1">
+            <%= post.tomorrow_objective %>
+          </div>
+        <% end %>
 
       </div>
 

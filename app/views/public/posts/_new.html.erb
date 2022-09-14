@@ -5,21 +5,21 @@
       <p class="mb-0">達成度</p>
         <div class="form-check form-check-inline achivement-btn d-flex justify-content-around">
           <div>
-            <%= f.label Post.achivements_i18n[:good],for: "achivement_excellence", class: 'btn btn-outline-info p-1' do %>
+            <%= f.label Post.achivements_i18n[:good],for: "post_achivement_excellence", class: 'btn btn-outline-info p-1' do %>
               <i class="fa-regular fa-face-laugh-squint fa-3x"></i><br>
               <span class="h6"><%= Post.achivements_i18n[:excellence] %></span>
             <% end %>
             <%= f.radio_button :achivement, :excellence, checked: true, class: 'btn-check' %>
           </div>
           <div>
-            <%= f.label Post.achivements_i18n[:good], for: "achivement_good", class: 'btn btn-outline-info p-1' do  %>
+            <%= f.label Post.achivements_i18n[:good], for: "post_achivement_good", class: 'btn btn-outline-info p-1' do  %>
               <i class="fa-regular fa-face-smile fa-3x"></i><br>
               <span class="h6"><%= Post.achivements_i18n[:good] %></span>
             <% end %>
             <%= f.radio_button :achivement, :good, class: 'btn-check' %>
           </div>
           <div>
-            <%= f.label Post.achivements_i18n[:almost] , for: "achivement_almost", class: 'btn btn-outline-info p-1' do %>
+            <%= f.label Post.achivements_i18n[:almost] , for: "post_achivement_almost", class: 'btn btn-outline-info p-1' do %>
               <i class="fa-regular fa-face-rolling-eyes fa-3x"></i><br>
               <span class="h6"><%= Post.achivements_i18n[:almost] %></span>
             <% end %>
