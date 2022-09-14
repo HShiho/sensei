@@ -1,33 +1,42 @@
 <div class="border-top border-info pt-3">
   <h5 class="text-info">今日の投稿</h5>
 
-    <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+    <%= form_with model: @new_post, url: public_posts_path, method: :post do |f| %>
       <p class="mb-0">達成度</p>
-        <div class="form-check form-check-inline">
-          <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:excellence], for: "achivement_status_excellence" %>
-            <%= f.radio_button :achivement_status, :excellence, checked: true %>
+        <div class="form-check form-check-inline achivement-btn d-flex justify-content-around">
+          <div>
+            <%= f.label Post.achivements_i18n[:good],for: "achivement_excellence", class: 'btn btn-outline-info p-1' do %>
+              <i class="fa-regular fa-face-laugh-squint fa-3x"></i><br>
+              <span class="h6"><%= Post.achivements_i18n[:excellence] %></span>
+            <% end %>
+            <%= f.radio_button :achivement, :excellence, checked: true, class: 'btn-check' %>
           </div>
-          <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:good], for: "achivement_status_good" %>
-            <%= f.radio_button :achivement_status, :good %>
+          <div>
+            <%= f.label Post.achivements_i18n[:good], for: "achivement_good", class: 'btn btn-outline-info p-1' do  %>
+              <i class="fa-regular fa-face-smile fa-3x"></i><br>
+              <span class="h6"><%= Post.achivements_i18n[:good] %></span>
+            <% end %>
+            <%= f.radio_button :achivement, :good, class: 'btn-check' %>
           </div>
-          <div class="ml-5">
-            <%= f.label Post.achivement_statuses_i18n[:almost] , for: "achivement_status_almost"%>
-            <%= f.radio_button :achivement_status, :almost %>
+          <div>
+            <%= f.label Post.achivements_i18n[:almost] , for: "achivement_almost", class: 'btn btn-outline-info p-1' do %>
+              <i class="fa-regular fa-face-rolling-eyes fa-3x"></i><br>
+              <span class="h6"><%= Post.achivements_i18n[:almost] %></span>
+            <% end %>
+            <%= f.radio_button :achivement, :almost, class: 'btn-check' %>
           </div>
         </div>
 
       <p class="mb-0">投稿内容</p>
-        <%= f.text_area :body, placeholder:"入力は255字まで",class: 'mx-1 mb-2  px-1 col-12',rows: '6' %>
+        <%= f.text_area :body, placeholder:"入力は255字まで",class: 'mx-1 mb-2  px-1 col-12 border border-info',rows: '6' %>
 
       <p class="mb-0">画像</p>
         <div class="mx-1 mb-2">
-          <%= f.file_field :image, accept: "image/*", class: 'btn-font-size-sm' %>
+          <%= f.file_field :image, accept: "image/*", class: 'mx-1' %>
         </div>
 
       <p class="mb-0">明日の目標</p>
-        <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12' %>
+        <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12 border border-info' %>
 
       <p class="mb-0">タグ</p>
         <div class="mx-1 mb-2">

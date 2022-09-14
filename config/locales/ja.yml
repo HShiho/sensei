@@ -1,10 +1,10 @@
 ja:
     enums:
       post:
-        achivement_status:
-          excellence: "よく頑張った！"  # 0
-          good: "合格点です" # 1
-          almost: "いまいちでした..." # 2
+        achivement:
+          excellence: "これは神"  # 0
+          good: "合格点ね" # 1
+          almost: "明日こそ" # 2
 
       favorite:
         favoite_type:

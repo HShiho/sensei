@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.achivement-btn input {
+  display: none;
+}
