@@ -1,8 +1,8 @@
 class Public::PostsController < ApplicationController
   before_action :set_user
 
-
   def index
+    @posts = Post.all
   end
 
   def user_index

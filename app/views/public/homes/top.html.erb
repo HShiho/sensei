@@ -1,7 +1,7 @@
 <div class="container row">
 
   <!--サイドバー-->
-  <div class="col-5 mb-5">
+  <div class="col-5 mb-5 border-right border-info">
     <%= render partial: 'user_info',locals: { current_user: @current_user } %><br>
     <%= render partial: 'public/posts/new',locals: { new_post: @new_post } %>
   </div>

@@ -28,7 +28,7 @@
                     <!--<= link_to '商品一覧',public_items_path, class: 'nav-link text-dark border rounded' %>-->
                   </li>
                   <li class="nav-item mx-3">
-                    <!--<= link_to 'カート',public_cart_items_path, class: 'nav-link text-dark border rounded' %>-->
+                    <%= link_to '投稿',public_posts_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class: 'nav-link text-dark border rounded'%>
@@ -52,7 +52,9 @@
         </nav>
         <div class="row">
           <div class="row col-9">
-            <h2><i class="fa-solid fa-flag"></i> 宣誓！<i class="fa-solid fa-flag"></i></h2>
+            <%= link_to public_root_path do %>
+              <h2><i class="fa-solid fa-flag"></i> 宣誓！<i class="fa-solid fa-flag"></i></h2>
+            <% end %>
           </div>
           <!--検索窓-->
             <div class="search-form col-2 py-1 px-1 my-2 mr-3 ml-auto border border-secondary">

@@ -1,2 +1,40 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container row">
+
+  <!--サイドバー-->
+  <div class="col-3 mb-5 border-right border-info">
+    <%= render partial: 'public/homes/user_info',locals: { current_user: @current_user } %><br>
+  </div>
+
+  <div class="col-9">
+  <div class="d-flex justify-content-center">
+    <div class="h5">投稿一覧</div>
+  </div>
+  <div>
+    <% @posts.each do |post| %>
+      <div class="border border-info m-3 p-2">
+        <div class="d-flex bd-hightlight">
+          <div class="mr-auto bd-hightlight"><%= post.user.nickname %></div>
+          <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          <div class="bd-hightlight ml-3">
+            <% if post.achivement == "excellence" %>
+              <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
+            <% elsif post.achivement == good %>
+              <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
+            <% else %>
+              <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="border border-secondary mt-2 mx-3">
+          <%= post.body %>
+        </div>
+        <% tag_id = post.post_tag_id %>
+        <div># <%= post.post_tag_id.name %></div>
+
+      </div>
+
+    <% end %>
+  </div>
+  </div>
+
+</div>
