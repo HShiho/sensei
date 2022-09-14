@@ -2,7 +2,7 @@ class Public::HomesController < ApplicationController
   before_action :set_user
 
   def top
-
+    @new_post = Post.new
   end
 
 

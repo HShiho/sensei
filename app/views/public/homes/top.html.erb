@@ -1,7 +1,13 @@
-<div class="container">
+<div class="container row">
 
-  <div class="d-flex justify-content-center">
-    <div class="col-7 border border-info mb-4 p-4">
+  <!--サイドバー-->
+  <div class="col-5 mb-5">
+    <%= render partial: 'user_info',locals: { current_user: @current_user } %><br>
+    <%= render partial: 'public/posts/new',locals: { new_post: @new_post } %>
+  </div>
+
+  <div class="d-flex justify-content-center col-7">
+    <div class="col-12 border border-info mb-4 p-4">
       こんにちは、<%= @current_user.nickname %>さん！<br>
       今日の目標は「▲▲」です。<br>
       一日を振り返って、達成度を投稿しましょう！

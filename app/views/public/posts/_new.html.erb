@@ -1,0 +1,53 @@
+<div class="border-top border-info pt-3">
+  <h5 class="text-info">今日の投稿</h5>
+
+    <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+      <p class="mb-0">達成度</p>
+        <div class="form-check form-check-inline">
+          <div class="ml-5">
+            <%= f.label Post.achivement_statuses_i18n[:excellence] %>
+            <%= f.radio_button :achivement_status, :excellence, checked: true %>
+          </div>
+          <div class="ml-5">
+            <%= f.label Post.achivement_statuses_i18n[:good] %>
+            <%= f.radio_button :achivement_status, :good %>
+          </div>
+          <div class="ml-5">
+            <%= f.label Post.achivement_statuses_i18n[:almost] %>
+            <%= f.radio_button :achivement_status, :aimost %>
+          </div>
+        </div>
+
+      <p class="mb-0">投稿内容</p>
+        <%= f.text_area :body, placeholder:"入力は255字まで",class: 'mx-1 mb-2  px-1 col-12',rows: '6' %>
+
+      <p class="mb-0">画像</p>
+        <div class="mx-1 mb-2">
+          <%= f.file_field :image, accept: "image/*", class: 'btn-font-size-sm' %>
+        </div>
+
+      <p class="mb-0">明日の目標</p>
+        <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12' %>
+
+      <p class="mb-0">タグ</p>
+        <div class="mx-1 mb-2">
+          <%= f.collection_select :post_tag_id, Tag.all ,:id, :name, :prompt => "選択してください"  %>
+        </div>
+
+      <p class="mb-0">公開ステータス</p>
+        <div class="form-check form-check-inline">
+          <div class="ml-5">
+           <%= f.radio_button :is_released,"true", checked: true %> 公開
+          </div>
+          <div class="ml-5">
+            <%= f.radio_button :is_released,"false" %> 非公開
+          </div>
+        </div>
+
+      <div class="d-flex justify-content-center pt-3">
+        <div><%= f.submit "投稿", class: 'btn btn-outline-info' %></div>
+      </div>
+
+    <% end %>
+
+</div>

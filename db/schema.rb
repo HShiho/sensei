@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_10_121128) do
+ActiveRecord::Schema.define(version: 2022_09_14_032202) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_09_10_121128) do
     t.integer "post_tag_id", null: false
     t.integer "achivement", default: 0, null: false
     t.string "body", default: "", null: false
-    t.string "tomorrow_objective", default: "", null: false
+    t.string "tomorrow_objective", default: ""
     t.boolean "is_released", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
