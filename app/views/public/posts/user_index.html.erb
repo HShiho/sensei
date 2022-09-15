@@ -1,0 +1,97 @@
+<div class="container row">
+
+  <!--サイドバー-->
+<% if @post.user.id == @current_user.id %>
+  <div class="col-3 mb-5 border-right border-info">
+    <%= render partial: 'public/homes/current_user_info',locals: { current_user: @current_user } %><br>
+  </div>
+<% else %>
+  <div class="col-3 mb-5 border-right border-info">
+    <%= render partial: 'user_info',locals: { post: @post } %><br>
+  </div>
+<% end %>
+
+<!--メイン-->
+<% if @post.user.id == @current_user.id %>
+  <div class="col-9">
+  <div class="d-flex justify-content-center">
+    <div class="h5">あなたの投稿一覧</div>
+  </div>
+  <div>
+    <% @posts.each do |post| %>
+      <div class="border border-info m-3 p-2">
+        <div class="d-flex bd-hightlight">
+          <div class="mr-auto bd-hightlight">
+            <%= link_to '削除', public_post_path(post.id), method: :delete, data: { cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
+          </div>
+          <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          <div class="bd-hightlight ml-3">
+            <% if post.achivement == "excellence" %>
+              <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
+            <% elsif post.achivement == "good" %>
+              <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
+            <% else %>
+              <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="border border-secondary mt-2 mx-3 px-1">
+          <%= post.body %>
+        </div>
+        <div class="ml-2">
+          <% post.tags.each do |tag| %>
+            # <%= tag.name %>
+          <% end %>
+        </div>
+        <% if post.tomorrow_objective.present? %>
+          <span class="pl-2">明日の目標</span>
+          <div class="border border-secondary mx-3 px-1">
+            <%= post.tomorrow_objective %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+<% else %>
+  <div class="col-9">
+  <div class="d-flex justify-content-center">
+    <div class="h5"><%= @post.user.nickname %>さんの投稿一覧</div>
+  </div>
+  <div>
+    <% @posts_released.each do |post| %>
+      <div class="border border-info m-3 p-2">
+        <div class="d-flex bd-hightlight">
+          <div class="mr-auto bd-hightlight"></div>
+          <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          <div class="bd-hightlight ml-3">
+            <% if post.achivement == "excellence" %>
+              <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
+            <% elsif post.achivement == "good" %>
+              <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
+            <% else %>
+              <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="border border-secondary mt-2 mx-3 px-1">
+          <%= post.body %>
+        </div>
+        <div class="ml-2">
+          <% post.tags.each do |tag| %>
+            # <%= tag.name %>
+          <% end %>
+        </div>
+        <% if post.tomorrow_objective.present? %>
+          <span class="pl-2">明日の目標</span>
+          <div class="border border-secondary mx-3 px-1">
+            <%= post.tomorrow_objective %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+<% end %>
+
+</div>

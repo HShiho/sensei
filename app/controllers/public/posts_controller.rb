@@ -8,6 +8,15 @@ class Public::PostsController < ApplicationController
 
   def user_index
     @posts = Post.where(user_id: "#{params[:id]}")
+    @post = Post.where(user_id: "#{params[:id]}").first
+    @posts_released = @posts.where(is_released: true)
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post_id = @post.user_id
+    @post.destroy
+    redirect_to public_user_posts_path(@post_id)
   end
 
   def show
@@ -17,8 +26,8 @@ class Public::PostsController < ApplicationController
     @new_post = Post.new(post_params)
     @new_post.user_id = current_user.id
     if @new_post.save
-      redirect_to public_root_path
-      # redirect_to public_user_posts_path(@new_post.user_id)
+      # redirect_to public_root_path
+      redirect_to public_user_posts_path(@new_post.user_id)
     else
       render public_root_path
     end
@@ -32,7 +41,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :image, tag_ids: [ ])
+    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :image, tag_ids: [])
   end
 
   def get_image(width, height)
