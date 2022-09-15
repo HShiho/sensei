@@ -1,5 +1,6 @@
 <div>
   <h4 class="text-info">User Info</h4>
+  <%= image_tag post.user.get_icon_image(40,40), class: 'border rounded-circle' %>
   <b><%= post.user.nickname %>さん</b>
   <br>
   目標 :

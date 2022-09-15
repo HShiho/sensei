@@ -19,10 +19,10 @@
   </div>
   <div>
     <% @posts.each do |post| %>
-      <div class="border border-info m-3 p-2">
+      <div class="border border-info m-3 pt-2 px-2 pb-4">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
-            <%= link_to '削除', public_post_path(post.id), method: :delete, data: { cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
+            <%= link_to '削除', public_post_path(post.id), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
           </div>
           <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
           <div class="bd-hightlight ml-3">
@@ -38,13 +38,13 @@
         <div class="border border-secondary mt-2 mx-3 px-1">
           <%= post.body %>
         </div>
-        <div class="ml-2">
+        <div class="ml-4 text-info">
           <% post.tags.each do |tag| %>
             # <%= tag.name %>
           <% end %>
         </div>
         <% if post.tomorrow_objective.present? %>
-          <span class="pl-2">明日の目標</span>
+          <div class="pl-2 mt-2">明日の目標</div>
           <div class="border border-secondary mx-3 px-1">
             <%= post.tomorrow_objective %>
           </div>
@@ -60,7 +60,7 @@
   </div>
   <div>
     <% @posts_released.each do |post| %>
-      <div class="border border-info m-3 p-2">
+      <div class="border border-info m-3 pt-2 px-2 pb-4">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight"></div>
           <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
@@ -77,13 +77,13 @@
         <div class="border border-secondary mt-2 mx-3 px-1">
           <%= post.body %>
         </div>
-        <div class="ml-2">
+        <div class="ml-4 text-info">
           <% post.tags.each do |tag| %>
             # <%= tag.name %>
           <% end %>
         </div>
         <% if post.tomorrow_objective.present? %>
-          <span class="pl-2">明日の目標</span>
+          <div class="pl-2 mt-2">明日の目標</div>
           <div class="border border-secondary mx-3 px-1">
             <%= post.tomorrow_objective %>
           </div>
