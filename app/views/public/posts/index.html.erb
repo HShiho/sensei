@@ -49,15 +49,15 @@
           </div>
         <% end %>
         <div class="m-3">
-          <%= link_to public_favorites_path(post.id), method: :post, button: 1, class: 'btn btn-outline-primary' do %>
+          <%= link_to public_favorite_path(post.id), method: :post, button: 1, class: 'btn btn-outline-primary' do %>
             <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
             <%= post.favorites.count %>
           <% end %>
-          <%= link_to public_favorites_path(post), method: :post, button: 2, class: 'btn btn-outline-primary ml-2' do %>
+          <%= link_to public_favorite_path(post), method: :post, button: 2, class: 'btn btn-outline-primary ml-2' do %>
             <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
             <%= post.favorites.count %>
           <% end %>
-          <%= link_to public_favorites_path(post), method: :post, button: 3, class: 'btn btn-outline-primary ml-2' do %>
+          <%= link_to public_favorite_path(post), method: :post, button: 3, class: 'btn btn-outline-primary ml-2' do %>
             <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
             <%= post.favorites.count %>
           <% end %>

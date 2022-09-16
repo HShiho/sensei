@@ -1,8 +1,9 @@
 class Public::FavoritesController < ApplicationController
 
   def create
-    @post = Post.find(params[:post_id])
-    favorite = current_user.favorites.new(post_id: @post.id)
+    @post = Post.find(params[:id])
+    favorite = current_user.favorites.new
+    favorite.post_id = @post.id
     if params[:post][:button] == "1"
       favorite.type = [:nice]
       favorite.save

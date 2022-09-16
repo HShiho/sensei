@@ -59,3 +59,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # add
 gem 'devise'
 gem "enum_help"
+gem 'pry-byebug', group: :development
