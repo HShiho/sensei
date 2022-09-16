@@ -28,32 +28,48 @@
             <% end %>
           </div>
         </div>
+
         <div class="border border-secondary mt-2 mx-3 px-1">
           <%= post.body %>
         </div>
+
         <div class="ml-4 text-info">
           <% post.tags.each do |tag| %>
             # <%= tag.name %>
           <% end %>
         </div>
+
         <% if post.image.filename == 'default-image.jpg' %>
         <% else %>
           <div class="d-flex justify-content-center">
             <div><%= image_tag posts.get_image(100,100) %></div>
           </div>
         <% end %>
+
         <% if post.tomorrow_objective.present? %>
           <div class="pl-2 mt-2">明日の目標</div>
           <div class="border border-secondary mx-3 px-1">
             <%= post.tomorrow_objective %>
           </div>
         <% end %>
+
         <div class="d-flex bd-hightlight m-3">
           <div class="bd-hightlight">
-            <%= link_to public_favorite_path(post, post_id: post.id, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
-              <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
-              <%= post.favorites.where(type: 'nice').count %>
-            <% end %>
+            <% if post.favorited_by?(current_user) %>
+              <%= link_to public_favorite_path(post, post_id: post.id), method: :delete, class: 'btn btn-outline-danger' do %>
+                <i class="fa-solid fa-thumbs-up fa-2x"></i>
+                  <%= post.favorites.where(type: 'nice').count %>
+                <i class="fa-solid fa-heart fa-2x"></i>
+                  <%= post.favorites.where(type: 'like').count %>
+                <i class="fa-solid fa-hand-fist fa-2x"></i>
+                  <%= post.favorites.where(type: 'fight').count %>
+                　取り消す
+              <% end %>
+            <% else %>
+              <%= link_to public_favorite_path(post, post_id: post.id, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
+                <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
+                <%= post.favorites.where(type: 'nice').count %>
+              <% end %>
           </div>
           <div class="bd-hightlight">
             <%= link_to public_favorite_path(post, post_id: post.id, button: 2), method: :post, class: 'btn btn-outline-primary ml-2' do %>
@@ -66,13 +82,16 @@
               <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
               <%= post.favorites.where(type: 'fight').count %>
             <% end %>
+              <% end %>
           </div>
           <div class="btn btn-outline-info ml-auto bd-hightlight d-flex align-items-center">
             合計 <%= post.favorites.count %>
           </div>
         </div>
+
       </div>
     <% end %>
+
   </div>
   </div>
 
