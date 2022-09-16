@@ -20,6 +20,9 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @posts = Post.where(user_id: "#{params[:id]}")
+    @posts_released = @posts.where(is_released: true)
   end
 
   def create

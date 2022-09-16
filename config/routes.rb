@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
     post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
     delete '/post/:id/favorite' => 'favorites#delete'
-    resources :posts,except: [:update, :edit]
+    resources :posts,except: [ :edit]
     resources :users,except: [:new, :create]
     root :to => 'homes#top'
   end
