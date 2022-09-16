@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
+    post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
     resources :posts,except: [:update, :edit]
-      resource :favorites, only: [:create, :destroy]
+      # resource :favorites, only: [:create, :destroy]
     resources :users,except: [:new, :create]
     root :to => 'homes#top'
   end

@@ -7,10 +7,10 @@ ja:
           almost: "明日こそ" # 2
 
       favorite:
-        favoite_type:
-          nice: "いいね！" # 0
-          like: "これ好き！" # 1
-          fight: "応援してる！" # 2
+        type:
+          nice: "いいね" # 0
+          like: "これ好き" # 1
+          fight: "応援してる" # 2
 
       objective:
         period_genre:
