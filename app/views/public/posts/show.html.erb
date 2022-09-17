@@ -16,18 +16,100 @@
     <div class="h5">投稿詳細ページ</div>
   </div>
   <div>
-    <% if @posts_released.present? %>
+    <% if @post.user.id == @current_user.id %>
       <div class="border border-info m-3 pt-2 px-2 pb-4">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
-            <% if @post.user.id == @current_user.id %>
-              <div class="d-flex bd-hightlight">
-                <%= link_to '削除', public_post_path(@post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-5" %>
-                <%= link_to '公開', public_post_path(@post, is_released: true), method: :patch,  class: "btn btn-outline-success ml-5" %>
-                <%= link_to '非公開', public_post_path(@post, is_released: false), method: :patch,  class: "btn btn-outline-success ml-4" %>
-              </div>
+            <div class="d-flex justify-content-between">
+              <%= link_to '削除', public_post_path(@post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-5" %>
+      <!--公開ステータス変更-->
+              <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
+                <div class="form-check form-check-inline released-btn">
+                  <div class="ml-5">
+                    <%= f.radio_button :is_released,"true", class: 'btn-check' %>
+                    <%= f.label :is_released,"公開", for: 'post_is_released_true', class: 'text-primary mb-0' %>
+                  </div>
+                  <div class="ml-3">
+                    <%= f.radio_button :is_released,"false", class: 'btn-check' %>
+                    <%= f.label :is_released,"非公開", for: 'post_is_released_false', class: 'text-primary mb-0' %>
+                  </div>
+                  <div class="ml-3">
+                    <%= f.submit "変更", class: 'btn btn-outline-primary' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="bd-hightlight text-secondary"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          <div class="bd-hightlight ml-3">
+            <% if @post.achivement == "excellence" %>
+              <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
+            <% elsif @post.achivement == "good" %>
+              <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
+            <% else %>
+              <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
             <% end %>
           </div>
+        </div>
+      <!--本文-->
+        <div class="border border-secondary mt-2 mx-3 px-1">
+          <%= @post.body %>
+        </div>
+      <!--タグ-->
+        <div class="ml-4 text-info">
+          <% @post.tags.each do |tag| %>
+            # <%= tag.name %>
+          <% end %>
+        </div>
+      <!--明日の目標-->
+        <% if @post.tomorrow_objective.present? %>
+          <div class="pl-2 mt-2">明日の目標</div>
+          <div class="border border-secondary mx-3 px-1">
+            <%= @post.tomorrow_objective %>
+          </div>
+        <% end %>
+      <!--いいねアイコン-->
+        <div class="d-flex bd-hightlight m-3">
+          <div class="bd-hightlight">
+            <% if @post.favorited_by?(current_user) %>
+              <%= link_to public_favorite_path(@post, post_id: @post.id), method: :delete, class: 'btn btn-outline-danger' do %>
+                <i class="fa-solid fa-thumbs-up fa-2x"></i>
+                  <%= @post.favorites.where(type: 'nice').count %>
+                <i class="fa-solid fa-heart fa-2x"></i>
+                  <%= @post.favorites.where(type: 'like').count %>
+                <i class="fa-solid fa-hand-fist fa-2x"></i>
+                  <%= @post.favorites.where(type: 'fight').count %>
+                　取り消す
+              <% end %>
+            <% else %>
+              <%= link_to public_favorite_path(@post, post_id: @post.id, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
+                <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
+                <%= @post.favorites.where(type: 'nice').count %>
+              <% end %>
+          </div>
+          <div class="bd-hightlight">
+            <%= link_to public_favorite_path(@post, post_id: @post.id, button: 2), method: :post, class: 'btn btn-outline-primary ml-2' do %>
+              <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
+              <%= @post.favorites.where(type: 'like').count %>
+            <% end %>
+          </div>
+          <div class="bd-hightlight">
+            <%= link_to public_favorite_path(@post, post_id: @post.id, button: 3), method: :post, class: 'btn btn-outline-primary ml-2' do %>
+              <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
+              <%= @post.favorites.where(type: 'fight').count %>
+            <% end %>
+              <% end %>
+          </div>
+          <div class="btn btn-outline-info ml-auto bd-hightlight d-flex align-items-center">
+            合計 <%= @post.favorites.count %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+       <% if @posts_released.present? %>
+      <div class="border border-info m-3 pt-2 px-2 pb-4">
+        <div class="d-flex bd-hightlight">
+          <div class="mr-auto bd-hightlight"></div>
           <div class="bd-hightlight text-secondary"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
           <div class="bd-hightlight ml-3">
             <% if @post.achivement == "excellence" %>
@@ -92,10 +174,10 @@
             合計 <%= @post.favorites.count %>
           </div>
         </div>
-
       </div>
-    <% else %>
-      <div>公開できる投稿がありません</div>
+      <% else %>
+        <div>公開できる投稿がありません</div>
+      <% end %>
     <% end %>
   </div>
   </div>

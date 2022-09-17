@@ -35,6 +35,12 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to public_post_path(@post)
+  end
+
 
   private
 
