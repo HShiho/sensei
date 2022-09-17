@@ -2,12 +2,14 @@ class Public::PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
+    @posts_released = @posts.where(is_released: true)
     @tag = Tag.all
   end
 
   def user_index
-    @posts = Post.where(user_id: "#{params[:id]}")
+    @post_all = Post.all.order("created_at DESC")
+    @posts = @post_all.where(user_id: "#{params[:id]}")
     @post = Post.where(user_id: "#{params[:id]}").first
     @posts_released = @posts.where(is_released: true)
   end

@@ -7,10 +7,10 @@
 
   <div class="col-9">
   <div class="d-flex justify-content-center">
-    <div class="h5">投稿一覧</div>
+    <div class="h5">すべての投稿</div>
   </div>
   <div>
-    <% @posts.each do |post| %>
+    <% @posts_released.each do |post| %>
       <div class="border border-info m-3 pt-2 px-2">
         <div class="d-flex bd-hightlight">
           <%= link_to public_user_posts_path(post.user.id), class: 'text-dark mr-auto bd-hightlight h5' do %>
@@ -42,7 +42,7 @@
         <% if post.image.filename == 'default-image.jpg' %>
         <% else %>
           <div class="d-flex justify-content-center">
-            <div><%= image_tag posts.get_image(100,100) %></div>
+            <div><%= image_tag post.get_image(100,100) %></div>
           </div>
         <% end %>
 

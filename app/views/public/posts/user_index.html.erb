@@ -23,7 +23,24 @@
       <div class="border border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
-            <%= link_to '削除', public_post_path(post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
+            <div class="d-flex justify-content-between">
+              <%= link_to '削除', public_post_path(post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
+              <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
+                <div class="form-check form-check-inline released-btn">
+                  <div class="ml-5">
+                    <%= f.radio_button :is_released,"true", class: 'btn-check' %>
+                    <%= f.label :is_released,"公開", for: 'post_is_released_true', class: 'text-primary mb-0' %>
+                  </div>
+                  <div class="ml-3">
+                    <%= f.radio_button :is_released,"false", class: 'btn-check' %>
+                    <%= f.label :is_released,"非公開", for: 'post_is_released_false', class: 'text-primary mb-0' %>
+                  </div>
+                  <div class="ml-3">
+                    <%= f.submit "変更", class: 'btn btn-outline-primary' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
           <% if post.is_released == false %>
             <div class="mx-2">
