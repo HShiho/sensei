@@ -17,7 +17,7 @@
   </div>
   <div>
     <% if @post.user.id == @current_user.id %>
-      <div class="border border-info m-3 pt-2 px-2 pb-4">
+      <div class="border border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
             <div class="d-flex justify-content-between">
@@ -104,10 +104,13 @@
             合計 <%= @post.favorites.count %>
           </div>
         </div>
+        <div class="d-flex justify-content-end">
+          <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
+        </div>
       </div>
     <% else %>
        <% if @posts_released.present? %>
-      <div class="border border-info m-3 pt-2 px-2 pb-4">
+      <div class="border border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight"></div>
           <div class="bd-hightlight text-secondary"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
@@ -173,6 +176,9 @@
           <div class="btn btn-outline-info ml-auto bd-hightlight d-flex align-items-center">
             合計 <%= @post.favorites.count %>
           </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>
       </div>
       <% else %>

@@ -20,14 +20,14 @@
   </div>
   <div>
     <% @posts.each do |post| %>
-      <div class="border border-info m-3 pt-2 px-2 pb-4">
+      <div class="border border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
             <%= link_to '削除', public_post_path(post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger" %>
           </div>
           <% if post.is_released == false %>
-            <div class="mx-3">
-              <i class="fa-solid fa-lock fa-2x" style="color:#17a2b8"></i>
+            <div class="mx-2">
+              <i class="fa-solid fa-lock fa-lg" style="color:#17a2b8"></i>
             </div>
           <% end %>
           <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
@@ -94,7 +94,9 @@
             合計 <%= post.favorites.count %>
           </div>
         </div>
-
+        <div class="d-flex justify-content-end">
+          <div><%= link_to 'コメントを見る',public_post_path(post), class: 'btn btn-outline-secondary mr-3' %></div>
+        </div>
       </div>
     <% end %>
   </div>
@@ -108,7 +110,7 @@
   </div>
   <div>
     <% @posts_released.each do |post| %>
-      <div class="border border-info m-3 pt-2 px-2 pb-4">
+      <div class="border border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight"></div>
           <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
@@ -176,6 +178,9 @@
           </div>
         </div>
 
+        <div class="d-flex justify-content-end">
+          <div><%= link_to 'コメントする',public_post_path(post), class: 'btn btn-outline-secondary mr-3' %></div>
+        </div>
       </div>
     <% end %>
   </div>
