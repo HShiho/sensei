@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
-    post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
-    delete '/post/:id/favorite' => 'favorites#delete'
-    resources :posts,except: [ :edit]
+    resources :posts,except: [:edit]
+      post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
+      delete '/post/:id/favorite' => 'favorites#delete'
+      resources :post_comments,only: [:create]
     resources :users,except: [:new, :create]
     root :to => 'homes#top'
   end

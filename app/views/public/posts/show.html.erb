@@ -108,6 +108,19 @@
           <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>
       </div>
+      <!--コメント用-->
+      <div class="border-top border-info">
+        <%= form_with model: @post_comment, url: public_post_comments_path, method: :post do |f| %>
+          <div class="d-flex bd-hightlight px-3">
+            <div class="flex-grow-1 bd-hightlight"><%= f.text_area :body, placeholder:"コメントを入力",class: 'my-3 px-1 col-12 border border-info',rows: '2' %></div>
+            <div class="bd-hightlight">
+              <%= f.button :type => "submit", class: 'btn btn-outline-primary mt-3 ml-3' do %>
+                <i class="fa-solid fa-paper-plane fa-lg"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% else %>
        <% if @posts_released.present? %>
       <div class="border border-info m-3 py-3 px-2">
