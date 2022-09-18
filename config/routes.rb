@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
       delete '/post/:id/favorite' => 'favorites#delete'
       resources :post_comments,only: [:create, :destroy]
-    resources :users,except: [:new, :create]
+    resources :users,except: [:new, :create, :destroy]
     root :to => 'homes#top'
   end
 
