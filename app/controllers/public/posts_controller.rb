@@ -23,8 +23,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @posts = Post.where(user_id: "#{params[:id]}")
-    @posts_released = @posts.where(is_released: true)
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments.all.order("created_at DESC")
   end
 
   def create
