@@ -9,11 +9,22 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @goal = Goal.where(user_id: "#{params[:id]}").last
   end
-  
+
   def edit
     @user = User.find(params[:id])
-    if @user != @current_user
+    @goal = Goal.where(user_id: "#{params[:id]}").last
+    if @user.id != @current_user.id
       redirect_to public_users_path, notice: 'このページにはアクセスできません'
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to public_user_path(@user)
+    else
+      @user = User.find(@user)
+      render :edit
     end
   end
 
@@ -26,7 +37,7 @@ class Public::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:post).permit(:nickname, :email, :is_deleted, :image )
+    params.require(:user).permit(:nickname, :email, :is_deleted, :image )
   end
 
 end
