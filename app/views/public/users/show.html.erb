@@ -59,9 +59,14 @@
     </div>
 
     <div class="d-flex justify-content-center mb-4">
-      <div>
-        <%= link_to 'ユーザー情報編集ページへ', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
-      </div>
+      <% if @user == @current_user %>
+        <div>
+          <%= link_to 'ユーザー情報編集ページへ', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-end">
+          <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@user.id), class: 'btn btn-outline-secondary ml-5' %></div>
+        </div>
     </div>
 
   </div>
