@@ -7,6 +7,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @goal = Goal.where(user_id: "#{params[:id]}").last
   end
 
 
