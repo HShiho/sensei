@@ -10,6 +10,27 @@
     <div class="d-flex justify-content-center">
       <div class="h5">いいね一覧</div>
     </div>
+    <div class="d-flex justify-content-around mt-3 mb-5">
+      <div>
+        <%= link_to 'ALL',favorites_public_user_path(@current_user), class: 'btn btn-outline-info' %>
+      </div>
+      <div>
+        <%= link_to favorites_public_user_path(@current_user, type: "nice"), class: 'btn btn-outline-info' do %>
+          <i class="fa-solid fa-thumbs-up fa-lg"></i>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to favorites_public_user_path(@current_user, type: "like"), class: 'btn btn-outline-info' do %>
+          <i class="fa-solid fa-heart fa-lg"></i>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to favorites_public_user_path(@current_user, type: "fight"), class: 'btn btn-outline-info' do %>
+          <i class="fa-solid fa-hand-fist fa-lg"></i>
+        <% end %>
+      </div>
+    </div>
+
     <div>
       <% @favorite_posts.each do |post| %>
         <div class="border border-info m-3 py-3 px-2">

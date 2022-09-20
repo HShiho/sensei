@@ -30,8 +30,16 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    if params[:type] == "nice"
+      favorites = Favorite.where(user_id: @user.id, type: "nice").pluck(:post_id)
+    elsif params[:type] == "like"
+      favorites = Favorite.where(user_id: @user.id, type: "like").pluck(:post_id)
+    elsif params[:type] == "fight"
+      favorites = Favorite.where(user_id: @user.id, type: "fight").pluck(:post_id)
+    else
+      favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    end
+     @favorite_posts = Post.find(favorites)
   end
 
 
