@@ -22,13 +22,16 @@
               <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
                   <li class="nav-item mx-3">
-                    <!--<= link_to 'マイページ',public_user_path(@current_customer.id), class: 'nav-link text-dark border rounded' %>-->
+                    <%= link_to 'マイページ',public_user_path(@current_user), class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to 'ユーザー',public_users_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to '投稿',public_posts_path, class: 'nav-link text-dark border rounded' %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to 'いいね',favorites_public_user_path(@current_user), class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class: 'nav-link text-dark border rounded'%>
