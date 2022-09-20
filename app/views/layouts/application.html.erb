@@ -31,7 +31,7 @@
                     <%= link_to '投稿',public_posts_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
-                    <%= link_to 'いいね',favorites_public_user_path(@current_user), class: 'nav-link text-dark border rounded' %>
+                    <%= link_to 'ブックマーク',favorites_public_user_path(@current_user), class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class: 'nav-link text-dark border rounded'%>

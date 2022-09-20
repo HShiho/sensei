@@ -31,10 +31,13 @@ class Public::UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     if params[:type] == "nice"
+      @type = Favorite.types_i18n[:nice]
       favorites = Favorite.where(user_id: @user.id, type: "nice").pluck(:post_id)
     elsif params[:type] == "like"
+      @type = Favorite.types_i18n[:like]
       favorites = Favorite.where(user_id: @user.id, type: "like").pluck(:post_id)
     elsif params[:type] == "fight"
+      @type = Favorite.types_i18n[:fight]
       favorites = Favorite.where(user_id: @user.id, type: "fight").pluck(:post_id)
     else
       favorites = Favorite.where(user_id: @user.id).pluck(:post_id)

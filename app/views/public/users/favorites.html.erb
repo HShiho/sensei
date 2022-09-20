@@ -8,7 +8,13 @@
 <!--メイン-->
   <div class="col-9">
     <div class="d-flex justify-content-center">
-      <div class="h5">いいね一覧</div>
+      <div class="h5">
+        <% if @type.present? %>
+          「<%= @type %>」一覧
+        <% else %>
+          ブックマーク一覧
+        <% end %>
+      </div>
     </div>
     <div class="d-flex justify-content-around mt-3 mb-5">
       <div>
