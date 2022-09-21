@@ -2,25 +2,23 @@ class Public::PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = Post.all.order("created_at DESC")
-    @posts_released = @posts.where(is_released: true)
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
           tag_posts = Tag.find_by(name: key).posts
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
-          @posts = @posts.order("created_at DESC")
-          @posts_released = @posts.where(is_released: true)
         end
       end
+    else
+      @posts = Post.all
     end
+      @posts = @posts.order("created_at DESC")
+      @posts_released = @posts.where(is_released: true)
   end
 
   def user_index
-    @posts = Post.where(user_id: "#{params[:id]}")
-    @posts = @posts.order("created_at DESC")
-    @posts_released = @posts.where(is_released: true)
+    @post = Post.where(user_id: "#{params[:id]}").first #サイドバー用
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -28,12 +26,13 @@ class Public::PostsController < ApplicationController
           tag_posts = Tag.find_by(name: key).posts
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
           @posts = @posts.where(user_id: "#{params[:id]}")
-          @posts = @posts.order("created_at DESC")
-          @posts_released = @posts.where(is_released: true)
         end
       end
+    else
+      @posts = Post.where(user_id: "#{params[:id]}")
     end
-    @post = Post.where(user_id: "#{params[:id]}").first #サイドバー用
+    @posts = @posts.order("created_at DESC")
+    @posts_released = @posts.where(is_released: true)
   end
 
   def destroy
