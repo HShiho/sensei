@@ -3,8 +3,8 @@ ja:
       post:
         achivement:
           excellence: "これは神"  # 0
-          good: "合格点ね" # 1
-          almost: "明日こそ" # 2
+          good: "いい感じ" # 1
+          almost: "これは…" # 2
 
       favorite:
         type:
