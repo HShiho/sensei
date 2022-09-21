@@ -10,6 +10,8 @@ class Public::PostsController < ApplicationController
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
         end
       end
+    elsif params[:search]
+      @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%')
     else
       @posts = Post.all
     end
