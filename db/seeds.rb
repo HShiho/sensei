@@ -7,8 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Tag.create([
+  { name: '進捗報告'},
   { name: '振り返り'},
   { name: '目標設定' },
   { name: '最終報告' },
   { name: '小話' }
+  ])
+
+Admin.create([
+  { email: 'sample@sample.com', password: 'okokok' }
   ])
