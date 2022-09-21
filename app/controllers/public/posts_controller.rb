@@ -4,7 +4,15 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all.order("created_at DESC")
     @posts_released = @posts.where(is_released: true)
-    @tag = Tag.all
+    if params[:tag_ids]
+      @posts_released = []
+      params[:tag_ids].each do |key, value|
+        if value == "1"
+          tag_posts = Tag.find_by(name: key).posts
+          @posts_released = @posts.empty? ? tag_posts : @posts & tag_posts
+        end
+      end
+    end
   end
 
   def user_index

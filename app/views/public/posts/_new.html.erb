@@ -30,18 +30,18 @@
       <p class="mb-0">投稿内容</p>
         <%= f.text_area :body, placeholder:"入力は255字まで",class: 'mx-1 mb-2  px-1 col-12 border border-info',rows: '6' %>
 
-      <p class="mb-0">画像</p>
+      <p class="mb-0">画像(任意)</p>
         <div class="mx-1 mb-2">
           <%= f.file_field :image, accept: "image/*", class: 'mx-1' %>
         </div>
 
-      <p class="mb-0">明日の目標</p>
+      <p class="mb-0">明日の目標(任意)</p>
         <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12 border border-info' %>
 
-      <p class="mb-0">タグ</p>
-        <div class="form-group">
+      <p class="mb-0">タグ(複数選択可)</p>
+        <div class="form-group ml-3">
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
-            <div class="mx-1 mb-2 form-check">
+            <div class="mx-1 mb-2 form-check-inline">
               <%= tag.label class: 'form-check-label' do %>
                 <%= tag.check_box class: 'form-check-input' %>
                 <%= tag.text %>
