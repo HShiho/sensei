@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    get '/posts/:id' => 'posts#index',as: 'posts'
+    resources :posts,except: [:edit]
+      resources :post_comments,only: [:destroy]
     resources :users,except: [:destroy]
     root :to => 'users#index'
   end

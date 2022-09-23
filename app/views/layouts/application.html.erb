@@ -65,8 +65,18 @@
         </nav>
         <div class="row">
           <div class="row col-9">
-            <%= link_to public_root_path do %>
-              <h2> ＼ 宣誓！／ </h2>
+            <% if user_signed_in? %>
+              <%= link_to public_root_path do %>
+                <h2> ＼ 宣誓！／ </h2>
+              <% end %>
+            <% elsif %>
+              <%= link_to admin_root_path do %>
+                <h2> ＼ 宣誓！／ </h2>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <h2> ＼ 宣誓！／ </h2>
+              <% end %>
             <% end %>
           </div>
           <!--検索窓-->

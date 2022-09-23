@@ -8,7 +8,7 @@
       <%= render partial: 'user_info',locals: { post: @post } %><br>
     <% end %>
     <%= form_tag({controller:"posts",action:"user_index"}, method: :get) do %>
-      <%= render partial: 'tag_search' %>
+      <%= render partial: 'layouts/tag_search' %>
     <% end %>
   </div>
 
