@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="h5"><%= @post_comment.user.nickname %>さんのコメント一覧</div>
+    </div>
+    <div>
+      <% @post_comments.each do |post_comment| %>
+        <div class="border-bottom border-info my-3 mx-5">
+          <div class="d-flex bd-hightlight">
+            <div class="bd-hightlight">
+              <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+              <%= link_to admin_user_path do %>
+                <%= post_comment.user.nickname %>
+              <% end %>
+            </div>
+            <span>　>>>　</span>
+            <div class="bd-hightlight">
+              <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+              <%= link_to admin_posts_path do %>
+                <%= post_comment.post.user.nickname %>
+              <% end %>
+            </div>
+            <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+              <div class="ml-auto bd-hightlight">
+                <%= link_to '削除', public_post_comment_path(post_comment, post_comment.post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-3" %>
+              </div>
+            </div>
+          <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>
+        </div>
+      <% end %>
+    </div>
+</div>

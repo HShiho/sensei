@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    get '/post_comments/:id' => 'post_comments#index',as: 'post_comments'
     get '/posts/:id' => 'posts#index',as: 'posts'
     resources :posts,except: [:edit]
       resources :post_comments,only: [:destroy]
