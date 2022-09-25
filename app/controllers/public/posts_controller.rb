@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :set_user
 
   def index
+    @user = @current_user
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -21,6 +22,7 @@ class Public::PostsController < ApplicationController
 
   def user_index
     @post = Post.where(user_id: "#{params[:id]}").first #サイドバー用
+    @user = @post.user
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -46,6 +48,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all.order("created_at DESC")
   end

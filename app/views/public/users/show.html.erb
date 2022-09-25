@@ -2,7 +2,7 @@
 
   <!--サイドバー-->
   <div class="col-3 mb-5 border-right border-info">
-    <%= render partial: 'public/homes/current_user_info',locals: { current_user: @current_user } %><br>
+    <%= render partial: 'layouts/user_info',locals: { user: @user } %><br>
   </div>
 
   <div class="col-9 my-3">

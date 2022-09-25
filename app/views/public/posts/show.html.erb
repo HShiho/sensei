@@ -1,15 +1,9 @@
 <div class="container row">
 
   <!--サイドバー-->
-<% if @post.user.id == @current_user.id %>
   <div class="col-3 mb-5 border-right border-info">
-    <%= render partial: 'public/homes/current_user_info',locals: { current_user: @current_user } %><br>
+    <%= render partial: 'layouts/user_info',locals: { user: @user } %><br>
   </div>
-<% else %>
-  <div class="col-3 mb-5 border-right border-info">
-    <%= render partial: 'user_info',locals: { post: @post } %><br>
-  </div>
-<% end %>
 
 <div class="col-9">
   <div class="d-flex justify-content-center">

@@ -3,8 +3,9 @@ class Public::HomesController < ApplicationController
 
   def top
     @new_post = Post.new
-      @posts = Post.where(user_id: @current_user.id)
-      @posts = @posts.group(:start_time)
+    @user = @current_user
+    @posts = Post.where(user_id: @current_user.id)
+    @posts = @posts.group(:start_time)
   end
 
 

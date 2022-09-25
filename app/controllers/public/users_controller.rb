@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @users = User.where.not(nickname: 'ゲストユーザー')
+    @user = @current_user
   end
 
   def show

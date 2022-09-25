@@ -2,11 +2,7 @@
 
   <!--サイドバー-->
   <div class="col-3 mb-5 border-right border-info">
-    <% if @post.user.id == @current_user.id %>
-      <%= render partial: 'public/homes/current_user_info',locals: { current_user: @current_user } %><br>
-    <% else %>
-      <%= render partial: 'user_info',locals: { post: @post } %><br>
-    <% end %>
+    <%= render partial: 'layouts/user_info',locals: { user: @user } %><br>
     <%= form_tag({controller:"posts",action:"user_index"}, method: :get) do %>
       <%= render partial: 'layouts/tag_search' %>
     <% end %>
@@ -14,7 +10,7 @@
 
 <!--メイン-->
 <!--自分の投稿-->
-<% if @post.user.id == @current_user.id %>
+<% if @user.id == @current_user.id %>
   <div class="col-9">
   <div class="d-flex justify-content-center">
     <div class="h5">あなたの投稿一覧</div>
