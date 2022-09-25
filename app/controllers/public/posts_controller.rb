@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
   def create
     @new_post = Post.new(post_params)
     @new_post.user_id = current_user.id
-    @new_post.start_time = Time.now
+    @new_post.start_time = Date.today
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else

@@ -1,9 +1,10 @@
-<%= month_calendar events: @events do |date, events| %>
+<div class="h5 text-info m-0">進捗カレンダー</div>
+<%= month_calendar events: @posts do |date, posts| %>
   <%= date.day %>
 
-  <% events.each do |event| %>
+  <% posts.each do |post| %>
     <div>
-      <% if event.user_id == @current_user.id %>
+      <% if post.present? %>
         <i class="fa-solid fa-paw" style="color:#007bff"></i>
       <% end %>
     </div>

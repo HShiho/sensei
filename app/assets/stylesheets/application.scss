@@ -12,33 +12,41 @@
  *
  *= require_tree .
  *= require_self
- *= require simple_calendar
  */
+
+ @import "simple_calendar";
 
 .achivement-btn input {
   display: none;
 }
 
 .simple-calendar {
-  .day {}
-
-  .wday-0 {}
+  .day {
+  }
+  .wday-0 {
+    color: #ff2479;
+  }
   .wday-1 {}
   .wday-2 {}
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {}
-
-  .today {}
+  .wday-6 {
+    color: #007bff;
+  }
+  .today {
+    background: #6499ee63;
+  }
   .past {}
   .future {}
-
   .start-date {}
-
+  .end-date {
+    background: #aef978ab;
+  }
   .prev-month {}
   .next-month { }
   .current-month {}
-
-  .has-events {}
+  .has-events {
+    background: #70ddef63;
+  }
 }
