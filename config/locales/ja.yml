@@ -4,7 +4,7 @@ ja:
         achivement:
           excellence: "これは神"  # 0
           good: "いい感じ" # 1
-          almost: "これは…" # 2
+          almost: "･･･うん" # 2
 
       favorite:
         type:

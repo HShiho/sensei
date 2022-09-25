@@ -53,6 +53,7 @@ class Public::PostsController < ApplicationController
   def create
     @new_post = Post.new(post_params)
     @new_post.user_id = current_user.id
+    @new_post.start_time = Time.now
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else
@@ -74,7 +75,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :image, tag_ids: [])
+    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :start_time, :image, tag_ids: [])
   end
 
 

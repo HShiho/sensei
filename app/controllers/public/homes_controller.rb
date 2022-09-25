@@ -3,6 +3,8 @@ class Public::HomesController < ApplicationController
 
   def top
     @new_post = Post.new
+    # simple_calendarに反映させるためにpost->event
+      @events = Post.where(user_id: @current_user.id)
   end
 
 
