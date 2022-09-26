@@ -19,7 +19,7 @@ ja:
           day: "日" # 2
 
       inquiry:
-        subject_genre:
+        subject:
           question: "質問・要望" # 0
           plese_delete: "削除依頼" # 1
 

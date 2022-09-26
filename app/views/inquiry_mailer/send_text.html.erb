@@ -1,0 +1,5 @@
+<%= @inquiry.user.nickname %>様からお問合わせがありました。<br>
+  【用件】　：　<%= @inquiry.subject_i18n %><br>
+  【返信用アドレス】　：　<%= @inquiry.reply_mail %><br>
+  【お問い合わせ内容】<br>
+<span style="white-space: pre-wrap:"><%= @inquiry.body %></span>

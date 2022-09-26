@@ -41,6 +41,11 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :inquiries, only: [:new, :create]
+    post '/inquiries/confirm' => 'inquiries#confirm',as: 'mail_confirm'
+    post '/inquiries/back' => 'inquiries#back',as: 'mail_back'
+    get '/inquiries/mail_done' => 'inquiries#mail_done',as: 'mail_done'
+
     root :to => 'homes#top'
   end
 

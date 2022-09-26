@@ -2,7 +2,7 @@ class Inquiry < ApplicationRecord
 
   belongs_to :user
 
-  enum subject_genre: {
+  enum subject: {
     question: 0,
     plese_delete: 1,
   }
