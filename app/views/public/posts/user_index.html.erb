@@ -11,7 +11,7 @@
 
   <div class="col-9">
     <div class="d-flex justify-content-center">
-      <% if @user.id == @current_user.id %>
+      <% if @user == @current_user %>
         <div class="h5">あなたの投稿一覧</div>
       <% else %>
         <div class="h5"><%= @post.user.nickname %>さんの投稿一覧</div>
@@ -19,13 +19,15 @@
     </div>
 
     <div>
-      <% if @user.id == @current_user.id %>
+      <% if @user == @current_user %>
         <% @posts.each do |post| %>
           <%= render partial: 'layouts/post_partial/body',locals: { post: post, user: @user, current_user: @current_user }  %>
+          <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
         <% end %>
       <% else %>
         <% @posts_released.each do |post| %>
           <%= render partial: 'layouts/post_partial/body',locals: { post: post, user: @user, current_user: @current_user }  %>
+          <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
         <% end %>
       <% end %>
     </div>

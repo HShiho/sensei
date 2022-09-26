@@ -1,0 +1,9 @@
+  <div class="d-flex justify-content-end">
+    <div class="text-secondary mt-2 mr-3">コメント件数：<%= post.post_comments.count %></div>
+      <% if user == current_user %>
+        <div><%= link_to 'コメントを見る',public_post_path(post), class: 'btn btn-outline-secondary mr-3' %></div>
+      <% else %>
+        <div><%= link_to 'コメントする',public_post_path(post), class: 'btn btn-outline-secondary mr-3' %></div>
+    <% end %>
+  </div>
+</div>
