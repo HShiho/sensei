@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
   end
 
   def user_index
-    @post = Post.where(user_id: "#{params[:id]}").first #サイドバー用
+    @post = Post.where(user_id: "#{params[:id]}").first
     @user = @post.user
     if params[:tag_ids]
       @posts = []
