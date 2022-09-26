@@ -33,17 +33,19 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:type] == "nice"
       @type = Favorite.types_i18n[:nice]
-      favorites = Favorite.where(user_id: @user.id, type: "nice").pluck(:post_id)
+      favorites = Favorite.where(user_id: @user.id, type: "nice")
     elsif params[:type] == "like"
       @type = Favorite.types_i18n[:like]
-      favorites = Favorite.where(user_id: @user.id, type: "like").pluck(:post_id)
+      favorites = Favorite.where(user_id: @user.id, type: "like")
     elsif params[:type] == "fight"
       @type = Favorite.types_i18n[:fight]
-      favorites = Favorite.where(user_id: @user.id, type: "fight").pluck(:post_id)
+      favorites = Favorite.where(user_id: @user.id, type: "fight")
     else
-      favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+      favorites = Favorite.where(user_id: @user.id)
     end
-     @favorite_posts = Post.find(favorites)
+    favorites = favorites.order("created_at DESC")
+    favorites = favorites.pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
 
