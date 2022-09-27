@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     post '/inquiries/back' => 'inquiries#back',as: 'mail_back'
     get '/inquiries/mail_done' => 'inquiries#mail_done',as: 'mail_done'
 
+    resources :goals,except: [:destroy]
+
     root :to => 'homes#top'
   end
 

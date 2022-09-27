@@ -1,4 +1,4 @@
-<div class="container row">
+<div class="row">
 
   <!--サイドバー-->
   <div class="col-5 mb-5 pr-4 border-right border-info">
@@ -18,17 +18,26 @@
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">最終目標　　：　</div>
         <div class="bd-highlight"><%= @present_goal %></div>
-        <div class="bd-highlight ml-auto">編集する</div>
+        <div class="bd-highlight ml-auto">
+          <span>編集</span>
+          <span>完了</span>
+        </div>
       </div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">今月の目標　：　</div>
         <div class="bd-highlight"><%= @objective_month %></div>
-        <div class="bd-highlight ml-auto">編集する</div>
+        <div class="bd-highlight ml-auto">
+          <span>編集</span>
+          <span>設定</span>
+        </div>
       </div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">今週の目標　：　</div>
         <div class="bd-highlight"><%= @objective_week %></div>
-        <div class="bd-highlight ml-auto">編集する</div>
+        <div class="bd-highlight ml-auto">
+          <span>編集</span>
+          <span>設定</span>
+        </div>
       </div>
     </div>
 

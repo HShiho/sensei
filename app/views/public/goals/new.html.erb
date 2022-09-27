@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+  <div class="h4 text-info">目標設定ページ</div>
+</div>
+
+<%= form_with model: @goal, url: public_goals_path, method: :post do |f| %>
+  <div class="my-5">
+    <div class="d-flex justify-content-center">
+      <div class="text-info h5">最終目標　　</div>
+      <div class="col-6"><%= f.text_field :title, class: 'px-1 col-12' %></div>
+    </div>
+  </div>
+<% end %>
