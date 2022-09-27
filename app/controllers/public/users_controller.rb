@@ -8,7 +8,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @goal = Goal.where(user_id: "#{params[:id]}").last
+    @goals = Goal.where(user_id: "#{params[:id]}")
+    @goal = @goals.where(is_completed: 0).last
   end
 
   def edit

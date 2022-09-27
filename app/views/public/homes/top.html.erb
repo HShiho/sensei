@@ -17,25 +17,53 @@
       <div class="h5 text-primary">現在の目標</div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">最終目標　　：　</div>
-        <div class="bd-highlight"><%= @present_goal %></div>
+        <div class="bd-highlight">
+          <% if @goal.present? %>
+            <%= @goal.title %>
+          <% else %>
+            マイページで目標を設定しましょう
+          <% end %>
+          </div>
         <div class="bd-highlight ml-auto">
-          <span>編集</span>
-          <span>完了</span>
+          <% if @goal.present? %>
+            <span>
+              <%= form_with model: @goal, url: public_goal_path(@goal), method: :patch do |f| %>
+                <%= f.hidden_field :is_completed, :value => [:completed] %>
+                <%= f.submit '完了', class: "btn btn-outline-danger" %>
+              <% end %>
+            </span>
+          <% end %>
         </div>
       </div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">今月の目標　：　</div>
-        <div class="bd-highlight"><%= @objective_month %></div>
+        <div class="bd-highlight">
+          <% if @objective_month.present? %>
+            <%= @objective_month.title %>
+          <% elsif @goal.present? %>
+            目標が設定されていません
+          <% else %>
+            まずは最終目標を設定しましょう
+          <% end %>
+        </div>
         <div class="bd-highlight ml-auto">
-          <span>編集</span>
+          <span>振り返る</span>
           <span>設定</span>
         </div>
       </div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">今週の目標　：　</div>
-        <div class="bd-highlight"><%= @objective_week %></div>
+        <div class="bd-highlight">
+          <% if @objective_week.present? %>
+            <%= @objective_week.title %>
+          <% elsif @goal.present? %>
+            目標が設定されていません
+          <% else %>%
+            まずは最終目標を設定しましょう
+          <% end %>
+        </div>
         <div class="bd-highlight ml-auto">
-          <span>編集</span>
+          <span>振り返る</span>
           <span>設定</span>
         </div>
       </div>

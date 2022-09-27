@@ -5,8 +5,21 @@
 <%= form_with model: @goal, url: public_goals_path, method: :post do |f| %>
   <div class="my-5">
     <div class="d-flex justify-content-center">
-      <div class="text-info h5">最終目標　　</div>
-      <div class="col-6"><%= f.text_field :title, class: 'px-1 col-12' %></div>
+      <div class="text-info h4">最終目標　　</div>
+      <div class="col-6"><%= f.text_field :title, class: 'px-1 col-12', placeholder:"例）12/18のTOEIC L&Rで700点以上取る！" %></div>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <div class="text-secondary border border-info p-3">
+        <p class="mt-3"><b>目標設定のポイント</b></p>
+        <ul>
+          <li>具体的な期限を設定・・・・・・・・・・例）1年以内に、3ヶ月で、3/14の　など</li>
+          <li>数字など客観的に判断できる指標を・・・例）体脂肪率−3％、◯◯に合格する、あと100万円貯めて車を買う　など</li>
+          <li>実現可能な内容に・・・・・・・・・・NG例）「1ヶ月で体重68kgから54kg」→実現は難しい上、健康面でも問題です。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center my-5">
+      <div><%= f.submit '目標を設定する', class: 'btn btn-info' %></div>
     </div>
   </div>
 <% end %>

@@ -23,6 +23,11 @@ ja:
           question: "質問・要望" # 0
           plese_delete: "削除依頼" # 1
 
+      goal:
+        is_completed:
+          not_completed: "挑戦中" # 0
+          completed: "完了" # 1
+
     date:
       abbr_day_names:
       - 日

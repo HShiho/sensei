@@ -4,15 +4,13 @@ class Public::HomesController < ApplicationController
   def top
     @new_post = Post.new
     @user = @current_user
-    @goal = Goal.where(user_id: @current_user.id).last
-    @present_goal = @goal.presence || 'マイページで目標を設定しましょう'
+    # 現在の目標欄に使用
+    @goal = Goal.where(user_id: @current_user.id)
+    @goal = @goal.where(is_completed: 0).last
     if @goal.present?
       @objectives = Objective.where(goal_id: @goal.id)
-      @objective_month = @objectives.where(period_genre: 0).last.presence || '目標が設定されていません'
-      @objective_week = @objectives.where(period_genre: 1).last.presence || '目標が設定されていません'
-    else
-      @objective_month = 'まずは最終目標を設定しましょう'
-      @objective_week = 'まずは最終目標を設定しましょう'
+      @objective_month = @objectives.where(period_genre: 0).last
+      @objective_week = @objectives.where(period_genre: 1).last
     end
     # カレンダーに使用
     @posts = Post.where(user_id: @current_user.id)
