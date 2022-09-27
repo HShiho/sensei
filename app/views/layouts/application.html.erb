@@ -105,15 +105,17 @@
 
     <footer class="border-top pt-2">
       <div class="container">
-        <div class="d-flex justify-content-center">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <div class="d-flex justify-content-center">
             <%= link_to 'お問い合わせフォーム',new_public_inquiry_path, class: 'text-info' %>
-          <% end %>
-        </div>
-        <div class="col-1 mx-auto">
+          </div>
+        <% end %>
+        <div class="col-1 mx-auto my-5">
           <p>sensei!</p>
         </div>
       </div>
     </footer>
+    
+    
   </body>
 </html>

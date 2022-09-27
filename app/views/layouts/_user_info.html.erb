@@ -7,6 +7,13 @@
     <% end %>
   </div>
   <div class="pt-2">
-    目標 :
+    <span>目標 :　</span>
+    <span>
+      <% if goal.present? %>
+        <%= goal.title %>
+      <% else %>
+        目標が設定されていません
+      <% end %>
+    </span>
   </div>
 </div>
