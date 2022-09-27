@@ -13,10 +13,10 @@
       <p class="mb-0 ml-4"><%= @user.email %></p>
     </div>
     <div class="ml-5">
-      <%= f.radio_button :mail_number, 2%>
-      <%= f.label :mail_number_2, "新しいメールアドレスを使う", class: "mb-1 mt-3" %>
+      <%= f.radio_button :mail_number, 2 %>
+      <%= f.label :mail_number_2, "他のメールアドレスを使う", class: "mb-1 mt-3" %>
       <div class="mb-0 ml-4">
-        <%= f.text_field :reply_mail, class: 'px-1 col-8', placeholder:"sample@exanple.com" %>
+        <%= f.text_field :reply_mail, class: 'px-1 col-8 form-control', placeholder:"sample@exanple.com" %>
       </div>
     </div>
 
