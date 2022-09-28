@@ -27,15 +27,20 @@ Rails.application.routes.draw do
 
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
-    get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
-    patch 'post/:id/inex' => 'posts#update',as: 'edit_post'
 
     resources :posts,except: [:edit]
+    get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
+    patch 'post/:id/inex' => 'posts#update',as: 'edit_post'
+    # 以下、ネスト
       post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
       delete '/post/:id/favorite' => 'favorites#delete'
       resources :post_comments,only: [:create, :destroy]
 
     resources :users,except: [:new, :create, :destroy] do
+    # 論理削除
+    get '/users/withdrawal' => 'users#withdrawal',as: 'withdrawal' #退会確認画面
+    patch '/users/breakaway' => 'users#breakaway',as: 'breakaway'
+    # id付きで取得
       member do
         get :favorites
       end

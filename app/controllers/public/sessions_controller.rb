@@ -19,7 +19,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   # 会員論理削除、退会後は同じアカウントでサインインできないようにする
-  def reject_customer
+  def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)

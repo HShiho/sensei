@@ -1,0 +1,13 @@
+<div class="d-flex flex-column">
+  <div class="border border-info m-5 p-5 col-9 mx-auto">
+    <p class="text-info"><b>退会お手続き</b></p>
+    <p>退会手続きを行うと、再びこのアカウントを使用することはできなくなります。</p>
+    <p>このまま退会手続きに進んでもよろしいですか？</p>
+  </div>
+
+  <div class="mb-5 col-3 mx-auto d-flex justify-content-between">
+    <div><%= link_to '退会する', public_user_breakaway_path, method: :patch, class: 'btn btn-danger' %></div>
+    <div><%= link_to '退会しない', public_root_path, class: 'btn btn-info' %></div>
+  </div>
+
+</div>

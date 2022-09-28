@@ -48,6 +48,17 @@ class Public::UsersController < ApplicationController
     favorites = favorites.pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
+  
+  def withdrawal
+  end
+  
+  def breakaway
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理が完了しました。またいつか、その時を楽しみにお待ちしています。"
+    redirect_to new_user_session_path
+  end
 
 
 
