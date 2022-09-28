@@ -11,13 +11,13 @@ class Public::GoalsController < ApplicationController
     if @goal.save
       redirect_to public_induction_path
     else
-      render 
+      render
     end
   end
 
   def update
     @goal = Goal.find(params[:id])
-    @goal.update(goal_params)
+    @goal.update(is_completed: 1)
     redirect_to public_root_path
   end
 

@@ -3,6 +3,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @user = @current_user
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -23,17 +25,19 @@ class Public::PostsController < ApplicationController
   def user_index
     @post = Post.where(user_id: "#{params[:id]}").first
     @user = @post.user
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
           tag_posts = Tag.find_by(name: key).posts
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
-          @posts = @posts.where(user_id: "#{params[:id]}")
+          @posts = @posts.where(user_id: @user.id)
         end
       end
     else
-      @posts = Post.where(user_id: "#{params[:id]}")
+      @posts = Post.where(user_id: @user.id)
     end
     @posts = @posts.order("created_at DESC")
     @posts_released = @posts.where(is_released: true)
@@ -49,6 +53,8 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all.order("created_at DESC")
   end

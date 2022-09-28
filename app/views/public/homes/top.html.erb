@@ -27,10 +27,9 @@
         <div class="bd-highlight ml-auto">
           <% if @goal.present? %>
             <span>
-              <%= form_with model: @goal, url: public_goal_path(@goal), method: :patch do |f| %>
-                <%= f.hidden_field :is_completed, :value => [:completed] %>
-                <%= f.submit '完了', class: "btn btn-outline-danger" %>
-              <% end %>
+              <!--<= form_with model: @goal, url: public_goal_path(@goal), method: :patch do |f| %>-->
+                <%= link_to '完了',public_goal_path(@goal), method: :patch, class: "btn btn-outline-danger" %>
+              <!--< end %>-->
             </span>
           <% end %>
         </div>
@@ -58,7 +57,7 @@
             <%= @objective_week.title %>
           <% elsif @goal.present? %>
             目標が設定されていません
-          <% else %>%
+          <% else %>
             まずは最終目標を設定しましょう
           <% end %>
         </div>

@@ -4,6 +4,8 @@ class Public::UsersController < ApplicationController
   def index
     @users = User.where.not(nickname: 'ゲストユーザー')
     @user = @current_user
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
   end
 
   def show
@@ -32,6 +34,8 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
     if params[:type] == "nice"
       @type = Favorite.types_i18n[:nice]
       favorites = Favorite.where(user_id: @user.id, type: "nice")
