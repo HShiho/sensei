@@ -23,8 +23,10 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
+        flash[:notice] = "このアカウントは退会済みです。新しいアカウントを作成してください。"
         redirect_to new_user_session_path
       else
+        flash[:notice] = "項目を入力してください。"
       end
     end
   end
