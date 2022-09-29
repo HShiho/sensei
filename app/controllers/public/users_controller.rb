@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @users = User.where.not(nickname: 'ゲストユーザー')
+    @users = @users.where.not(is_deleted: true)
     @user = @current_user
     @goal = Goal.where(user_id: @user.id)
     @goal = @goal.where(is_completed: 0).last
@@ -52,10 +53,10 @@ class Public::UsersController < ApplicationController
     favorites = favorites.pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
-  
+
   def withdrawal
   end
-  
+
   def breakaway
     @user = User.find(params[:id])
     @user.update(is_deleted: true)

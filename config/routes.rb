@@ -54,6 +54,8 @@ Rails.application.routes.draw do
     resources :goals,except: [:destroy, :show]
     get '/goals/induction' => 'goals#induction',as: 'induction'
 
+    resources :objectives,except: [:destroy]
+
     root :to => 'homes#top'
   end
 
