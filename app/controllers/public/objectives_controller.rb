@@ -17,6 +17,8 @@ class Public::ObjectivesController < ApplicationController
   end
 
   def edit
+    @objective = Objective.find(params[:id])
+    @new_post = Post.new
   end
 
 

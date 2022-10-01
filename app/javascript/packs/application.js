@@ -31,3 +31,27 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
+function formSwitch() {
+  check =
+  document.getElementsByClassName('objective_post_check')
+  if (check[0].checked) {
+  // 「いいえ」が選択されたら以下を実行
+    document.getElementsById('objective_yes').style.display = "none";
+  } else if (check[1].checked) {
+  // 「はい」が選択されたら以下を実行
+    document.getElementsById('objective_yes').style.display = "";
+    var inputItem =  document.getElementsById('objective_yes').getElementsByTagName("input");
+    for(var i=0; i<inputItem.length;
+    i++ ){
+      inputItem[i].checkd = "";
+      }
+  } else {
+    var inputItem =  document.getElementsById('objective_yes').getElementsByTagName("input");
+    for(var i=0; i<inputItem.length;
+    i++ ){
+      inputItem[i].checkd = "";
+      }
+    }
+  }
+  window.addEventListener('load', formSwitch());
