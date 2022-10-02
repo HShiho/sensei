@@ -21,6 +21,16 @@ class Public::ObjectivesController < ApplicationController
     @new_post = Post.new
   end
 
+  def update
+    @objective = Objective.find(params[:id])
+    @post = Post.new
+    if @objective.update(objective_params)
+      redirect_to public_root_path
+    else
+      render edit_public_objective_path
+    end
+  end
+
 
   private
 

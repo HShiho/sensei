@@ -13,7 +13,8 @@
       今日はどんな一日になりましたか？<br>
       一日を振り返って、達成度を投稿しましょう！
     </div>
-    <div class="border border-primary mt-4 p-4">
+
+    <div class="border border-primary my-4 p-4">
       <div class="h5 text-primary">現在の目標</div>
       <div class="d-flex bd-highlight py-2">
         <div class="bd-highlight text-info">最終目標　　：　</div>
@@ -45,7 +46,10 @@
         </div>
         <div class="bd-highlight ml-auto">
           <% if @objective_month.present? %>
-            <span><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></span>
+            <% if @objective_month.did_it == "" && @objective_month.could_not == "" %>
+              <span><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></span>
+            <% else %>
+            <% end %>
           <% end %>
           <% if @goal.present? %>
             <span><%= link_to '設定',new_public_objective_path, class: "btn btn-outline-info" %></span>
@@ -65,7 +69,10 @@
         </div>
         <div class="bd-highlight ml-auto">
           <% if @objective_week.present? %>
-            <span><%= link_to '振り返る',edit_public_objective_path(@objective_week), class: "btn btn-outline-success" %></span>
+            <% if @objective_week.did_it == "" && @objective_week.could_not == "" %>
+              <span><%= link_to '振り返る',edit_public_objective_path(@objective_week), class: "btn btn-outline-success" %></span>
+            <% else %>
+            <% end %>
           <% end %>
           <% if @goal.present? %>
             <span><%= link_to '設定',new_public_objective_path, class: "btn btn-outline-info" %></span>
@@ -73,6 +80,37 @@
         </div>
       </div>
     </div>
+
+    <% if @goal.present? %>
+      <div class="border border-info mt-5 p-4">
+        <div class="text-primary pb-3">中期目標一覧</div>
+        <div class="d-flex bd-highlight">
+          <div class="bd-highlight text-info">月の目標</div>
+          <div class="bd-highlight flex-grow-1">
+            <div class="pl-4 overflow-auto"  style="height:150px;">
+              <% @objectives_month.each do |month| %>
+                <i class="fa-solid fa-fire-flame-curved"></i> <%= month.title %><br>
+                  <% if month.did_it.present? %>　<i class="fa-solid fa-crop"></i>　<%= month.did_it %><br><% end %>
+                  <% if month.could_not.present? %>　<i class="fa-solid fa-crop-simple"></i>　<%= month.could_not %><br><% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex bd-highlight mt-3">
+          <div class="bd-highlight text-info">週の目標</div>
+          <div class="bd-highlight flex-grow-1">
+            <div class="pl-4 overflow-auto"  style="height:150px;">
+              <% @objectives_week.each do |week| %>
+                <i class="fa-solid fa-fire-flame-curved"></i> <%= week.title %><br>
+                  <% if week.did_it.present? %>　<i class="fa-solid fa-crop"></i>　<%= week.did_it %><br><% end %>
+                  <% if week.could_not.present? %>　<i class="fa-solid fa-crop-simple"></i>　<%= week.could_not %><br><% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
 
   </div>
 

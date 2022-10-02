@@ -1,3 +1,5 @@
+<!--<= javascript_pack_tag 'public/objective/edit' %>-->
+
 <div class="d-flex justify-content-center">
   <div class="h4 text-info">中期目標振り返りページ</div>
 </div>
@@ -16,80 +18,80 @@
       <div class="text-info h5 bd-highlight pt-1">できなかったこと</div>
       <div class="col-9 bd-highlight mx-3"><%= f.text_field :could_not, class: 'p-1 col-12', placeholder:"例）苦手分野の勉強方法が未定。" %></div>
     </div>
+    
+<!--javascript-->
+    <!--<div class="d-flex justify-content-center my-3">-->
+    <!--  <div>振り返り内容を記事として投稿しますか？</div>-->
+    <!--  <label class="ml-5">-->
+    <!--    <input class="objective_post_check" type="radio" id="disp" name="maker" onclick="formSwitch()" >-->
+    <!--    はい-->
+    <!--  </label>-->
+    <!--  <label class="ml-4">-->
+    <!--    <input class="objective_post_check" type="radio" id="hide" name="maker" onclick="formSwitch()", checked="true" >-->
+    <!--    いいえ-->
+    <!--  </label>-->
+    <!--</div>-->
 
-    <div class="d-flex justify-content-center my-3">
-      <div>振り返り内容を記事として投稿しますか？</div>
-      <label class="ml-5">
-        <input class="objective_post_check" type="radio" value="yes" onclick="formSwitch()" >
-        はい
-      </label>
-      <label class="ml-4">
-        <input class="objective_post_check" type="radio" value="no" onclick="formSwitch()", checked="true" >
-        いいえ
-      </label>
-    </div>
+    <!--<div id ="objective-post">-->
+    <!--  <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>-->
+    <!--    <div class="form-check form-check-inline achivement-btn d-flex justify-content-between col-5 my-5">-->
+    <!--      <div>達成度を選択　　</div>-->
+    <!--      <div>-->
+    <!--        <%= f.label Post.achivements_i18n[:good],for: "post_achivement_excellence", class: 'btn btn-outline-info p-1' do %>-->
+    <!--          <i class="fa-regular fa-face-laugh-squint fa-2x p-1"></i><br>-->
+    <!--        <% end %>-->
+    <!--        <%= f.radio_button :achivement, :excellence, checked: true, class: 'btn-check' %>-->
+    <!--      </div>-->
+    <!--      <div>-->
+    <!--        <%= f.label Post.achivements_i18n[:good], for: "post_achivement_good", class: 'btn btn-outline-info p-1' do  %>-->
+    <!--          <i class="fa-regular fa-face-smile fa-2x p-1"></i><br>-->
+    <!--        <% end %>-->
+    <!--        <%= f.radio_button :achivement, :good, class: 'btn-check' %>-->
+    <!--      </div>-->
+    <!--      <div>-->
+    <!--        <%= f.label Post.achivements_i18n[:almost] , for: "post_achivement_almost", class: 'btn btn-outline-info p-1' do %>-->
+    <!--          <i class="fa-regular fa-face-rolling-eyes fa-2x p-1"></i><br>-->
+    <!--        <% end %>-->
+    <!--        <%= f.radio_button :achivement, :almost, class: 'btn-check' %>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
-    <div id ="objective_yes">
-    <div class="objective_post">
-      <%= form_with model: @new_post, url: public_posts_path, method: :post do |f| %>
-        <div class="form-check form-check-inline achivement-btn d-flex justify-content-between col-5 my-5">
-          <div>達成度を選択　　</div>
-          <div>
-            <%= f.label Post.achivements_i18n[:good],for: "post_achivement_excellence", class: 'btn btn-outline-info p-1' do %>
-              <i class="fa-regular fa-face-laugh-squint fa-2x p-1"></i><br>
-            <% end %>
-            <%= f.radio_button :achivement, :excellence, checked: true, class: 'btn-check' %>
-          </div>
-          <div>
-            <%= f.label Post.achivements_i18n[:good], for: "post_achivement_good", class: 'btn btn-outline-info p-1' do  %>
-              <i class="fa-regular fa-face-smile fa-2x p-1"></i><br>
-            <% end %>
-            <%= f.radio_button :achivement, :good, class: 'btn-check' %>
-          </div>
-          <div>
-            <%= f.label Post.achivements_i18n[:almost] , for: "post_achivement_almost", class: 'btn btn-outline-info p-1' do %>
-              <i class="fa-regular fa-face-rolling-eyes fa-2x p-1"></i><br>
-            <% end %>
-            <%= f.radio_button :achivement, :almost, class: 'btn-check' %>
-          </div>
-        </div>
+    <!--    <div class="form-check form-check-inline col-9 mb-5">-->
+    <!--      <div>タグを選択　　　　</div>-->
+    <!--      <div class="form-group">-->
+    <!--        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>-->
+    <!--          <div class="mx-2 mt-3 form-check-inline text-info">-->
+    <!--            <% if tag.text == "振り返り" %>-->
+    <!--              <%= tag.check_box class: 'form-check-input', checked: true %>-->
+    <!--              <%= tag.text %>-->
+    <!--            <% else %>-->
+    <!--              <%= tag.label class: 'form-check-label' do %>-->
+    <!--                <%= tag.check_box class: 'form-check-input' %>-->
+    <!--                <%= tag.text %>-->
+    <!--              <% end %>-->
+    <!--            <% end %>-->
+    <!--          </div>-->
+    <!--        <% end %>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
-        <div class="form-check form-check-inline col-9 mb-5">
-          <div>タグを選択　　　　</div>
-          <div class="form-group">
-            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
-              <div class="mx-2 mt-3 form-check-inline text-info">
-                <% if tag.text == "振り返り" %>
-                  <%= tag.check_box class: 'form-check-input', checked: true %>
-                  <%= tag.text %>
-                <% else %>
-                  <%= tag.label class: 'form-check-label' do %>
-                    <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
+    <!--    <div>-->
+    <!--      <div class="form-check form-check-inline mb-3">-->
+    <!--        <div>ステータスを選択　</div>-->
+    <!--        <div class="ml-2 text-info">-->
+    <!--         <%= f.radio_button :is_released,"true", checked: true %> 公開-->
+    <!--        </div>-->
+    <!--        <div class="ml-3 text-info">-->
+    <!--          <%= f.radio_button :is_released,"false" %> 非公開-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
-        <div>
-          <div class="form-check form-check-inline mb-3">
-            <div>ステータスを選択　</div>
-            <div class="ml-2 text-info">
-             <%= f.radio_button :is_released,"true", checked: true %> 公開
-            </div>
-            <div class="ml-3 text-info">
-              <%= f.radio_button :is_released,"false" %> 非公開
-            </div>
-          </div>
-        </div>
+    <!--  <%= f.hidden_field :body, :value => "[できたこと] " + @objective.did_it + "[できなかったこと ]" + @objective.could_not %>-->
 
-      <%= f.hidden_field :body, :value => "[できたこと] " + @objective.did_it + "[できなかったこと ]" + @objective.could_not %>
-
-      <% end %>
-    </div>
-    </div>
+    <!--  <% end %>-->
+    <!--</div>-->
+    <!---->
 
     <div class="d-flex justify-content-center my-5">
       <div><%= f.submit '内容を保存', class: 'btn btn-outline-success' %></div>
