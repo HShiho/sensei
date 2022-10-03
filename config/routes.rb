@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'topics/new'
+    get 'topics/index'
+    get 'topics/show'
+  end
   # 管理者用　URL/admin/sign_in...
   devise_for :admin, skip:[:registrations, :passwords],controllers:{
     sessions:"admin/sessions"
