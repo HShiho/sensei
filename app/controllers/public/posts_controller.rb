@@ -3,8 +3,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @user = @current_user
-    @goal = Goal.where(user_id: @user.id)
-    @goal = @goal.where(is_completed: 0).last
+    set_goal
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -25,8 +24,7 @@ class Public::PostsController < ApplicationController
   def user_index
     @post = Post.where(user_id: "#{params[:id]}").first
     @user = @post.user
-    @goal = Goal.where(user_id: @user.id)
-    @goal = @goal.where(is_completed: 0).last
+    set_goal
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
@@ -53,8 +51,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @goal = Goal.where(user_id: @user.id)
-    @goal = @goal.where(is_completed: 0).last
+    set_goal
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all.order("created_at DESC")
   end
@@ -81,6 +78,11 @@ class Public::PostsController < ApplicationController
 
   def set_user
     @current_user = current_user
+  end
+
+  def set_goal
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
   end
 
   def post_params

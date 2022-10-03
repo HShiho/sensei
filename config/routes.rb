@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'topics/new'
-    get 'topics/index'
-    get 'topics/show'
-  end
   # 管理者用　URL/admin/sign_in...
   devise_for :admin, skip:[:registrations, :passwords],controllers:{
     sessions:"admin/sessions"
@@ -20,7 +15,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
-
+  # 管理者
   namespace :admin do
     get '/post_comments/:id' => 'post_comments#index',as: 'post_comments'
     get '/posts/:id' => 'posts#index',as: 'posts'
@@ -30,6 +25,7 @@ Rails.application.routes.draw do
     root :to => 'users#index'
   end
 
+# 会員
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
 
@@ -60,6 +56,8 @@ Rails.application.routes.draw do
     get '/goals/induction' => 'goals#induction',as: 'induction'
 
     resources :objectives,except: [:destroy]
+
+    resources :topics,except: [:edit]
 
     root :to => 'homes#top'
   end
