@@ -1,11 +1,18 @@
 class Public::TopicsController < ApplicationController
-  before_action :set_user
 
-  def new
-    @topic = Topic.new
+  def create
+    @topic = Topic.new(topic_params)
+    @topic.user_id = @current_user.id
+    if @topic.save
+      redirect_to public_topics_path
+    else
+      render public_topics_path, notice: 'トピックの作成に失敗しました。'
+    end
   end
 
   def index
+    @topic = Topic.new
+    @topic_comment = TopicComment.new
     @user = @current_user
     set_goal
     if params[:tag_ids]
@@ -30,17 +37,13 @@ class Public::TopicsController < ApplicationController
 
   private
 
-  def set_user
-    @current_user = current_user
-  end
-  
   def set_goal
     @goal = Goal.where(user_id: @user.id)
     @goal = @goal.where(is_completed: 0).last
   end
 
   def topic_params
-    params.require(:topic).permit(:user_id, :title, tag_ids: [] )
+    params.require(:topic).permit(:user_id, :title) #, tag_ids: [] )
   end
 
 end

@@ -1,5 +1,4 @@
 class Public::FavoritesController < ApplicationController
-  before_action :set_user
 
   def create
     @post = Post.find(params[:post_id])
@@ -15,7 +14,7 @@ class Public::FavoritesController < ApplicationController
       redirect_to public_post_path(@post)
   end
 
-  def delete
+  def destroy
     @post = Post.find(params[:post_id])
     favorite = current_user.favorites.find_by(post_id: @post.id)
     favorite.destroy
@@ -23,10 +22,5 @@ class Public::FavoritesController < ApplicationController
   end
 
 
-   private
-
-  def set_user
-    @current_user = current_user
-  end
 
 end

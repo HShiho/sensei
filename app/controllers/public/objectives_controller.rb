@@ -1,5 +1,4 @@
 class Public::ObjectivesController < ApplicationController
-  before_action :set_user
 
   def new
     @objective = Objective.new
@@ -33,10 +32,6 @@ class Public::ObjectivesController < ApplicationController
 
 
   private
-
-  def set_user
-    @current_user = current_user
-  end
 
   def objective_params
     params.require(:objective).permit(:goal_id, :period_genre, :title, :did_it, :could_not )

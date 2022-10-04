@@ -76,26 +76,26 @@
     <div class="d-flex bd-hightlight m-3">
       <div class="bd-hightlight">
       <% if post.favorited_by?(current_user) %>
-        <%= link_to public_favorite_path(post, post_id: post.id), method: :delete, class: 'btn btn-outline-danger' do %>
+        <%= link_to public_post_favorites_path(post), method: :delete, class: 'btn btn-outline-danger' do %>
           <i class="fa-solid fa-thumbs-up fa-2x"></i><%= post.favorites.where(type: 'nice').count %>
           <i class="fa-solid fa-heart fa-2x"></i><%= post.favorites.where(type: 'like').count %>
           <i class="fa-solid fa-hand-fist fa-2x"></i><%= post.favorites.where(type: 'fight').count %>
           　取り消す
         <% end %>
       <% else %>
-        <%= link_to public_favorite_path(post, post_id: post.id, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
+        <%= link_to public_post_favorites_path(post, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
           <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
             <%= post.favorites.where(type: 'nice').count %>
         <% end %>
       </div>
       <div class="bd-hightlight">
-        <%= link_to public_favorite_path(post, post_id: post.id, button: 2), method: :post, class: 'btn btn-outline-primary ml-2' do %>
+        <%= link_to public_post_favorites_path(post, button: 2), method: :post, class: 'btn btn-outline-primary ml-2' do %>
           <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
           <%= post.favorites.where(type: 'like').count %>
         <% end %>
       </div>
       <div class="bd-hightlight">
-        <%= link_to public_favorite_path(post, post_id: post.id, button: 3), method: :post, class: 'btn btn-outline-primary ml-2' do %>
+        <%= link_to public_post_favorites_path(post, button: 3), method: :post, class: 'btn btn-outline-primary ml-2' do %>
           <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
           <%= post.favorites.where(type: 'fight').count %>
         <% end %>

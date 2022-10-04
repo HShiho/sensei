@@ -1,29 +1,28 @@
 class Public::PostCommentsController < ApplicationController
-  before_action :set_user
 
   def create
     @post = Post.find(params[:post_id])
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_id = @post.id
-    comment.save
-    redirect_to public_post_path(@post)
+    if comment.save
+      redirect_to public_post_path(@post)
+    else
+      render template: "posts/show", notice: 'コメントの作成に失敗しました。'
+    end
   end
 
   def destroy
-    post_comment = PostComment.find(params[:id])
-    post_id = post_comment.post_id
-    post_comment.destroy
-    redirect_to public_post_path(post_id)
+    if PostComment.find(params[:id]).destroy
+      redirect_to public_post_path(params[:post_id])
+    else
+      render template: "posts/show", notice: 'コメントの削除に失敗しました。'
+    end
   end
 
 
 
 
   private
-
-  def set_user
-    @current_user = current_user
-  end
 
   def post_comment_params
     params.require(:post_comment).permit(:body)

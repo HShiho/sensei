@@ -1,5 +1,4 @@
 class Public::InquiriesController < ApplicationController
-  before_action :set_user
 
   def new
     @inquiry = Inquiry.new
@@ -42,10 +41,6 @@ class Public::InquiriesController < ApplicationController
 
 
 private
-
- def set_user
-   @current_user = current_user
- end
 
  def inquiry_params
    params.require(:inquiry).permit(:user_id, :subject, :reply_mail, :body)

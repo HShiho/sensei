@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/post_comments/:id' => 'post_comments#index',as: 'post_comments'
     get '/posts/:id' => 'posts#index',as: 'posts'
-    resources :posts,except: [:edit]
+    resources :posts,except: [:edit] do
       resources :post_comments,only: [:destroy]
+    end
     resources :users,except: [:destroy]
     root :to => 'users#index'
   end
@@ -29,13 +30,14 @@ Rails.application.routes.draw do
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
 
-    resources :posts,except: [:edit]
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
     patch 'post/:id/inex' => 'posts#update',as: 'edit_post'
-    # 以下、ネスト
-      post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
-      delete '/post/:id/favorite' => 'favorites#delete'
+    resources :posts,except: [:edit] do
+      # post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
+      # delete '/post/:id/favorite' => 'favorites#delete'
+      resource :favorites,only: [:create, :destroy]
       resources :post_comments,only: [:create, :destroy]
+    end
 
     resources :users,except: [:new, :create, :destroy] do
     # 論理削除
@@ -57,7 +59,10 @@ Rails.application.routes.draw do
 
     resources :objectives,except: [:destroy]
 
-    resources :topics,except: [:edit]
+    resources :topics,except: [:edit] do
+      resources :topic_comments,only: [:create, :destroy]
+    end
+
 
     root :to => 'homes#top'
   end

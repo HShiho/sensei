@@ -13,11 +13,14 @@
     <div class="d-flex justify-content-center">
       <div class="h5">新しいトピック</div>
     </div>
+    <%= render partial: 'new', lacals: { topic: @topic, topic: @topic_comment } %>
+
     <div class="d-flex justify-content-center border-top border-info">
-      <div class="h5 pt-3">すべてのトピック</div>
+      <div class="h5 pt-4">すべてのトピック</div>
     </div>
     <div>
       <% @topics.each do |topic| %>
+        <%= topic.title %>
       <% end %>
     </div>
   </div>

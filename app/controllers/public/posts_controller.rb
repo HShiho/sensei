@@ -1,5 +1,4 @@
 class Public::PostsController < ApplicationController
-  before_action :set_user
 
   def index
     @user = @current_user
@@ -63,7 +62,7 @@ class Public::PostsController < ApplicationController
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else
-      render public_root_path
+      render template: "homes/top"
     end
   end
 
@@ -75,10 +74,6 @@ class Public::PostsController < ApplicationController
 
 
   private
-
-  def set_user
-    @current_user = current_user
-  end
 
   def set_goal
     @goal = Goal.where(user_id: @user.id)
