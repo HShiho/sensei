@@ -1,15 +1,15 @@
 <%= form_with model: @topic, url: public_topics_path, method: :post do |f| %>
-<div class="d-flex justify-content-between my-3">
-  <div class="col-2">トピック名</div>
-  <div class="col-10"><%= f.text_field :title, placeholder:"トピック名を入力", class: 'px-1 col-12' %></div>
-</div>
-  <%= form_with model: @topic_comment, url: public_topic_comments_path, method: :post do |f| %>
+  <div class="d-flex justify-content-between my-3">
+    <div class="col-2">トピック名</div>
+    <div class="col-10"><%= f.text_field :title, placeholder:"トピック名を入力", class: 'px-1 col-12' %></div>
+  </div>
+  <%= form field_for %>
     <div class="d-flex justify-content-between mb-4">
       <div class="col-2">最初の投稿</div>
       <div class="col-10"><%= f.text_field :body, placeholder:"コメントを入力", class: 'px-1 col-12' %></div>
-     </div>
+    </div>
   <% end %>
   <div class="d-flex justify-content-center mb-3">
-  <div><%= f.submit "作成", class: 'btn btn-outline-info' %></div>
-</div>
+    <div><%= f.submit "作成", class: 'btn btn-outline-info' %></div>
+  </div>
 <% end %>

@@ -1,10 +1,9 @@
 class Public::TopicCommentsController < ApplicationController
 
   def create
-    @topic = Topic.last(1)
+    @topic = Topic.find(params[:topic_id])
     comment = current_user.topic_comments.new(topic_comment_params)
     comment.topic_id = @topic.id
-    comment.user_id = @current_user.id
     comment.save
   end
 

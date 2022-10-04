@@ -3,7 +3,11 @@ class Public::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = @current_user.id
+    @first_comment = TopicComment.new
+    @first_comment.user_id = @current_user.id
+    @first_comment.topic = @topic
     if @topic.save
+      @first_comment.save
       redirect_to public_topics_path
     else
       render public_topics_path, notice: 'トピックの作成に失敗しました。'
