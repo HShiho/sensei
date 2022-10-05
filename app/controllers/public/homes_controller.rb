@@ -17,6 +17,8 @@ class Public::HomesController < ApplicationController
       # 週目標を降順で取得
       @objectives_week = @objectives.where(period_genre: 1)
       @objectives_week = @objectives_week.order("created_at DESC")
+      # 日の目標を取得
+      @objective_day = @Post.where(user_id: @current_user.id)
     end
 
     # カレンダーに使用

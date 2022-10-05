@@ -1,2 +1,35 @@
-<h1>Public::Topics#show</h1>
-<p>Find me in app/views/public/topics/show.html.erb</p>
+<h4 class="text-info"><%= @topic.title %></h4>
+<div class="overflow-auto"  style="height:400px;">
+  <% @topic_comments.each do |comment| %>
+    <div class="border-bottom border-info my-2 mx-5">
+      <div class="d-flex bd-hightlight">
+        <div class="bd-hightlight">
+          <%= link_to public_user_path(id: comment.user_id) do %>
+            <%= image_tag comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= comment.user.nickname %>
+          <% end %>
+        </div>
+        <div class="bd-hightlight text-secondary ml-3">
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </div>
+        <% if  comment.user == current_user %>
+          <div class="ml-auto bd-hightlight">
+            <%= link_to '削除', public_topic_topic_comment_path(comment.topic,comment), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-3" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="px-3 pb-2"><%= comment.body %></div>
+    </div>
+  <% end %>
+</div>
+
+<%= form_with model: [@topic, @topic_comment], url: public_topic_topic_comments_path(@topic), method: :post do |f| %>
+  <div class="d-flex bd-hightlight px-3 border-top border-info">
+    <div class="flex-grow-1 bd-hightlight"><%= f.text_area :body, placeholder:"コメントを入力",class: 'my-3 px-1 col-12 border border-info',rows: '2' %></div>
+    <div class="bd-hightlight">
+      <%= f.button :type => "submit", class: 'btn btn-outline-primary mt-3 ml-3' do %>
+        <i class="fa-solid fa-paper-plane fa-lg"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

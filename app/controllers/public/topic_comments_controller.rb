@@ -2,14 +2,16 @@ class Public::TopicCommentsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    comment = current_user.topic_comments.new(topic_comment_params)
+    comment = TopicComment.new(topic_comment_params)
+    comment.user_id = @topic.user_id
     comment.topic_id = @topic.id
-    comment.save
+    if comment.save
+      redirect_to public_topic_path(@topic)
+    else
+      render template: "topics/show", notice: 'コメントの作成に失敗しました。'
+    end
   end
-  
-  def first
-    
-  end
+
 
   def destroy
     @topic = Topic.find(params[:topic_id])
