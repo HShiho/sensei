@@ -1,4 +1,5 @@
 class Public::InquiriesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @inquiry = Inquiry.new

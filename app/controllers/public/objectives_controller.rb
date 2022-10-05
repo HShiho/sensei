@@ -1,4 +1,5 @@
 class Public::ObjectivesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @objective = Objective.new
