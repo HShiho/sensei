@@ -38,8 +38,8 @@ window.$ = window.jQuery = jQuery;
 
 
 $(function(){
-  $(".btn").on("click", ()=>{
-    let res = confirm('本当に消しますか?');
+  $(".delete-btn").on("click", ()=>{
+    let res = confirm('消してしまうと元には戻せません。よろしいですか?');
     if(res === false){
       return false;
     }

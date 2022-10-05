@@ -26,7 +26,7 @@
           </div>
           <% if  post_comment.user == current_user %>
             <div class="ml-auto bd-hightlight">
-              <%= link_to '削除', public_post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "btn btn-outline-danger mr-3" %>
+              <%= link_to '削除', public_post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
             </div>
           <% end %>
         </div>
