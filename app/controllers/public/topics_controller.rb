@@ -1,5 +1,9 @@
 class Public::TopicsController < ApplicationController
 
+  def new
+    @topic = Topic.new
+  end
+
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = @current_user.id
@@ -11,7 +15,6 @@ class Public::TopicsController < ApplicationController
   end
 
   def index
-    @topic = Topic.new
     @user = @current_user
     set_goal
     if params[:tag_ids]

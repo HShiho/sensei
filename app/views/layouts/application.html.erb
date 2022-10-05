@@ -54,9 +54,6 @@
                     <%= link_to 'About',public_about_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
-                    <!--<= link_to '商品一覧',public_items_path, class: 'nav-link text-dark border rounded' %>-->
-                  </li>
-                  <li class="nav-item mx-3">
                     <%= link_to '新規登録',new_user_registration_path, class: 'nav-link text-dark border rounded' %>
                   </li>
                   <li class="nav-item mx-3">
@@ -109,7 +106,7 @@
     <footer class="border-top pt-2">
       <div class="container">
         <% if user_signed_in? %>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center mt-5">
             <%= link_to 'お問い合わせフォーム',new_public_inquiry_path, class: 'text-info' %>
           </div>
         <% end %>
