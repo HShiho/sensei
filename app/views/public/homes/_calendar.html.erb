@@ -1,5 +1,5 @@
 <div class="h5 text-info m-0">進捗カレンダー</div>
-<%= month_calendar events: @posts do |date, posts| %>
+<%= month_calendar events: @post do |date, posts| %>
   <%= date.day %>
 
   <% posts.each do |post| %>

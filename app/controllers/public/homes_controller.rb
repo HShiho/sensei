@@ -3,6 +3,9 @@ class Public::HomesController < ApplicationController
   def top
     @new_post = Post.new
     @user = @current_user
+    # カレンダーに使用
+    @posts = Post.where(user_id: @user.id)
+    @post = @posts.group(:start_time)
 
     # 現在の目標欄に使用
     @goal = Goal.where(user_id: @user.id)
@@ -18,12 +21,9 @@ class Public::HomesController < ApplicationController
       @objectives_week = @objectives.where(period_genre: 1)
       @objectives_week = @objectives_week.order("created_at DESC")
       # 日の目標を取得
-      @objective_day = @Post.where(user_id: @current_user.id)
+      @objective_days = @posts.where.not(tomorrow_objective: "")
+      @objective_day = @objective_days.last
     end
-
-    # カレンダーに使用
-    @posts = Post.where(user_id: @user.id)
-    @posts = @posts.group(:start_time)
   end
 
 
