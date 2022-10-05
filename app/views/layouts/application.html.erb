@@ -67,7 +67,7 @@
             </div>
         </nav>
         <div class="row">
-          <div class="row col-9">
+          <div class="row col-4">
             <% if user_signed_in? %>
               <%= link_to public_root_path do %>
                 <h2> ＼ 宣誓！／ </h2>
@@ -81,6 +81,10 @@
                 <h2> ＼ 宣誓！／ </h2>
               <% end %>
             <% end %>
+          </div>
+          <div>
+            <%= render partial: 'layouts/flash_notice' %>
+            <p class="notice"><% notice %></p>
           </div>
           <!--検索窓-->
             <div class="search-form col-2 py-1 px-1 my-2 mr-3 ml-auto border border-secondary">
@@ -97,11 +101,7 @@
     </header>
 
     <main>
-      <div>
-        <%= render partial: 'layouts/flash_notice' %>
-        <p class="notice"><% notice %></p>
-      </div>
-      <div class="container">
+      <div class="container mt-3">
         <%= yield %>
       </div>
     </main>

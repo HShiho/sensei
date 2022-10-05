@@ -3,20 +3,15 @@ class Public::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = @current_user.id
-    @first_comment = TopicComment.new
-    @first_comment.user_id = @current_user.id
-    @first_comment.topic = @topic
     if @topic.save
-      @first_comment.save
-      redirect_to public_topics_path
+      redirect_to public_topic_path(@topic), notice: '最初の投稿を行いましょう。'
     else
-      render public_topics_path, notice: 'トピックの作成に失敗しました。'
+      redirect_to public_topics_path, notice: 'トピックの作成に失敗しました。'
     end
   end
 
   def index
     @topic = Topic.new
-    @topic_comment = TopicComment.new
     @user = @current_user
     set_goal
     if params[:tag_ids]
@@ -47,7 +42,7 @@ class Public::TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:user_id, :title) #, tag_ids: [] )
+    params.require(:topic).permit(:user_id, :title, tag_ids: [])
   end
 
 end

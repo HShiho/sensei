@@ -6,6 +6,10 @@ class Public::TopicCommentsController < ApplicationController
     comment.topic_id = @topic.id
     comment.save
   end
+  
+  def first
+    
+  end
 
   def destroy
     @topic = Topic.find(params[:topic_id])
