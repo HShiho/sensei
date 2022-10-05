@@ -31,3 +31,17 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
+var jQuery = require('jquery')
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
+
+
+$(function(){
+  $(".btn").on("click", ()=>{
+    let res = confirm('本当に消しますか?');
+    if(res === false){
+      return false;
+    }
+  })
+})

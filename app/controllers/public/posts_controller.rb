@@ -29,15 +29,19 @@ class Public::PostsController < ApplicationController
       params[:tag_ids].each do |key, value|
         if value == "1"
           tag_posts = Tag.find_by(name: key).posts
-          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
+          @post_released = @posts.empty? ? tag_posts : @posts & tag_posts
+          # 配列を取り出す
+          @post.each do
+
+          end
           @posts = @posts.where(user_id: @user.id)
         end
       end
     else
       @posts = Post.where(user_id: @user.id)
     end
-    @posts = @posts.order("created_at DESC")
-    @posts_released = @posts.where(is_released: true)
+    # @posts = @posts.order("created_at DESC")
+    # @posts_released = @posts.where(is_released: true)
   end
 
   def destroy
