@@ -5,7 +5,7 @@
       <div class="mr-auto bd-hightlight">
         <div class="d-flex justify-content-between">
           <%= link_to '削除', public_post_path(post), method: :delete, class: "delete-btn btn btn-outline-danger" %>
-            <%= form_with model: @post, url: public_edit_post_path(post), method: :patch do |f| %>
+            <%= form_with model: post, url: public_edit_post_path(post), method: :patch do |f| %>
               <div class="form-check form-check-inline released-btn">
                 <div class="ml-5">
                   <%= f.radio_button :is_released,"true", class: 'btn-check' %>
