@@ -22,21 +22,19 @@ class Public::TopicsController < ApplicationController
       @topics = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_topics = Tag.find_by(name: key).topics
+          tag_topics = Tag.find_by(name: key).topics.order("created_at DESC")
           @topics = @topics.empty? ? tag_topics : @topics & tag_topics
         end
       end
     else
-      @topics = Topic.all
+      @topics = Topic.all.order("created_at DESC")
     end
-    @topics = @topics.order("created_at DESC")
   end
 
   def show
     @topic = Topic.find(params[:id])
     @topic_comment = TopicComment.new
-    @topic_comments = @topic.topic_comments.all
-    @topic_comments = @topic_comments.order("created_at DESC")
+    @topic_comments = @topic.topic_comments.all.order("created_at DESC")
   end
 
 
