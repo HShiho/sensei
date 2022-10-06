@@ -84,10 +84,10 @@
             <p class="notice"><% notice %></p>
           </div>
           <!--検索窓-->
-            <div class="search-form col-2 py-1 px-1 my-2 mr-3 ml-auto border border-secondary">
+            <div class="search-form col-3 py-1 px-1 my-2 mr-3 ml-auto border border-secondary">
               <%= form_tag({controller:"public/posts", action:"index"}, method: :get) do %>
-                <%= text_field_tag( "search","",{ placeholder: "キーワード検索", class: "p-0 col-10", style: "border: none" }) %>
-                <%= button_tag type: 'submit', class: 'btn btn-outline-info px-1 py-0 col-1', style: "border: none" do %>
+                <%= text_field_tag( "search","",{ placeholder: "投稿をキーワードで検索", class: "p-0 col-11", style: "border: none" }) %>
+                <%= button_tag type: 'submit', class: 'btn btn-outline-info p-0', style: "border: none" do %>
                   <i class="fa-solid fa-magnifying-glass"></i>
                 <% end %>
               <% end %>

@@ -4,45 +4,40 @@ class Public::PostsController < ApplicationController
   def index
     @user = @current_user
     set_goal
-    if params[:tag_ids]
+    if params[:tag_ids] #タグ検索
       @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).posts
+          tag_posts = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC")
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
         end
       end
-    elsif params[:search]
-      @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%')
+    elsif params[:search] #キーワード検索
+      @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%').order("created_at DESC")
+      @posts = @posts.where(is_released: true)
     else
-      @posts = Post.all
+      @posts = Post.where(is_released: true).order("created_at DESC")
     end
-      @posts = @posts.order("created_at DESC")
-      @posts_released = @posts.where(is_released: true)
   end
 
   def user_index
-    @post = Post.where(user_id: "#{params[:id]}").first
-    @user = @post.user
+    @user = User.find(params[:id])
+    @post = Post.where(user_id: @user.id)
     set_goal
-    if params[:tag_ids]
+    @posts = Post.where(user_id: @user.id).order("created_at DESC") #current_user用(非公開込み)
+    @posts_released = @posts.where(is_released: true) #他userの投稿一覧(公開のみ)
+    if params[:tag_ids] # タグ検索
       @posts = []
+      @posts_released = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).posts
-          @post_released = @posts.empty? ? tag_posts : @posts & tag_posts
-          # 配列を取り出す
-          @post.each do
-
-          end
-          @posts = @posts.where(user_id: @user.id)
+          tag_posts = Tag.find_by(name: key).posts.order("created_at DESC")
+          tag_posts_released = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC")
+          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
+          @posts_released = @posts_released.empty? ? tag_posts_released : @posts_released & tag_posts_released
         end
       end
-    else
-      @posts = Post.where(user_id: @user.id)
     end
-    # @posts = @posts.order("created_at DESC")
-    # @posts_released = @posts.where(is_released: true)
   end
 
   def destroy

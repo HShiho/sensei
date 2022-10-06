@@ -14,7 +14,7 @@
       <div class="h5">すべての投稿</div>
     </div>
     <div>
-      <% @posts_released.each do |post| %>
+      <% @posts.each do |post| %>
         <%= render partial: 'layouts/post_partial/body',locals: { post: post, user: @user, current_user: @current_user }  %>
         <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
       <% end %>

@@ -27,6 +27,9 @@
         <%= render partial: 'layouts/post_partial/body',locals: { post: @post, user: @user, current_user: @current_user }  %>
         <%= render partial: 'layouts/post_partial/footline_go_to_user_index',locals: { post: @post, user: @user }  %>
       </div>
+      <div class="border-top border-info">
+      <%= render partial: 'layouts/post_partial/comment_post',locals: { post: @post, post_comment: @post_comment, current_user: @current_user }  %>
+    </div>
     <% else %>
       <div>この投稿は非公開に設定されています。</div>
     <% end %>

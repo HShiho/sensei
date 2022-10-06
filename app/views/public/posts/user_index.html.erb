@@ -14,7 +14,7 @@
       <% if @user == @current_user %>
         <div class="h5">あなたの投稿一覧</div>
       <% else %>
-        <div class="h5"><%= @post.user.nickname %>さんの投稿一覧</div>
+        <div class="h5"><%= @user.nickname %>さんの投稿一覧</div>
       <% end %>
     </div>
 
