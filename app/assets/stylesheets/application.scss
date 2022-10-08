@@ -24,10 +24,6 @@
   text-align: center;
  }
 
- .search-form {
-   background-color: #fff;
- }
-
 .achivement-btn input {
   display: none;
 }
@@ -62,6 +58,19 @@
   .has-events {
     background: #70ddef63;
   }
+}
+
+.sidebar {
+  border: #17a2b8;
+  border-style: none dashed none none;
+}
+
+.info-gradient {
+  background: linear-gradient(to right, #fff 50%, #6dc7d6);
+}
+
+.border {
+  border-radius: 5px;
 }
 
 .mail_done{
