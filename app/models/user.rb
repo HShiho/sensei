@@ -12,6 +12,15 @@ class User < ApplicationRecord
   has_many :favorites,  dependent: :destroy
   has_many :inquiries,  dependent: :destroy
 
+  # 空白NG
+  validates :nickname, presence: true
+  # メールアドレス
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  # 一意性
+  validates :email, uniqueness: true
+  validates :encrypted_password, uniqueness: true
+
   # ゲストログイン
   def self.guest
     find_or_create_by!(email: 'guest@sample.com') do |user|
@@ -20,6 +29,7 @@ class User < ApplicationRecord
     end
   end
 
+  # ユーザーアイコン画像表示
   def get_icon_image(width, height)
     unless icon_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

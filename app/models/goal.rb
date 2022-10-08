@@ -8,4 +8,7 @@ class Goal < ApplicationRecord
     completed: 1,
   }
 
+# 空白NG
+  validates :title, presence: true
+
 end

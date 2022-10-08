@@ -16,6 +16,18 @@
 
  @import "simple_calendar";
 
+.nav-item {
+  width: 120px;
+  border: thin dashed #17a2b8;
+  border-radius: 5px;
+  background-color: #b1e2ea12;
+  text-align: center;
+ }
+
+ .search-form {
+   background-color: #fff;
+ }
+
 .achivement-btn input {
   display: none;
 }
@@ -54,4 +66,8 @@
 
 .mail_done{
   height: 400px;
+}
+
+.footer-text {
+  color: #0f7080bd;
 }

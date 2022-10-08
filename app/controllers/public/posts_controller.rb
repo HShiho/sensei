@@ -24,8 +24,6 @@ class Public::PostsController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.where(user_id: @user.id)
     set_goal
-    @posts = Post.where(user_id: @user.id).order("created_at DESC") #current_user用(非公開込み)
-    @posts_released = @posts.where(is_released: true) #他userの投稿一覧(公開のみ)
     if params[:tag_ids] # タグ検索
       @posts = []
       @posts_released = []
@@ -37,6 +35,9 @@ class Public::PostsController < ApplicationController
           @posts_released = @posts_released.empty? ? tag_posts_released : @posts_released & tag_posts_released
         end
       end
+    else
+      @posts = Post.where(user_id: @user.id).order("created_at DESC") #current_user用(非公開込み)
+      @posts_released = @posts.where(is_released: true) #他userの投稿一覧(公開のみ)
     end
   end
 
@@ -62,7 +63,7 @@ class Public::PostsController < ApplicationController
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else
-      render template: "homes/top"
+      redirect_to public_root_path, notice: '投稿できませんでした。入力内容を確認の上、もう一度お願いします。'
     end
   end
 

@@ -13,6 +13,12 @@ class Post < ApplicationRecord
     good: 1,
     almost: 2
   }
+  
+  # 空白NG
+  validates :body, presence: true
+  # 1文字以上140字以下
+  validates :body, length: { in: 1..140 }
+  
 
   def get_image(width, height)
     unless image.attached?

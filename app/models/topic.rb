@@ -6,5 +6,8 @@ class Topic < ApplicationRecord
   belongs_to :user
 
   accepts_nested_attributes_for :topic_comments
+  
+  # 空白NG
+  validates :title, presence: true
 
 end
