@@ -1,5 +1,4 @@
-<div class="container">
-  <div class="col-9">
+<div class="col-9 mx-auto">
   <div class="d-flex justify-content-center">
     <div class="h5">投稿詳細ページ</div>
   </div>
@@ -46,30 +45,24 @@
         <% end %>
       <!--いいねアイコン-->
         <div class="d-flex bd-hightlight m-3">
-          <div class="bd-hightlight">
-              <%= link_to public_favorite_path(@post, post_id: @post.id, button: 1), method: :post, class: 'btn btn-outline-primary' do %>
-                <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
-                <%= @post.favorites.where(type: 'nice').count %>
-              <% end %>
+          <div class="bd-hightlight text-info mr-3">
+            <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
+            <%= @post.favorites.where(type: 'nice').count %>
           </div>
-          <div class="bd-hightlight">
-            <%= link_to public_favorite_path(@post, post_id: @post.id, button: 2), method: :post, class: 'btn btn-outline-primary ml-2' do %>
-              <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
-              <%= @post.favorites.where(type: 'like').count %>
-            <% end %>
+          <div class="bd-hightlight text-info mr-3">
+            <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
+            <%= @post.favorites.where(type: 'like').count %>
           </div>
-          <div class="bd-hightlight">
-            <%= link_to public_favorite_path(@post, post_id: @post.id, button: 3), method: :post, class: 'btn btn-outline-primary ml-2' do %>
-              <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
-              <%= @post.favorites.where(type: 'fight').count %>
-            <% end %>
+          <div class="bd-hightlight text-info">
+            <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
+            <%= @post.favorites.where(type: 'fight').count %>
           </div>
           <div class="btn btn-outline-info ml-auto bd-hightlight d-flex align-items-center">
             合計 <%= @post.favorites.count %>
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
+          <div><%= link_to 'ユーザーの投稿一覧を見る',admin_posts_index_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>
       </div>
       <!--コメント一覧-->
@@ -85,7 +78,7 @@
                 </div>
                 <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
                 <div class="ml-auto bd-hightlight">
-                  <%= link_to '削除', public_post_comment_path(post_comment, post_comment.post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-3" %>
+                  <%= link_to '削除', public_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "btn btn-outline-danger mr-3" %>
                 </div>
               </div>
               <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>
@@ -95,4 +88,3 @@
       </div>
     </div>
   </div>
-</div>

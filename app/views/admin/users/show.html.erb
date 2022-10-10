@@ -1,8 +1,9 @@
 <div class="container row">
 
   <div class="col-9 my-3 mx-auto">
-    <div class="d-flex justify-content-center">
-      <div class="h5">ユーザーページ</div>
+    <div class="d-flex justify-content-around">
+      <div class="h5 mt-2 mb-0">ユーザーページ</div>
+      <div><%= link_to 'ユーザー情報編集ページへ', edit_admin_user_path(@user), class: 'btn btn-outline-success' %></div>
     </div>
 
     <div class="col-10  my-5 mx-auto">
@@ -37,16 +38,20 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-center mb-5">
-      <div>
-        <%= link_to 'ユーザー情報編集ページへ', edit_admin_user_path(@user), class: 'btn btn-outline-success' %>
+    <div class="d-flex justify-content-around my-5">
+      <div class="btn btn-info disabled" aria-disabled="true">　投稿　</div>
+      <div class="d-flex justify-content-between col-6">
+        <div><%= link_to '一覧を見る',admin_posts_index_path(@user.id), class: 'btn btn-outline-info' %></div>
+        <div><%= link_to 'コメント一覧を見る',admin_post_comments_index_path(@user.id), class: 'btn btn-outline-info' %></div>
       </div>
     </div>
 
     <div class="d-flex justify-content-around my-5">
-      <div class="btn btn-secondary disabled" aria-disabled="true">投稿</div>
-      <div><%= link_to '投稿一覧を見る',admin_posts_path(@user.id), class: 'btn btn-outline-secondary' %></div>
-      <div><%= link_to 'コメント一覧を見る',admin_post_comments_path(@user.id), class: 'btn btn-outline-secondary' %></div>
+      <div class="btn btn-primary disabled" aria-disabled="true">トピック</div>
+      <div class="d-flex justify-content-between col-6">
+        <div><%= link_to '一覧を見る',admin_topics_index_path(@user.id), class: 'btn btn-outline-primary' %></div>
+        <div><%= link_to 'コメント一覧を見る',admin_topic_comments_index_path(@user.id), class: 'btn btn-outline-primary' %></div>
+      </div>
     </div>
 
   </div>

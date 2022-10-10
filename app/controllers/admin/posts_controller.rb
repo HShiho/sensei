@@ -1,20 +1,22 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
-    @post = Post.find(params[:id])
-    if params[:tag_ids]
+    @user = User.find(params[:id])
+    if params[:tag_ids] #タグ検索
       @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).posts
+          tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC")
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
-          @posts = @posts.where(user_id: "#{params[:id]}")
         end
       end
+    elsif params[:search] #キーワード検索
+      @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%').order("created_at DESC")
+      @posts = @posts.where(user_id: @user)
     else
-      @posts = Post.where(user_id: "#{params[:id]}")
+      @posts = Post.where(user_id: @user).order("created_at DESC")
     end
-    @posts = @posts.order("created_at DESC")
-    @posts_released = @posts.where(is_released: true)
   end
 
   def show

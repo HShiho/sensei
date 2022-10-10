@@ -1,0 +1,22 @@
+<h4 class="text-info"><%= @topic.title %></h4>
+<div class="overflow-auto"  style="height:400px;">
+  <% @topic_comments.each do |comment| %>
+    <div class="border-bottom border-info my-2 mx-5">
+      <div class="d-flex bd-hightlight">
+        <div class="bd-hightlight">
+          <%= link_to admin_user_path(id: comment.user_id) do %>
+            <%= image_tag comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= comment.user.nickname %>
+          <% end %>
+        </div>
+        <div class="bd-hightlight text-secondary ml-3">
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </div>
+        <div class="ml-auto bd-hightlight">
+           <%= link_to '削除', admin_topic_topic_comment_path(comment.topic,comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
+        </div>
+      </div>
+      <div class="px-3 pb-2"><%= comment.body %></div>
+    </div>
+  <% end %>
+</div>

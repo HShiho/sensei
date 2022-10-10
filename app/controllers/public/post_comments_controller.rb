@@ -8,7 +8,7 @@ class Public::PostCommentsController < ApplicationController
     if comment.save
       redirect_to public_post_path(@post)
     else
-      render template: "posts/show", notice: 'コメントの作成に失敗しました。'
+      render template: "public/posts/show", notice: 'コメントの作成に失敗しました。'
     end
   end
 
@@ -16,7 +16,7 @@ class Public::PostCommentsController < ApplicationController
     if PostComment.find(params[:id]).destroy
       redirect_to public_post_path(params[:post_id])
     else
-      render template: "posts/show", notice: 'コメントの削除に失敗しました。'
+      render template: "public/posts/show", notice: 'コメントの削除に失敗しました。'
     end
   end
 

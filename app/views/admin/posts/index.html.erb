@@ -1,4 +1,4 @@
-<div class="container row">
+<div class="row">
   <div class="col-3">
     <div class="border-bottom border-info pb-3 mb-5">
       <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
@@ -8,7 +8,7 @@
   </div>
   <div class="col-9">
   <div class="d-flex justify-content-center">
-    <div class="h5"><%= @post.user.nickname %>さんの投稿一覧</div>
+    <div class="h5"><%= @user.nickname %>さんの投稿一覧</div>
   </div>
   <div>
     <% @posts.each do |post| %>

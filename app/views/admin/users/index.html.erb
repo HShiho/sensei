@@ -1,19 +1,15 @@
-<div class="container">
-
-  <div class="col-9">
-    <div class="d-flex justify-content-center">
-      <div class="h5">すべてのユーザー</div>
-    </div>
-    <div>
-      <% @users.each do |user| %>
-        <div class="border-bottom border-info m-3 p-2">
-          <%= link_to admin_user_path(user), class: 'text-dark mr-auto bd-hightlight h5' do %>
-            <%= image_tag user.get_icon_image(30,30), class: 'border rounded-circle' %>
-            <span class="border-bottom border-dark"><%= user.nickname %></span>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<div class="col-9 mx-auto">
+  <div class="d-flex justify-content-center">
+    <div class="h5">すべてのユーザー</div>
   </div>
-
+  <div>
+    <% @users.each do |user| %>
+      <div class="border-bottom border-info m-3 p-2">
+        <%= link_to admin_user_path(user), class: 'text-dark mr-auto bd-hightlight h5' do %>
+          <%= image_tag user.get_icon_image(30,30), class: 'border rounded-circle' %>
+          <span class="border-bottom border-dark"><%= user.nickname %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

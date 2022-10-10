@@ -17,12 +17,20 @@ Rails.application.routes.draw do
 
   # 管理者
   namespace :admin do
-    get '/post_comments/:id' => 'post_comments#index',as: 'post_comments'
-    get '/posts/:id' => 'posts#index',as: 'posts'
-    resources :posts,except: [:edit] do
+    get '/post_comments_index/:id' => 'post_comments#index',as: 'post_comments_index'
+    get '/posts_index/:id' => 'posts#index',as: 'posts_index'
+    resources :posts,only: [:destroy, :show] do
       resources :post_comments,only: [:destroy]
     end
+
     resources :users,except: [:destroy]
+
+    get '/topic_comments_index/:id' => 'topic_comments#index',as: 'topic_comments_index'
+    get '/topics_index/:id' => 'topics#index',as: 'topics_index'
+    resources :topics,only: [:destroy, :show] do
+      resources :topic_comments,only: [:destroy]
+    end
+
     root :to => 'users#index'
   end
 
@@ -33,8 +41,6 @@ Rails.application.routes.draw do
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
     patch 'post/:id/inex' => 'posts#update',as: 'edit_post'
     resources :posts,except: [:edit] do
-      # post '/post/:id/favorite' => 'favorites#create',as: 'favorite'
-      # delete '/post/:id/favorite' => 'favorites#delete'
       resource :favorites,only: [:create, :destroy]
       resources :post_comments,only: [:create, :destroy]
     end

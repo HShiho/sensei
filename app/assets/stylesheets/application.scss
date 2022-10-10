@@ -30,7 +30,8 @@
 
 .simple-calendar {
   .day {
-    height: 40px;
+    height: 15px;
+    padding: 4px;
   }
   .wday-0 {
     color: #ff2479;
@@ -49,9 +50,7 @@
   .past {}
   .future {}
   .start-date {}
-  .end-date {
-    background: #aef978ab;
-  }
+  .end-date {}
   .prev-month {}
   .next-month { }
   .current-month {}
