@@ -16,6 +16,7 @@
 
  @import "simple_calendar";
 
+
 .nav-item {
   width: 120px;
   border: thin dashed #17a2b8;
@@ -64,7 +65,7 @@
   border-style: none dashed none none;
 }
 
-.info-gradient {
+.top-gradient {
   background: linear-gradient(to right, #fff 50%, #6dc7d6);
 }
 
@@ -72,7 +73,7 @@
   border-radius: 5px;
 }
 
-.mail_done{
+.mail_done {
   height: 400px;
 }
 
