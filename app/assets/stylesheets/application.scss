@@ -73,6 +73,15 @@
   border-radius: 5px;
 }
 
+.back-fish {
+  background-image: image-url('back-fish.png');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: 100% 100%;
+  background-color:rgba(255,255,255,0.7);
+  background-blend-mode:lighten;
+}
+
 .mail_done {
   height: 400px;
 }
