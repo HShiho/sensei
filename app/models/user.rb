@@ -41,5 +41,15 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+  
+  def withdrawal_or_valibity
+    "#{is_deleted ? '退会' : '有効'}"
+  end
+  
+  def deleted_user
+    if @user.is_deleted == true
+      @user.nickname = '退会済みのユーザー'
+    end
+  end
 
 end

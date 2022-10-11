@@ -58,7 +58,8 @@ class Public::UsersController < ApplicationController
   end
 
   def breakaway
-    @user = User.find(params[:id])
+    id = params[:user_id]
+    @user = User.find(id)
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理が完了しました。またいつか、その時を楽しみにお待ちしています。"
@@ -70,7 +71,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :email, :is_deleted, :image )
+    params.require(:user).permit(:nickname, :email, :is_deleted, :icon_image )
   end
 
 end
