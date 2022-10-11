@@ -13,6 +13,9 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @goals = Goal.where(user_id: "#{params[:id]}")
     @goal = @goals.where(is_completed: 0).last
+    if @user.is_deleted == true
+      redirect_to public_not_browse_path
+    end
   end
 
   def edit

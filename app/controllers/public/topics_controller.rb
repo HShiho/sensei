@@ -9,7 +9,7 @@ class Public::TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user_id = @current_user.id
     if @topic.save
-      redirect_to public_topic_path(@topic), notice: '最初の投稿を行いましょう。'
+      redirect_to public_topic_path(@topic), notice: '最初の投稿をしましょう。'
     else
       redirect_to public_topics_path, notice: 'トピックの作成に失敗しました。'
     end
@@ -34,7 +34,7 @@ class Public::TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @topic_comment = TopicComment.new
-    @topic_comments = @topic.topic_comments.all.order("created_at DESC")
+    @topic_comments = @topic.topic_comments.order("created_at DESC")
   end
 
 

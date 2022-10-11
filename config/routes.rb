@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 # 会員
   namespace :public do
     get '/about' => 'homes#about',as: 'about'
+    get '/not_browse' => 'homes#not_browse',as: 'not_browse'
 
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
     patch 'post/:id/inex' => 'posts#update',as: 'edit_post'

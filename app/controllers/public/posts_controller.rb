@@ -22,6 +22,7 @@ class Public::PostsController < ApplicationController
 
   def user_index
     @user = User.find(params[:id])
+    is_deleted_redirect
     @post = Post.where(user_id: @user.id)
     set_goal
     if params[:tag_ids] # タグ検索
@@ -51,6 +52,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    is_deleted_redirect
     set_goal
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all.order("created_at DESC")
@@ -79,6 +81,12 @@ class Public::PostsController < ApplicationController
   def set_goal
     @goal = Goal.where(user_id: @user.id)
     @goal = @goal.where(is_completed: 0).last
+  end
+  
+  def is_deleted_redirect
+    if @user.is_deleted == true
+      redirect_to public_not_browse_path
+    end
   end
 
   def post_params

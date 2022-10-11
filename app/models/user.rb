@@ -48,7 +48,9 @@ class User < ApplicationRecord
   
   def deleted_user
     if @user.is_deleted == true
-      @user.nickname = '退会済みのユーザー'
+      '退会済みのユーザー'
+    else
+      @user.nickname
     end
   end
 

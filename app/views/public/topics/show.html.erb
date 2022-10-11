@@ -1,24 +1,28 @@
 <h4 class="text-info"><%= @topic.title %></h4>
 <div class="overflow-auto"  style="height:400px;">
-  <% @topic_comments.each do |comment| %>
+  <% @topic_comments.each do |topic_comment| %>
     <div class="border-bottom border-info my-2 mx-5">
       <div class="d-flex bd-hightlight">
         <div class="bd-hightlight">
-          <%= link_to public_user_path(id: comment.user_id) do %>
-            <%= image_tag comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-            <%= comment.user.nickname %>
+          <% if topic_comment.user.is_deleted == false %>
+            <%= link_to public_user_path(id: topic_comment.user_id) do %>
+              <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+              <%= topic_comment.user.nickname %>
+            <% end %>
+          <% else %>
+            退会済みのユーザー
           <% end %>
         </div>
         <div class="bd-hightlight text-secondary ml-3">
-          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <%= topic_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
-        <% if  comment.user == current_user %>
+        <% if topic_comment.user == current_user %>
           <div class="ml-auto bd-hightlight">
-            <%= link_to '削除', public_topic_topic_comment_path(comment.topic,comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
+            <%= link_to '削除', public_topic_topic_comment_path(topic_comment.topic,topic_comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
           </div>
         <% end %>
       </div>
-      <div class="px-3 pb-2"><%= comment.body %></div>
+      <div class="px-3 pb-2"><%= topic_comment.body %></div>
     </div>
   <% end %>
 </div>

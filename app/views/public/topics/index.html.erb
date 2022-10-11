@@ -19,22 +19,24 @@
     </div>
 
     <% @topics.each do |topic| %>
-      <div class="border-bottom border-info py-2 col-12">
-        <%= link_to public_topic_path(topic), class: 'text-dark mr-auto bd-hightlight' do %>
-          <div class="d-flex bd-hightlight">
-            <div class="bd-hightlight">
-              <%= image_tag topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-              <%= topic.user.nickname %> 【<%= topic.title %>】
+      <% if topic.user.is_deleted == false %>
+        <div class="border-bottom border-info py-2 col-12">
+          <%= link_to public_topic_path(topic), class: 'text-dark mr-auto bd-hightlight' do %>
+            <div class="d-flex bd-hightlight">
+              <div class="bd-hightlight">
+                <%= image_tag topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+                <%= topic.user.nickname %> 【<%= topic.title %>】
+              </div>
+              <div class="flex-grow-1 bd-hightlight">
+                <% topic.tags.each do |tag| %>
+                  # <%= tag.name %>
+                 <% end %>
+              </div>
+              <div class="bd-hightlight"><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></div>
             </div>
-            <div class="flex-grow-1 bd-hightlight">
-              <% topic.tags.each do |tag| %>
-                # <%= tag.name %>
-               <% end %>
-            </div>
-            <div class="bd-hightlight"><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
 
   </div>
