@@ -4,11 +4,14 @@
   </div>
   <div>
     <% @users.each do |user| %>
-      <div class="border-bottom border-info m-3 p-2">
-        <%= link_to admin_user_path(user), class: 'text-dark mr-auto bd-hightlight h5' do %>
-          <%= image_tag user.get_icon_image(30,30), class: 'border rounded-circle' %>
-          <span class="border-bottom border-dark"><%= user.nickname %></span>
-        <% end %>
+      <div class="border-bottom border-info m-3 p-2 d-flex justify-content-between">
+        <div>
+          <%= link_to admin_user_path(user), class: 'text-dark mr-auto bd-hightlight h5' do %>
+            <%= image_tag user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <span class="border-bottom border-dark"><%= user.nickname %></span>
+          <% end %>
+        </div>
+        <div>会員ステータス　：　<%= user.withdrawal_or_valibity %></div>
       </div>
     <% end %>
   </div>
