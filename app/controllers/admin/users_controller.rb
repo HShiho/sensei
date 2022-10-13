@@ -2,7 +2,11 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all.page(params[:page])
+    if params[:search] #キーワード検索
+      @users = User.where("nickname LIKE ?",'%' + params[:search] + '%').order("created_at DESC").page(params[:page])
+    else
+      @users = User.all.page(params[:page])
+    end
   end
 
   def show

@@ -11,9 +11,6 @@ class Admin::PostsController < ApplicationController
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
         end
       end
-    elsif params[:search] #キーワード検索
-      @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%').order("created_at DESC")
-      @posts = @posts.where(user_id: @user).page(params[:page])
     else
       @posts = Post.where(user_id: @user).order("created_at DESC").page(params[:page])
     end
