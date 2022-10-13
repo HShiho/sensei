@@ -8,6 +8,9 @@
             <%= image_tag comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
             <%= comment.user.nickname %>
           <% end %>
+          <% if comment.user.is_deleted == true %>
+            <span class="text-secondary">※退会済みユーザー</span>
+          <% end %>
         </div>
         <div class="bd-hightlight text-secondary ml-3">
           <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>

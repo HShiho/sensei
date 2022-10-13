@@ -11,24 +11,7 @@
       <div class="h5">ユーザーページ</div>
     </div>
 
-    <div class="col-10  my-5 mx-auto">
-      <div class="d-flex bd-highlight my-5">
-        <div class="bd-highlight col-4 px-0 text-info">
-          ニックネーム
-        </div>
-        <div class="flex-grow-1 bd-highlight h5">
-          <%= @user.nickname %>
-        </div>
-      </div>
-
-      <div class="d-flex bd-highlight my-5">
-        <div class="bd-highlight col-4 px-0 text-info">
-          アイコン画像
-        </div>
-        <div class="flex-grow-1 bd-highlight ">
-          <%= image_tag @user.get_icon_image(100,100), class: 'border rounded-circle' %>
-        </div>
-      </div>
+    <%= render partial: 'layouts/common_user_show',locals: { user: @user } %>
 
       <% if @user == @current_user %>
         <div class="d-flex bd-highlight my-5">

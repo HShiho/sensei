@@ -1,6 +1,6 @@
 <div class="col-9 mx-auto">
   <div class="d-flex justify-content-center">
-    <div class="h5">投稿詳細ページ</div>
+    <div class="h5"><%= @post.user.nickname %> さんの投稿詳細ページ</div>
   </div>
   <div>
     <div class="border border-info m-3 py-3 px-2">
@@ -13,7 +13,7 @@
 
         <%= render partial: 'common_post',locals: { post: @post } %>
 
-      
+
         <div class="d-flex justify-content-end">
           <div><%= link_to 'ユーザーの投稿一覧を見る',admin_posts_index_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>

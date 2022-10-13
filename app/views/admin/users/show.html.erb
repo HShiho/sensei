@@ -6,32 +6,12 @@
       <div><%= link_to 'ユーザー情報編集ページへ', edit_admin_user_path(@user), class: 'btn btn-outline-success' %></div>
     </div>
 
-    <div class="col-10  my-5 mx-auto">
-      <div class="d-flex bd-highlight my-5">
-        <div class="bd-highlight col-5 px-0 text-info">
-          ニックネーム
-        </div>
-        <div class="bd-highlight col-1"></div>
-        <div class="flex-grow-1 bd-highlight h5">
-          <%= @user.nickname %>
-        </div>
-      </div>
-
-      <div class="d-flex bd-highlight my-5">
-        <div class="bd-highlight col-5 px-0 text-info">
-          アイコン画像
-        </div>
-        <div class="bd-highlight col-1"></div>
-        <div class="flex-grow-1 bd-highlight ">
-          <%= image_tag @user.get_icon_image(100,100), class: 'border rounded-circle' %>
-        </div>
-      </div>
-
+　　<%= render partial: 'layouts/common_user_show',locals: { user: @user } %>
+    
       <div class="d-flex bd-highlight mt-5 mb-3">
         <div class="bd-highlight col-5 px-0 text-info">
           メールアドレス
         </div>
-        <div class="bd-highlight col-1"></div>
         <div class="flex-grow-1 bd-highlight h5">
           <%= @user.email %>
         </div>
@@ -41,7 +21,6 @@
         <div class="bd-highlight col-5 px-0 text-info">
           会員ステータス
         </div>
-        <div class="bd-highlight col-1"></div>
         <div class="flex-grow-1 bd-highlight h5">
           <%= @user.withdrawal_or_valibity %>
         </div>
