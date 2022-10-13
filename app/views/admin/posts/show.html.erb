@@ -10,57 +10,10 @@
             <%= link_to '削除', public_post_path(@post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-5" %>
           </div>
         </div>
-        <% if @post.is_released == false %>
-          <div class="mx-2">
-            <i class="fa-solid fa-lock fa-lg" style="color:#17a2b8"></i>
-          </div>
-        <% end %>
-         <div class="bd-hightlight text-secondary"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-        <div class="bd-hightlight ml-3">
-          <% if @post.achivement == "excellence" %>
-            <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
-          <% elsif @post.achivement == "good" %>
-            <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
-          <% else %>
-            <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
-          <% end %>
-          </div>
-        </div>
-      <!--本文-->
-        <div class="border border-secondary mt-2 mx-3 px-1">
-          <%= @post.body %>
-        </div>
-      <!--タグ-->
-        <div class="ml-4 text-info">
-          <% @post.tags.each do |tag| %>
-            # <%= tag.name %>
-          <% end %>
-        </div>
-      <!--明日の目標-->
-        <% if @post.tomorrow_objective.present? %>
-          <div class="pl-2 mt-2">明日の目標</div>
-          <div class="border border-secondary mx-3 px-1">
-            <%= @post.tomorrow_objective %>
-          </div>
-        <% end %>
-      <!--いいねアイコン-->
-        <div class="d-flex bd-hightlight m-3">
-          <div class="bd-hightlight text-info mr-3">
-            <i class="fa-solid fa-thumbs-up fa-2x"></i> <%= Favorite.types_i18n[:nice] %>
-            <%= @post.favorites.where(type: 'nice').count %>
-          </div>
-          <div class="bd-hightlight text-info mr-3">
-            <i class="fa-solid fa-heart fa-2x"></i> <%= Favorite.types_i18n[:like] %>
-            <%= @post.favorites.where(type: 'like').count %>
-          </div>
-          <div class="bd-hightlight text-info">
-            <i class="fa-solid fa-hand-fist fa-2x"></i> <%= Favorite.types_i18n[:fight] %>
-            <%= @post.favorites.where(type: 'fight').count %>
-          </div>
-          <div class="btn btn-outline-info ml-auto bd-hightlight d-flex align-items-center">
-            合計 <%= @post.favorites.count %>
-          </div>
-        </div>
+
+        <%= render partial: 'common_post',locals: { post: @post } %>
+
+      
         <div class="d-flex justify-content-end">
           <div><%= link_to 'ユーザーの投稿一覧を見る',admin_posts_index_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>
@@ -78,7 +31,7 @@
                 </div>
                 <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
                 <div class="ml-auto bd-hightlight">
-                  <%= link_to '削除', public_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "btn btn-outline-danger mr-3" %>
+                  <%= link_to '削除', admin_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "btn btn-outline-danger mr-3" %>
                 </div>
               </div>
               <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>
