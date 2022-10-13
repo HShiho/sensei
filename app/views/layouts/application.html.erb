@@ -13,10 +13,27 @@
   </head>
 
   <body>
-     <header class="border-bottom py-2">
-      <div class="container col-11">
-        <nav class="navbar navbar-expand-lg navbar-light mt-2 pt-4 pb-3 pr-0">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="Toggle navigation">
+    <header class="border-bottom py-2">
+      <div class="col-11">
+        <div class="container d-flex bd-heightlight">
+          <div class="pt-2 header-logo bd-heightlight">
+            <% if user_signed_in? %>
+              <%= link_to public_root_path do %>
+                <%= image_tag 'logo.png', size: '200x100' %>
+              <% end %>
+            <% elsif %>
+              <%= link_to admin_root_path do %>
+                <%= image_tag 'logo.png', size: '200x100' %>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <%= image_tag 'logo.png', size: '200x100' %>
+              <% end %>
+            <% end %>
+          </div>
+      <!--<div class="container col-8">-->
+        <nav class="navbar navbar-expand-lg navbar-light mt-2 pt-4 pb-3 pr-0 flex-grow-1 bd-heightlight">
+          <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -35,7 +52,7 @@
                     <%= link_to '投稿',public_posts_path, class: 'nav-link' %>
                   </li>
                   <li class="nav-item mx-3">
-                    <%= link_to 'ブックマーク',favorites_public_user_path(@current_user), class: 'nav-link' %>
+                    <%= link_to 'いいね',favorites_public_user_path(@current_user), class: 'nav-link' %>
                   </li>
                   <li class="nav-item mx-3">
                     <%= link_to 'トピック',public_topics_path, class: 'nav-link' %>
@@ -64,37 +81,25 @@
               </ul>
             </div>
         </nav>
-        <div class="pt-4 header-logo d-flex bd-hightlight">
-          <div class="bd-hightlight">
-            <% if user_signed_in? %>
-              <%= link_to public_root_path do %>
-                <h2> ＼ 宣誓！／ </h2>
-              <% end %>
-            <% elsif %>
-              <%= link_to admin_root_path do %>
-                <h2> ＼ 宣誓！／ </h2>
-              <% end %>
-            <% else %>
-              <%= link_to new_user_session_path do %>
-                <h2> ＼ 宣誓！／ </h2>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="flex-grow-1 bd-hightlight">
-            <%= render partial: 'layouts/flash_notice' %>
-            <p class="notice"><% notice %></p>
-          </div>
-          <!--検索窓-->
-            <div class="search-form col-3 py-1 px-1 my-2 mr-3 ml-auto bd-hightlight border border-secondary">
-              <%= form_tag({controller:"public/posts", action:"index"}, method: :get) do %>
-                <%= text_field_tag( "search","",{ placeholder: "投稿をキーワードで検索", class: "p-0 col-11", style: "border: none" }) %>
-                <%= button_tag type: 'submit', class: 'btn btn-outline-info p-0', style: "border: none" do %>
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                <% end %>
-              <% end %>
-            </div>
-            <!------->
+      </div>
+      <!--<div class="d-flex bd-hightlight">-->
+        <!--<div class="flex-grow-1 bd-hightlight pl-4">-->
+          <div class="pl-4">
+          <%= render partial: 'layouts/flash_notice' %>
+          <p class="notice"><% notice %></p>
         </div>
+        <!--検索窓-->
+        <!--<div class="search-form col-3 py-1 px-1 my-2 mr-3 ml-auto bd-hightlight border border-secondary">-->
+          <div class="search-form col-xs-7 col-sm-6 col-md-5 col-lg-4 py-1 px-1 my-2 mr-3 ml-auto  border border-secondary">
+          <%= form_tag({controller:"public/posts", action:"index"}, method: :get) do %>
+            <%= text_field_tag( "search","",{ placeholder: "投稿をキーワードで検索", class: "p-0 col-11", style: "border: none" }) %>
+              <%= button_tag type: 'submit', class: 'btn btn-outline-info p-0', style: "border: none" do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <!------->
+      </div>
       </div>
     </header>
 
