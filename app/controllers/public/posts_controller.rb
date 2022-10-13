@@ -8,15 +8,15 @@ class Public::PostsController < ApplicationController
       @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC")
+          tag_posts = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC").page(params[:page])
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
         end
       end
     elsif params[:search] #キーワード検索
       @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%').order("created_at DESC")
-      @posts = @posts.where(is_released: true)
+      @posts = @posts.where(is_released: true).page(params[:page])
     else
-      @posts = Post.where(is_released: true).order("created_at DESC")
+      @posts = Post.where(is_released: true).order("created_at DESC").page(params[:page])
     end
   end
 
@@ -30,8 +30,8 @@ class Public::PostsController < ApplicationController
       @posts_released = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).posts.order("created_at DESC")
-          tag_posts_released = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC")
+          tag_posts = Tag.find_by(name: key).posts.where(user_id: @user.id).order("created_at DESC")
+          tag_posts_released = Tag.find_by(name: key).posts.where(user_id: @user.id, is_released: true).order("created_at DESC")
           @posts = @posts.empty? ? tag_posts : @posts & tag_posts
           @posts_released = @posts_released.empty? ? tag_posts_released : @posts_released & tag_posts_released
         end
@@ -82,7 +82,7 @@ class Public::PostsController < ApplicationController
     @goal = Goal.where(user_id: @user.id)
     @goal = @goal.where(is_completed: 0).last
   end
-  
+
   def is_deleted_redirect
     if @user.is_deleted == true
       redirect_to public_not_browse_path

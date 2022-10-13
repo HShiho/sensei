@@ -2,8 +2,8 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where.not(nickname: 'ゲストユーザー')
-    @users = @users.where.not(is_deleted: true)
+    # @users = User.where.not(nickname: 'ゲストユーザー')
+    @users = User.where.not(is_deleted: true).page(params[:page])
     @user = @current_user
     @goal = Goal.where(user_id: @user.id)
     @goal = @goal.where(is_completed: 0).last

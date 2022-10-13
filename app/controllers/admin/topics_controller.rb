@@ -7,12 +7,12 @@ class Admin::TopicsController < ApplicationController
       @topics = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_posts = Tag.find_by(name: key).topics.where(user_id: @user).order("created_at DESC")
+          tag_posts = Tag.find_by(name: key).topics.where(user_id: @user).order("created_at DESC").page(params[:page])
           @topics = @topics.empty? ? tag_posts : @topics & tag_posts
         end
       end
     else
-      @topics = Topic.where(user_id: @user).order("created_at DESC")
+      @topics = Topic.where(user_id: @user).order("created_at DESC").page(params[:page])
     end
   end
 

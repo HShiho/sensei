@@ -22,12 +22,12 @@ class Public::TopicsController < ApplicationController
       @topics = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_topics = Tag.find_by(name: key).topics.order("created_at DESC")
+          tag_topics = Tag.find_by(name: key).topics.order("created_at DESC").page(params[:page])
           @topics = @topics.empty? ? tag_topics : @topics & tag_topics
         end
       end
     else
-      @topics = Topic.all.order("created_at DESC")
+      @topics = Topic.all.order("created_at DESC").page(params[:page])
     end
   end
 
