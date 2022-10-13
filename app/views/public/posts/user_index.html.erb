@@ -1,7 +1,7 @@
 <div class="row">
 
   <!--サイドバー-->
-  <div class="col-3 mb-5 sidebar">
+  <div class="col-md-3 col-12 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
     <%= form_tag({controller:"posts",action:"user_index"}, method: :get) do %>
       <%= render partial: 'layouts/tag_search' %>
@@ -9,7 +9,7 @@
   </div>
 
 
-  <div class="col-9">
+  <div class="col-md-9 col-12">
     <div class="d-flex justify-content-center">
       <% if @user == @current_user %>
         <div class="h5">あなたの投稿一覧</div>

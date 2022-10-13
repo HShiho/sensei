@@ -1,7 +1,7 @@
 <div class="row">
 
   <!--サイドバー-->
-  <div class="col-3 mb-5 sidebar">
+  <div class="col-md-3 col-12 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
     <%= form_tag({controller:"topics",action:"index"}, method: :get) do %>
       <%= render partial: 'layouts/tag_search' %>
@@ -9,7 +9,7 @@
   </div>
 
 
-  <div class="col-9">
+  <div class="col-md-9 col-12">
     <div class="d-flex justify-content-center mb-3">
       <div><%= link_to '新しいトピックを作成する', new_public_topic_path, class: 'btn btn-info' %></div>
     </div>
@@ -25,14 +25,17 @@
             <div class="d-flex bd-hightlight">
               <div class="bd-hightlight">
                 <%= image_tag topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-                <%= topic.user.nickname %> 【<%= topic.title %>】
+                <%= topic.user.nickname %>
               </div>
+              <div class="ml-auto bd-hightlight"><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+            </div>
+            <div class="d-flex bd-hightlight">
+              <div class="bd-hightlight pl-4">【<%= topic.title %>】</div>
               <div class="flex-grow-1 bd-hightlight">
                 <% topic.tags.each do |tag| %>
                   # <%= tag.name %>
                  <% end %>
               </div>
-              <div class="bd-hightlight"><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></div>
             </div>
           <% end %>
         </div>
