@@ -8,7 +8,7 @@ class Public::PostCommentsController < ApplicationController
     if comment.save
       redirect_to public_post_path(@post)
     else
-      render template: "public/posts/show", notice: 'コメントの作成に失敗しました。'
+      redirect_to public_post_path(@post), notice: 'コメントの作成に失敗しました。'
     end
   end
 
@@ -27,6 +27,11 @@ class Public::PostCommentsController < ApplicationController
 
   def post_comment_params
     params.require(:post_comment).permit(:body)
+  end
+
+  def set_goal
+    @goal = Goal.where(user_id: @user.id)
+    @goal = @goal.where(is_completed: 0).last
   end
 
 end
