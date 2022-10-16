@@ -9,7 +9,7 @@ class Public::TopicCommentsController < ApplicationController
     if comment.save
       redirect_to public_topic_path(@topic)
     else
-      render template: "public/topics/show", notice: 'コメントの作成に失敗しました。'
+      redirect_to public_topic_path(@topic), notice: 'コメントの作成に失敗しました。'
     end
   end
 

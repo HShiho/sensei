@@ -1,5 +1,5 @@
 class Public::GoalsController < ApplicationController
-  
+
 
   def new
     @goal = Goal.new
@@ -11,7 +11,7 @@ class Public::GoalsController < ApplicationController
     if @goal.save
       redirect_to public_induction_path
     else
-      render
+      render :new
     end
   end
 

@@ -12,7 +12,10 @@ class Public::ObjectivesController < ApplicationController
     if @objective.save
       redirect_to public_root_path
     else
-      render new_public_objective_path
+      @objective = Objective.new
+      @goal = Goal.where(user_id: @current_user.id)
+      @goal = @goal.where(is_completed: 0).last
+      render :new
     end
   end
 
