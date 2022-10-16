@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # 全体のルート
+  devise_scope :user do
+    get '/', to: 'public/sessions#new'
+  end
+
   # 管理者用　URL/admin/sign_in...
   devise_for :admin, skip:[:registrations, :passwords],controllers:{
     sessions:"admin/sessions"
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
+
 
   # 管理者
   namespace :admin do
@@ -69,7 +75,6 @@ Rails.application.routes.draw do
     resources :topics,except: [:edit] do
       resources :topic_comments,only: [:create, :destroy]
     end
-
 
     root :to => 'homes#top'
   end
