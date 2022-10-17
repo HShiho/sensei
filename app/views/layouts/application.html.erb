@@ -65,6 +65,9 @@
                     <%= link_to 'ユーザー',admin_root_path, class: 'nav-link' %>
                   </li>
                   <li class="nav-item mx-3">
+                    <%= link_to 'タグ',admin_tags_path, class: 'nav-link' %>
+                  </li>
+                  <li class="nav-item mx-3">
                     <%= link_to 'ログアウト',destroy_admin_session_path, method: :delete, class: 'nav-link'%>
                   </li>
                 <% else %>

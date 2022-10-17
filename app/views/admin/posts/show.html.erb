@@ -7,7 +7,7 @@
       <div class="d-flex bd-hightlight">
         <div class="mr-auto bd-hightlight">
           <div class="d-flex justify-content-between">
-            <%= link_to '削除', public_post_path(@post), method: :delete, data: {cofirm: '本当に消しますか?' }, class: "btn btn-outline-danger mr-5" %>
+            <%= link_to '削除', public_post_path(@post), method: :delete, class: "delete-btn btn btn-outline-danger mr-5" %>
           </div>
         </div>
 
@@ -31,7 +31,7 @@
                 </div>
                 <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
                 <div class="ml-auto bd-hightlight">
-                  <%= link_to '削除', admin_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "btn btn-outline-danger mr-3" %>
+                  <%= link_to '削除', admin_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
                 </div>
               </div>
               <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>

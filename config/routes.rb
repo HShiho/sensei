@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     resources :topics,only: [:destroy, :show] do
       resources :topic_comments,only: [:destroy]
     end
+    
+    resources :tags,only: [:update, :index]
 
     root :to => 'users#index'
   end

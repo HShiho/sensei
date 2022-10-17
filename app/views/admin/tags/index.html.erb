@@ -1,0 +1,25 @@
+<div class="col-12 col-lg-9 mx-auto pb-5">
+    <div class="d-flex justify-content-center">
+      <div class="h5">すべてのタグ</div>
+    </div>
+    <div>
+      <% @tags.each do |tag| %>
+        <div class="border-bottom border-info m-3 p-2 d-flex justify-content-between">
+          <div class="pt-3">
+            <%= tag.name %>
+          </div>
+          <% if tag.id != 1 && tag.id != 2 && tag.id != 3 && tag.id != 4 && tag.id != 5 %>
+            <div>
+              <%= form_with model: @tag, url: admin_tag_path(id: tag.id), method: :patch do |f| %>
+                <%= f.text_field :name, placeholder: '変更後のタグ名を入力', class: 'col-9 px-1' %>
+                <%= f.submit '変更', class: "btn btn-outline-success" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div><%= paginate @tags %></div>
+    </div>
+  </div>

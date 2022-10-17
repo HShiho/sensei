@@ -21,6 +21,13 @@ class Admin::PostsController < ApplicationController
     @post_comments = @post.post_comments.all.order("created_at DESC")
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post_id = @post.user_id
+    @post.destroy
+    redirect_to admin_posts_index_path(@post_id)
+  end
+
 
 
   private
