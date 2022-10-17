@@ -22,7 +22,7 @@
           <div class="bd-hightlight text-secondary ml-3"><%= topic_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
           <span>　[　</span>
             <div class="bd-hightlight">
-              <%= link_to admin_topic_path(topic_comment) do %>
+              <%= link_to admin_topic_path(topic_comment.topic) do %>
                 <%= topic_comment.topic.title %>
               <% end %>
             </div>

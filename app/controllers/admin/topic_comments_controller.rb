@@ -12,7 +12,7 @@ class Admin::TopicCommentsController < ApplicationController
     if comment.destroy
       redirect_to admin_topic_path(@topic)
     else
-      render template: "admin/topics/show", notice: 'コメントの削除に失敗しました。'
+      redirect_to admin_topic_path(@topic), notice: 'コメントの削除に失敗しました。'
     end
   end
 
