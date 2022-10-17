@@ -21,7 +21,7 @@
           </div>
           <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
             <div class="ml-auto bd-hightlight">
-              <%= link_to '削除', public_post_post_comment_path(post_comment, post_comment.post), method: :delete, class: "btn btn-outline-danger mr-3" %>
+              <%= link_to '削除', admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
             </div>
           </div>
         <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>

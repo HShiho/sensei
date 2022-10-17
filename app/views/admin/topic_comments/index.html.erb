@@ -28,7 +28,7 @@
             </div>
           <span>　]　</span>
           <div class="ml-auto bd-hightlight">
-            <%= link_to '削除', admin_topic_topic_comment_path(topic_comment, topic_comment.topic), method: :delete, class: "btn btn-outline-danger mr-3" %>
+            <%= link_to '削除', admin_topic_topic_comment_path(topic_comment.topic, topic_comment), method: :delete, class: "delete-btn btn btn-outline-danger mr-3" %>
           </div>
         </div>
         <div class="pt-1 px-3 pb-3"><%= topic_comment.body %></div>
