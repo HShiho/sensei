@@ -27,7 +27,7 @@
               <div class="d-flex bd-hightlight">
                 <div class="bd-hightlight">
                   <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-                  <span class="border-bottom border-dark"><%= post_comment.user.nickname %></span>
+                  <span class="text-secondary"><%= post_comment.user.nickname %></span>
                 </div>
                 <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
                 <div class="ml-auto bd-hightlight">

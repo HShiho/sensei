@@ -1,36 +1,45 @@
-<div class="d-flex justify-content-center">
-  <div class="h5"><%= @topic_comment.user.nickname %>さんのコメント一覧</div>
-</div>
-<div>
-  <% @topic_comments.each do |topic_comment| %>
-    <div class="border-bottom border-info my-3 mx-5">
-      <div class="d-flex bd-hightlight">
-        <div class="bd-hightlight">
-          <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-          <%= link_to admin_user_path do %>
-            <%= topic_comment.user.nickname %>
-          <% end %>
-        </div>
-        <span>　>>>　</span>
-        <div class="bd-hightlight">
-          <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-          <%= link_to admin_topics_index_path do %>
-            <%= topic_comment.topic.user.nickname %>
-          <% end %>
-        </div>
-        <div class="bd-hightlight text-secondary ml-3"><%= topic_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-        <span>　[　</span>
+<% if @topic_comments.present? %>
+  <div class="d-flex justify-content-center">
+    <div class="h5"><%= @user.nickname %>さんのコメント一覧</div>
+  </div>
+  <div>
+    <% @topic_comments.each do |topic_comment| %>
+      <div class="border-bottom border-info my-3 mx-5">
+        <div class="d-flex bd-hightlight">
           <div class="bd-hightlight">
-            <%= link_to admin_topic_path(topic_comment) do %>
-              <%= topic_comment.topic.title %>
+            <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= link_to admin_user_path do %>
+              <%= topic_comment.user.nickname %>
             <% end %>
           </div>
-        <span>　]　</span>
-        <div class="ml-auto bd-hightlight">
-          <%= link_to '削除', admin_topic_topic_comment_path(topic_comment, topic_comment.topic), method: :delete, class: "btn btn-outline-danger mr-3" %>
+          <span>　>>>　</span>
+          <div class="bd-hightlight">
+            <%= image_tag topic_comment.topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= link_to admin_topics_index_path do %>
+              <%= topic_comment.topic.user.nickname %>
+            <% end %>
+          </div>
+          <div class="bd-hightlight text-secondary ml-3"><%= topic_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          <span>　[　</span>
+            <div class="bd-hightlight">
+              <%= link_to admin_topic_path(topic_comment) do %>
+                <%= topic_comment.topic.title %>
+              <% end %>
+            </div>
+          <span>　]　</span>
+          <div class="ml-auto bd-hightlight">
+            <%= link_to '削除', admin_topic_topic_comment_path(topic_comment, topic_comment.topic), method: :delete, class: "btn btn-outline-danger mr-3" %>
+          </div>
         </div>
+        <div class="pt-1 px-3 pb-3"><%= topic_comment.body %></div>
       </div>
-      <div class="pt-1 px-3 pb-3"><%= topic_comment.body %></div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-center">
+    <div class="h5">コメントが投稿されていません。</div>
+  </div>
+<% end %>
+<div class="d-flex justify-content-center my-5">
+  <div><%= link_to 'ユーザーページに戻る',admin_user_path(@user), class: 'btn btn-outline-success mr-3' %></div>
 </div>
