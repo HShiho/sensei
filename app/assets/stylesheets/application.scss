@@ -29,6 +29,11 @@
   display: none;
 }
 
+.achivement-btn input:checked + .icon {
+  background: #02beac4d;
+}
+
+
 .simple-calendar {
   .day {
     height: 15px;
