@@ -28,6 +28,9 @@ class Public::HomesController < ApplicationController
     if params[:tag]
       Tag.create(name: params[:tag])
     end
+
+    @hash = [{enum: 'excellence', icon: 'laugh-squint', checked: true}, {enum: 'good', icon: 'smile', checked: false}, {enum: 'almost', icon: 'rolling-eyes', checked: false}]
+
   end
 
   def about

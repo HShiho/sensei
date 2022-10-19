@@ -6,10 +6,14 @@ class Public::PostsController < ApplicationController
     set_goal
     if params[:tag_ids] #タグ検索
       @posts = []
-      params[:tag_ids].each do |key, value|
-        if value == "1"
+      @selects = params[:tag_ids].select{|key, value| value == "1"}
+      if @selects.empty?
+        @posts = Post.where(is_released: true).order("created_at DESC").page(params[:page])
+      else
+        @selects.each do |key, value|
+          @name = "1" #@selects[:key]
           tag_posts = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC").page(params[:page])
-          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
+          return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
         end
       end
     elsif params[:search] #キーワード検索

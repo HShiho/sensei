@@ -8,7 +8,7 @@ class Admin::PostsController < ApplicationController
       params[:tag_ids].each do |key, value|
         if value == "1"
           tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC").page(params[:page])
-          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
+          return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
         end
       end
     else

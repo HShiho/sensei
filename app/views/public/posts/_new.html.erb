@@ -4,33 +4,17 @@
     <%= form_with model: @new_post, url: public_posts_path, method: :post do |f| %>
       <p class="mb-0">達成度</p>
         <div class="form-check form-check-inline achivement-btn d-flex justify-content-around">
-          <div>
-            <%= f.radio_button :achivement, :excellence, checked: true, class: 'btn-check' %>
-            <span class="icon h3 py-4 border">
-              <%= f.label Post.achivements_i18n[:good],for: "post_achivement_excellence", class: 'btn btn-outline-info p-1' do %>
-                <i class="fa-regular fa-face-laugh-squint fa-3x"></i><br>
-                <span class="h6"><%= Post.achivements_i18n[:excellence] %></span>
-              <% end %>
-            </span>
-          </div>
-          <div>
-            <%= f.radio_button :achivement, :good, class: 'btn-check' %>
-            <span class="icon h3 py-4 border">
-              <%= f.label Post.achivements_i18n[:good], for: "post_achivement_good", class: 'btn btn-outline-info p-1' do  %>
-                <i class="fa-regular fa-face-smile fa-3x"></i><br>
-                <span class="h6"><%= Post.achivements_i18n[:good] %></span>
-              <% end %>
-            </span>
-          </div>
-          <div>
-            <%= f.radio_button :achivement, :almost, class: 'btn-check' %>
-            <span class="icon h3 py-4 border">
-              <%= f.label Post.achivements_i18n[:almost] , for: "post_achivement_almost", class: 'btn btn-outline-info p-1' do %>
-                <i class="fa-regular fa-face-rolling-eyes fa-3x"></i><br>
-                <span class="h6"><%= Post.achivements_i18n[:almost] %></span>
-              <% end %>
-            </span>
-          </div>
+          <% @hash.each do |h| %>
+            <div>
+              <%= f.radio_button :achivement, h[:enum], checked: h[:checked], class: 'btn-check' %>
+              <span class="icon h3 py-4 border">
+                <%= f.label Post.achivements_i18n[h[:enum]],for: "post_achivement_#{h[:enum]}", class: 'btn btn-outline-info p-1' do %>
+                  <i class="fa-regular fa-face-<%= h[:icon] %> fa-3x"></i><br>
+                  <span class="h6"><%= Post.achivements_i18n[h[:enum]] %></span>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
         </div>
 
       <p class="mb-0">投稿内容</p>
