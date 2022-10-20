@@ -6,9 +6,13 @@ class Admin::PostsController < ApplicationController
     if params[:tag_ids] #タグ検索
       @posts = []
       @selects = params[:tag_ids].select{|key, value| value == "1"}
-      params[:tag_ids].each do |key, value|
-        tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC").page(params[:page])
-        return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
+      if @selects.empty?
+        @posts = Post.where(user_id: @user).order("created_at DESC").page(params[:page])
+      else
+        @selects.each do |key, value|
+          tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC").page(params[:page])
+          return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
+        end
       end
     else
       @posts = Post.where(user_id: @user).order("created_at DESC").page(params[:page])
