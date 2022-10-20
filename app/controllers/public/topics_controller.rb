@@ -20,10 +20,13 @@ class Public::TopicsController < ApplicationController
     set_goal
     if params[:tag_ids]
       @topics = []
-      params[:tag_ids].each do |key, value|
-        if value == "1"
+      @selects = params[:tag_ids].select{|key, value| value == "1"}
+      if @selects.empty?
+        @topics = Topic.all.order("created_at DESC").page(params[:page])
+      else
+        @selects.each do |key, value|
           tag_topics = Tag.find_by(name: key).topics.order("created_at DESC").page(params[:page])
-          @topics = @topics.empty? ? tag_topics : @topics & tag_topics
+          return @topics = @topics.empty? ? tag_topics : @topics & tag_topics
         end
       end
     else

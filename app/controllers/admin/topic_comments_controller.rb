@@ -2,8 +2,8 @@ class Admin::TopicCommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @topic_comments = TopicComment.where(user_id: "#{params[:id]}").order("created_at DESC")
     @user = User.find(params[:id])
+    @topic_comments = TopicComment.where(user_id: @user).order("created_at DESC").page(params[:page])
   end
 
   def destroy

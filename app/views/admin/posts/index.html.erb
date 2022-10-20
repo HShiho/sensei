@@ -10,7 +10,13 @@
 
   <div class="col-9">
   <div class="d-flex justify-content-center">
-    <div class="h5"><%= @user.nickname %> さんの投稿一覧</div>
+    <div class="h5">
+      <%= @user.nickname %> さんの投稿
+      <% if @selects.present? %>
+        タグ検索結果
+      <% end %>
+      一覧
+    </div>
   </div>
 
   <div>

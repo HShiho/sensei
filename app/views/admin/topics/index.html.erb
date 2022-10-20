@@ -1,14 +1,20 @@
 <div class="row">
   <div class="col-3">
     <div class="border-bottom border-info pb-3 mb-5">
-      <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+      <%= form_tag({controller:"topics",action:"index"}, method: :get) do %>
         <%= render partial: 'layouts/tag_search' %>
       <% end %>
     </div>
   </div>
   <div class="col-9">
     <div class="d-flex justify-content-center">
-      <div class="h5"><%= @user.nickname %>さんのトピック一覧</div>
+      <div class="h5">
+        <%= @user.nickname %>さんのトピック
+        <% if @selects.present? %>
+          タグ検索結果
+        <% end %>
+        一覧
+      </div>
     </div>
 
     <% @topics.each do |topic| %>

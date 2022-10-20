@@ -15,7 +15,7 @@
           <span>　>>>　</span>
           <div class="bd-hightlight">
             <%= image_tag post_comment.post.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-            <%= link_to admin_posts_index_path do %>
+            <%= link_to admin_user_path(post_comment.post.user) do %>
               <%= post_comment.post.user.nickname %>
             <% end %>
           </div>
@@ -27,6 +27,9 @@
         <div class="pt-1 px-3 pb-3"><%= post_comment.body %></div>
       </div>
     <% end %>
+    <div class="d-flex justify-content-center">
+      <div><%= paginate @post_comments %></div>
+    </div>
   </div>
 <% else %>
   <div class="d-flex justify-content-center">

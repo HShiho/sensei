@@ -5,10 +5,13 @@ class Admin::TopicsController < ApplicationController
     @user = User.find(params[:id])
     if params[:tag_ids] #タグ検索
       @topics = []
-      params[:tag_ids].each do |key, value|
-        if value == "1"
+      @selects = params[:tag_ids].select{|key, value| value == "1"}
+      if @selects.empty?
+        @topics = Topic.where(user_id: @user).order("created_at DESC").page(params[:page])
+      else
+        @selects.each do |key, value|
           tag_posts = Tag.find_by(name: key).topics.where(user_id: @user).order("created_at DESC").page(params[:page])
-          @topics = @topics.empty? ? tag_posts : @topics & tag_posts
+          return @topics = @topics.empty? ? tag_posts : @topics & tag_posts
         end
       end
     else
