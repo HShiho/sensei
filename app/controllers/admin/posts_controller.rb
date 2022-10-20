@@ -5,11 +5,10 @@ class Admin::PostsController < ApplicationController
     @user = User.find(params[:id])
     if params[:tag_ids] #タグ検索
       @posts = []
+      @selects = params[:tag_ids].select{|key, value| value == "1"}
       params[:tag_ids].each do |key, value|
-        if value == "1"
-          tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC").page(params[:page])
-          return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
-        end
+        tag_posts = Tag.find_by(name: key).posts.where(user_id: @user).order("created_at DESC").page(params[:page])
+        return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
       end
     else
       @posts = Post.where(user_id: @user).order("created_at DESC").page(params[:page])

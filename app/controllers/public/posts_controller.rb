@@ -11,7 +11,6 @@ class Public::PostsController < ApplicationController
         @posts = Post.where(is_released: true).order("created_at DESC").page(params[:page])
       else
         @selects.each do |key, value|
-          @name = "1" #@selects[:key]
           tag_posts = Tag.find_by(name: key).posts.where(is_released: true).order("created_at DESC").page(params[:page])
           return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
         end
@@ -30,19 +29,30 @@ class Public::PostsController < ApplicationController
     @post = Post.where(user_id: @user.id)
     set_goal
     if params[:tag_ids] # タグ検索
+      @selects = params[:tag_ids].select{|key, value| value == "1"}
       @posts = []
-      @posts_released = []
-      params[:tag_ids].each do |key, value|
-        if value == "1"
-          tag_posts = Tag.find_by(name: key).posts.where(user_id: @user.id).order("created_at DESC")
-          tag_posts_released = Tag.find_by(name: key).posts.where(user_id: @user.id, is_released: true).order("created_at DESC")
-          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
-          @posts_released = @posts_released.empty? ? tag_posts_released : @posts_released & tag_posts_released
+      if @user == @current_user
+        if @selects.empty?
+          @posts = Post.where(user_id: @user.id).order("created_at DESC").page(params[:page])
+        else
+          @selects.each do |key, value|
+            tag_posts = Tag.find_by(name: key).posts.where(user_id: @user.id).order("created_at DESC").page(params[:page])
+            return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
+          end
+        end
+      else
+        if @selects.empty?
+          @posts = @posts.where(user_id: @user.id, is_released: true).order("created_at DESC").page(params[:page])
+        else
+          @selects.each do |key, value|
+            tag_posts = Tag.find_by(name: key).posts.where(user_id: @user.id, is_released: true).order("created_at DESC").page(params[:page])
+            return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
+          end
         end
       end
     else
-      @posts = Post.where(user_id: @user.id).order("created_at DESC") #current_user用(非公開込み)
-      @posts_released = @posts.where(is_released: true) #他userの投稿一覧(公開のみ)
+      @posts = Post.where(user_id: @user.id).order("created_at DESC").page(params[:page]) #current_user用(非公開込み)
+      @posts_released = @posts.where(is_released: true).order("created_at DESC").page(params[:page]) #他userの投稿一覧(公開のみ)
     end
   end
 
