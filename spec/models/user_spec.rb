@@ -24,6 +24,9 @@ describe '会員サイト新規登録のテスト' do
       it '登録ボタンが表示されているか' do
         expect(page).to have_button '新規登録'
       end
+      it 'ログイン画面へのリンクがあるか' do
+        expect(page).to have_link "", href:  new_user_session_path
+      end
     end
     context '登録処理のテスト' do
       it '登録後のリダイレクト先は正しいか' do
@@ -47,8 +50,11 @@ describe '会員サイトログインのテスト' do
       it 'new_user_session_pathが/users/sign_inであるか' do
         expect(current_path).to eq('/users/sign_in')
       end
-      it '登録ボタンが表示されているか' do
+      it 'ログインボタンが表示されているか' do
         expect(page).to have_button 'ログイン'
+      end
+      it '新規登録画面へのリンクがあるか' do
+        expect(page).to have_link "", href:  new_user_registration_path
       end
     end
     context 'ログイン処理のテスト' do
@@ -72,5 +78,37 @@ describe 'ユーザー一覧のテスト' do
     it 'public_users_pathが/public/usersであるか' do
       expect(page).to eq('/public/users')
     end
+    it '登録されたユーザー名から詳細ページへのリンクがあるか' do
+      expect(page).to have_content user.nickname
+      expect(page).to have_link user.nickname
+    end
   end
+
+  describe 'ユーザー編集のテスト' do
+    before do
+      visit edit_public_user_path(user)
+    end
+
+    context '表示の確認' do
+      it 'edit_public_user_pathに「ユーザー情報編集ページ」の記述があるか' do
+        expect(page).to have_content 'ユーザー情報編集ページ'
+      end
+      it '編集前の情報がフォームに表示されているか' do
+        expect(page).to have_field 'user[nickname]', with: user.nickname
+        expect(page).to have_field 'user[email]', with: user.email
+      end
+      it '変更を保存するボタンが表示されているか' do
+        expect(page).to have_button '変更を保存'
+      end
+    end
+    context '変更処理の確認' do
+      it '更新後のリダイレクト先は正しいか' do
+        fill_in 'user[nickname]', with: Faker::Name.name(number:5)
+        fill_in 'user[email]', with: Faker::Internet.email(number:12)
+        click_button '変更を保存'
+        expect(page).to have_current_path public_user_path(user)
+      end
+    end
+  end
+
 end
