@@ -88,7 +88,6 @@ describe 'ユーザー一覧のテスト' do
     before do
       visit edit_public_user_path(user)
     end
-
     context '表示の確認' do
       it 'edit_public_user_pathに「ユーザー情報編集ページ」の記述があるか' do
         expect(page).to have_content 'ユーザー情報編集ページ'
@@ -107,6 +106,39 @@ describe 'ユーザー一覧のテスト' do
         fill_in 'user[email]', with: Faker::Internet.email(number:12)
         click_button '変更を保存'
         expect(page).to have_current_path public_user_path(user)
+      end
+    end
+  end
+  
+  describe '退会処理（論理削除）の確認' do
+    before do 
+      visit edit_public_user_path(user)
+    end
+    context '表示の確認' do
+      it '退会ボタンが表示されているか' do
+        expect(page).to have_button '退会する'
+        expect(page).to have_link "", href: public_withdrawal_path
+      end
+      it '退会ボタン押下後の遷移先は正しいか' do
+        click_button '退会する'
+        expect(page).to have_current_path public_withdrawal_path
+      end
+      it 'public_withdrawal_pathに「退会お手続き」の記述があるか' do
+        expect(page).to have_content '退会お手続き'
+      end
+      it '退会ボタンが表示されているか' do
+        expect(page).to have_button '退会する'
+        expect(page).to have_link "", href: public_user_breakaway_path
+      end
+      it '退会辞退ボタンが表示されているか' do
+        expect(page).to have_button '退会しない'
+        expect(page).to have_link "", href: public_root_path
+      end
+    end
+    context '退会処理の確認' do
+      it  '退会処理後のリダイレクト先は正しいか' do
+        click_button '退会する'
+        expect(page).to have_current_path new_user_session_path
       end
     end
   end
