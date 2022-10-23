@@ -4,7 +4,9 @@ require 'rails_helper'
 
 describe 'モデルのテスト' do
   it "有効な会員情報の場合は登録されるか" do
-    expect(FactoryBot.build(:user)).to be_valid
+    user = build(:user)
+    expect(user).to be_valid
+    # expect(FactoryBot.build(:user)).to be_valid
   end
 end
 

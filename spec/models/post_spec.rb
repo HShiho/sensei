@@ -2,14 +2,21 @@
 
 require 'rails_helper'
 
+RSpec.describe "Posts", type: :request do
+  let(:user) {create(:user)}
+  let(:post) {create(:post, user_id: user.id, body:'hoge')}
+
 describe 'モデルのテスト' do
   it "有効な投稿の場合は登録されるか" do
-    expect(FactoryBot.build(:post)).to be_valid
+    @user = build(:user)
+    @post = build(:post)
+    sign_in @user
+    expect(post).to be_valid
   end
 end
 
 describe '投稿のテスト' do
-  let!(:post) { create(:post, body:'hoge') }
+  let(:user) {create(:user)}
   describe 'トップ画面(public_root_path)のテスト' do
     before do
       visit public_root_path
@@ -68,4 +75,6 @@ describe '詳細画面のテスト' do
       expect{ post.destroy }.to change{ Post.count }.by(-1)
     end
   end
+end
+
 end
