@@ -19,6 +19,7 @@ describe '投稿のテスト' do
   let(:user) {create(:user)}
   describe 'トップ画面(public_root_path)のテスト' do
     before do
+      sign_in user
       visit public_root_path
     end
     context '表示の確認' do
