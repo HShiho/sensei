@@ -49,7 +49,7 @@
         <div class="col-4 d-flex justify-content-end">
           <% if @objective_month.present? %>
             <% if @objective_month.did_it == "" && @objective_month.could_not == "" %>
-              <div><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></div>
+              <div clss ="mr-1"><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></div>
             <% else %>
             <% end %>
           <% end %>
@@ -73,12 +73,12 @@
         <div class="col-4 d-flex justify-content-end">
           <% if @objective_week.present? %>
             <% if @objective_week.did_it == "" && @objective_week.could_not == "" %>
-              <div class=""><%= link_to '振り返る',edit_public_objective_path(@objective_week), class: "btn btn-outline-success" %></div>
+              <div class="mr-1"><%= link_to '振り返る',edit_public_objective_path(@objective_week), class: "btn btn-outline-success" %></div>
             <% else %>
             <% end %>
           <% end %>
           <% if @goal.present? %>
-            <div class=""><%= link_to '設定',new_public_objective_path, class: "btn btn-outline-info" %></div>
+            <div><%= link_to '設定',new_public_objective_path, class: "btn btn-outline-info" %></div>
           <% end %>
         </div>
       </div>
