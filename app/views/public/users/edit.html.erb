@@ -4,7 +4,12 @@
     <div class=" d-flex justify-content-around">
       <div class="h5">ユーザー情報編集ページ</div>
       <div>
-         <%= link_to '退会する', public_user_withdrawal_path(@user), class: 'btn btn-outline-danger' %>
+        <% if @user.email == 'guest@sample.com' %>
+          <button type="button" class='btn btn-outline-danger' disabled >退会する</button><br>
+          <span class="h6 text-secondary">※ゲストユーザーは退会できません</span>
+        <% else %>
+          <%= link_to '退会する', public_user_withdrawal_path(@user), class: 'btn btn-outline-danger' %>
+        <% end %>
       </div>
     </div>
 
@@ -34,7 +39,12 @@
           メールアドレス
         </div>
         <div class="flex-grow-1 bd-highlight h5">
-          <%= f.text_field :email, class: 'col-12 px-1' %>
+          <% if @user.email == 'guest@sample.com' %>
+            <%= @user.email %><br>
+            <span class="h6 text-secondary">※ゲストユーザーは変更できません</span>
+          <% else %>
+            <%= f.text_field :email, class: 'col-12 px-1' %>
+          <% end %>
         </div>
       </div>
     </div>

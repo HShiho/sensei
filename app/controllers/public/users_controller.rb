@@ -28,11 +28,20 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to public_user_path(@user)
+    if @user.email == 'guest@sample.com'
+      if @user.update(gust_user_params)
+        redirect_to public_user_path(@user)
+      else
+        @user = User.find(params[:id])
+        render :edit
+      end
     else
-      @user = User.find(@user)
-      render :edit
+      if @user.update(user_params)
+        redirect_to public_user_path(@user)
+      else
+        @user = User.find(params[:id])
+        render :edit
+      end
     end
   end
 
@@ -75,6 +84,10 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:nickname, :email, :is_deleted, :icon_image )
+  end
+
+  def gust_user_params
+    params.require(:user).permit( :nickname, :icon_image )
   end
 
 end
