@@ -96,10 +96,10 @@ ActiveRecord::Schema.define(version: 2022_09_27_131405) do
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "tag_id", null: false
     t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_post_tags_on_post_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
@@ -130,12 +130,10 @@ ActiveRecord::Schema.define(version: 2022_09_27_131405) do
   end
 
   create_table "topic_tags", force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tag_id", null: false
-    t.integer "topic_id", null: false
-    t.index ["tag_id"], name: "index_topic_tags_on_tag_id"
-    t.index ["topic_id"], name: "index_topic_tags_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -161,8 +159,4 @@ ActiveRecord::Schema.define(version: 2022_09_27_131405) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "post_tags", "posts"
-  add_foreign_key "post_tags", "tags"
-  add_foreign_key "topic_tags", "tags"
-  add_foreign_key "topic_tags", "topics"
 end
