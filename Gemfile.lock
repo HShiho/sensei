@@ -138,7 +138,6 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.6.0)
     mysql2 (0.5.4)
@@ -151,8 +150,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.9)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pry (0.14.1)
@@ -254,8 +252,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.5.3)
-      mini_portile2 (~> 2.8.0)
+    sqlite3 (1.5.3-x86_64-linux)
     squasher (0.6.2)
     thor (1.2.1)
     tilt (2.0.11)
@@ -287,10 +284,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.3)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
@@ -331,4 +328,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   1.17.3
+   2.3.7
