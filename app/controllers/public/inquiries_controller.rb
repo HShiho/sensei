@@ -9,15 +9,15 @@ class Public::InquiriesController < ApplicationController
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
     @user = @current_user
-    if @inquiry.invalid?
-      render :new
-    end
     if params[:inquiry][:mail_number] == "1"
         @inquiry.reply_mail = @current_user.email
     elsif params[:inquiry][:mail_number] == "2"
         @inquiry.reply_mail = params[:inquiry][:reply_mail]
     else
       redirect_to new_public_inquiry_path
+    end
+    if @inquiry.invalid?
+      render :new
     end
   end
 
