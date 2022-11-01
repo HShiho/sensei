@@ -19,6 +19,14 @@
 // import "bootstrap/dist/css/bootstrap.css"
 // import "../stylesheets/application"
 // import '@fortawesome/fontawesome-free/js/all'
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
 
 // add
 import "jquery";
@@ -27,10 +35,10 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+// require("@rails/ujs").start()
+// require("turbolinks").start()
+// require("@rails/activestorage").start()
+// require("channels")
 
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
