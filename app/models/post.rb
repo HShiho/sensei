@@ -13,12 +13,14 @@ class Post < ApplicationRecord
     good: 1,
     almost: 2
   }
-  
+
   # 空白NG
   validates :body, presence: true
+  validates :tag_ids, presence: true
   # 1文字以上140字以下
   validates :body, length: { in: 1..140 }
-  
+
+
 
   def get_image(width, height)
     unless image.attached?
@@ -27,7 +29,7 @@ class Post < ApplicationRecord
     end
       image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
