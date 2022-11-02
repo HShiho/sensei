@@ -64,6 +64,7 @@ class Public::UsersController < ApplicationController
     favorites = favorites.order("created_at DESC")
     favorites = favorites.pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    @other_user = User.where.not(email: 'guest@sample.com', id: @user.id).find_by(is_deleted: false)
   end
 
   def withdrawal
