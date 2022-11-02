@@ -10,7 +10,7 @@ class Public::ObjectivesController < ApplicationController
   def create
     @objective = Objective.new(objective_params)
     if @objective.save
-      redirect_to public_root_path
+      redirect_to public_root_path, notice: '新しい中期目標が設定されました。'
     else
       @objective = Objective.new
       @goal = Goal.where(user_id: @current_user.id)
