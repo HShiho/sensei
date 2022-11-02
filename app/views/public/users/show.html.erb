@@ -15,7 +15,7 @@
 
       <% if @user == @current_user %>
         <div class="d-flex bd-highlight my-5">
-          <div class="bd-highlight col-4 px-0 text-info">
+          <div class="bd-highlight col-5 px-0 text-info">
             メールアドレス
           </div>
           <div class="flex-grow-1 bd-highlight h5">
@@ -25,14 +25,17 @@
       <% end %>
 
       <div class="d-flex bd-highlight my-5">
-        <div class="bd-highlight col-4 px-0 text-info">
+        <div class="bd-highlight col-5 px-0 text-info">
           目標
         </div>
         <div class="flex-grow-1 bd-highlight h5">
           <% if @goal.present? %>
             <%= @goal.title %>
           <% else %>
-            未設定　<%= link_to '設定する', new_public_goal_path, class: 'btn btn-outline-info' %>
+            未設定
+            <% if @user == @current_user %>
+              <%= link_to '設定する', new_public_goal_path, class: 'btn btn-outline-info ml-4' %>
+            <% end %>
           <% end %>
         </div>
       </div>
