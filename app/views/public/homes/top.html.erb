@@ -49,7 +49,7 @@
         <div class="col-4 d-flex justify-content-end">
           <% if @objective_month.present? %>
             <% if @objective_month.did_it == "" && @objective_month.could_not == "" %>
-              <div clss ="mr-1"><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></div>
+              <div class ="mr-1"><%= link_to '振り返る',edit_public_objective_path(@objective_month), class: "btn btn-outline-success" %></div>
             <% else %>
             <% end %>
           <% end %>
