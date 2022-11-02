@@ -28,11 +28,11 @@ ja:
           not_completed: "挑戦中" # 0
           completed: "完了" # 1
 
-ja:
-  activerecord:
-    attributes:
-      user:
-        nickname: "ニックネーム"
+
+    activerecord:
+      attributes:
+        user:
+          nickname: "ニックネーム"
 
     errors:
       blank: を入力してください
