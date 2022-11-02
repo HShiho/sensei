@@ -28,8 +28,14 @@ ja:
           not_completed: "挑戦中" # 0
           completed: "完了" # 1
 
-  # activerecord:
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: "ニックネーム"
+
     errors:
+      blank: を入力してください
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
