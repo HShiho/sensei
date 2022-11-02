@@ -3,9 +3,9 @@ class Admin::UsersController < ApplicationController
 
   def index
     if params[:search] #キーワード検索
-      @users = User.where("nickname LIKE ?",'%' + params[:search] + '%').order("created_at DESC").page(params[:page])
+      @users = User.where("nickname LIKE ?",'%' + params[:search] + '%').page(params[:page])
     else
-      @users = User.all.order("created_at DESC").page(params[:page])
+      @users = User.all.page(params[:page])
     end
   end
 
