@@ -39,5 +39,9 @@
     </div>
   </div>
 
+  <% if @user.errors.any? %>
+    <%= javascript_pack_tag 'users/signup_render' %>
+  <% end %>
+
 <!--<= render "public/shared/links" %>-->
 </div>
