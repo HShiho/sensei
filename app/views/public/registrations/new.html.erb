@@ -40,7 +40,7 @@
   </div>
 
   <% if @user.errors.any? %>
-    <%= javascript_pack_tag 'users/signup_render' %>
+    <%= javascript_pack_tag 'users/signup_render', 'data-turbolinks-track': 'reload' %>
   <% end %>
 
 <!--<= render "public/shared/links" %>-->
