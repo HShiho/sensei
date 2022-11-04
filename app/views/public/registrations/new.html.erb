@@ -40,7 +40,12 @@
   </div>
 
   <% if @user.errors.any? %>
-    <%= javascript_pack_tag 'users/signup_render' %>
+    <!--<= javascript_pack_tag 'users/signup_render' %>-->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        history.pushState('', '', 'users/sign_up')
+      });
+    </script>
   <% end %>
 
 <!--<= render "public/shared/links" %>-->
