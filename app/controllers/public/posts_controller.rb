@@ -42,11 +42,11 @@ class Public::PostsController < ApplicationController
         end
       else
         if @selects.empty?
-          @posts = @posts.where(user_id: @user.id, is_released: true).order("created_at DESC").page(params[:page])
+          @posts_released = @posts.where(user_id: @user.id, is_released: true).order("created_at DESC").page(params[:page])
         else
           @selects.each do |key, value|
             tag_posts = Tag.find_by(name: key).posts.where(user_id: @user.id, is_released: true).order("created_at DESC").page(params[:page])
-            return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
+            return @posts_released = @posts_released.blank? ? tag_posts : @posts_released & tag_posts
           end
         end
       end
