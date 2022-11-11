@@ -79,7 +79,28 @@ class Public::PostsController < ApplicationController
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else
-      redirect_to public_root_path, notice: '投稿できませんでした。入力内容を確認の上、もう一度お願いします。'
+      @new_post = Post.new
+      @user = @current_user
+      @posts = Post.where(user_id: @user.id)
+      @post = @posts.group(:start_time)
+      @goal = Goal.where(user_id: @user.id)
+      @goal = @goal.where(is_completed: 0).last
+      if @goal.present?
+        @objectives = Objective.where(goal_id: @goal.id)
+        @objective_month = @objectives.where(period_genre: 0).last
+        @objective_week = @objectives.where(period_genre: 1).last
+        @objectives_months = @objectives.where(period_genre: 0).order("created_at DESC")
+        @objectives_weeks = @objectives.where(period_genre: 1).order("created_at DESC")
+        @objective_day = @posts.where.not(tomorrow_objective: "").last
+      end
+      if params[:tag]
+        Tag.create(name: params[:tag])
+      end
+      @hash = [{enum: 'excellence', icon: 'laugh-squint', checked: true}, {enum: 'good', icon: 'smile', checked: false}, {enum: 'almost', icon: 'rolling-eyes', checked: false}]
+
+      flash.now[:alert] = "投稿できませんでした。入力内容を確認の上、もう一度お願いします。"
+      render template: "public/homes/top"
+  
     end
   end
 

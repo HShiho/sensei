@@ -3,7 +3,7 @@
   <!--サイドバー-->
   <div class="col-lg-4 col-12 mb-5 pr-4 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
-    <%= render partial: 'calendar' ,locals: { post: @post } %><br>
+    <%= render partial: 'public/homes/calendar' ,locals: { post: @post } %><br>
     <%= render partial: 'public/posts/new',locals: { new_post: @new_post } %>
   </div>
 

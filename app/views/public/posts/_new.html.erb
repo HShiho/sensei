@@ -18,6 +18,7 @@
         </div>
 
       <p class="mb-0">投稿内容</p>
+        <%= render 'layouts/error_messages', object: f.object, attribute: :body %>
         <%= f.text_area :body, placeholder:"入力は140字まで",class: 'mx-1 mb-2  px-1 col-12 border border-info',rows: '6' %>
 
       <p class="mb-0">画像(任意)</p>
@@ -29,6 +30,7 @@
         <%= f.text_field :tomorrow_objective, placeholder:"入力は20字まで",class: 'mx-1 mb-2 px-1 col-12 border border-info' %>
 
       <p class="mb-0">タグ(複数選択可)</p>
+        <%= render 'layouts/error_messages', object: f.object, attribute: :tag_ids %>
         <div class="form-group ml-3">
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
             <div class="mx-1 mb-2 form-check-inline">
