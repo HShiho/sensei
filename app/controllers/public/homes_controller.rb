@@ -35,8 +35,14 @@ class Public::HomesController < ApplicationController
 
   def about
   end
-  
 
+
+
+  private
+
+  def post_params
+    params.require(:tag).permit(:name)
+  end
 
 
 end

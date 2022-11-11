@@ -11,6 +11,7 @@ class Public::GoalsController < ApplicationController
     if @goal.save
       redirect_to public_induction_path
     else
+      flash.now[:alert] = "目標の設定に失敗しました。"
       render :new
     end
   end

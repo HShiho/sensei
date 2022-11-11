@@ -3,6 +3,7 @@
 </div>
 
 <%= form_with model: @goal, url: public_goals_path, method: :post do |f| %>
+  <%= render 'layouts/error_messages', model: f.object, attribute: :title %>
   <div class="my-5">
     <div class="d-flex justify-content-center">
       <div class="text-info h4">最終目標　　</div>
@@ -22,4 +23,12 @@
       <div><%= f.submit '目標を設定する', class: 'btn btn-info' %></div>
     </div>
   </div>
+<% end %>
+
+<% if @goal.errors.any? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      history.pushState('', '', '/public/goals/new')
+    });
+  </script>
 <% end %>
