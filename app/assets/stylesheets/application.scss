@@ -70,6 +70,10 @@
   border-style: none dashed none none;
 }
 
+.field_with_errors {
+  display: inline;
+}
+
 .top-gradient {
   background: linear-gradient(to right, #fff 50%, #6dc7d6);
 }

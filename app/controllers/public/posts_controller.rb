@@ -79,7 +79,6 @@ class Public::PostsController < ApplicationController
     if @new_post.save
       redirect_to public_user_posts_path(@new_post.user_id)
     else
-      @new_post = Post.new
       @user = @current_user
       @posts = Post.where(user_id: @user.id)
       @post = @posts.group(:start_time)
@@ -100,7 +99,7 @@ class Public::PostsController < ApplicationController
 
       flash.now[:alert] = "投稿できませんでした。入力内容を確認の上、もう一度お願いします。"
       render template: "public/homes/top"
-  
+
     end
   end
 

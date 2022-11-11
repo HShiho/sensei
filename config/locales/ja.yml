@@ -33,6 +33,9 @@ ja:
       attributes:
         user:
           nickname: "ニックネーム"
+        post:
+          body: "投稿内容"
+          tag_ids: "いずれかのタグにチェック"
 
     errors:
       blank: を入力してください

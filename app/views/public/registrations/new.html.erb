@@ -8,13 +8,13 @@
       <div class="field mt-4">
         <%= f.label :ニックネーム, class:'h6' %><br />
         <%= f.text_field :nickname, class:'col-12 px-1' %>
-        <%= render 'layouts/error_messages', object: f.object, attribute: :nickname %>
+        <%= render 'layouts/error_messages', model: f.object, attribute: :nickname %>
       </div>
 
       <div class="field mt-4">
         <%= f.label :メールアドレス, class:'h6' %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@exanple.com", class:'col-12 px-1' %>
-        <%= render 'layouts/error_messages', object: f.object, attribute: :email %>
+        <%= render 'layouts/error_messages', model: f.object, attribute: :email %>
       </div>
 
       <div class="field mt-4 mb-5">
@@ -23,7 +23,7 @@
           <em>(半角 <%= @minimum_password_length %> 文字以上)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class:'col-12 px-1' %>
-        <%= render 'layouts/error_messages', object: f.object, attribute: :password %>
+        <%= render 'layouts/error_messages', model: f.object, attribute: :password %>
       </div>
 
       <div class="actions mt-5 mb-3 col-12 mx-auto px-0">
