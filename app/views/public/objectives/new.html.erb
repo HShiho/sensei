@@ -8,6 +8,7 @@
 
 <%= form_with model: @objective, url: public_objectives_path, method: :post do |f| %>
   <div class="m-3">
+    <%= render 'layouts/error_messages', model: f.object, attribute: :title %>
     <div class="d-flex bd-highlight">
       <div class="text-info h5 bd-highlight pt-1">今月の目標　</div>
       <div class="col-8 bd-highlight flex-grow-1"><%= f.text_field :title, class: 'p-1 col-12', placeholder:"例）参考書を1冊3周する！" %></div>
@@ -20,6 +21,7 @@
 
 <%= form_with model: @objective, url: public_objectives_path, method: :post do |f| %>
   <div class="m-3 mt-5">
+    <%= render 'layouts/error_messages', model: f.object, attribute: :title %>
     <div class="d-flex bd-highlight">
       <div class="text-info h5 bd-highlight pt-1"> 今週の目標　</div>
       <div class="col-8 bd-highlight flex-grow-1"><%= f.text_field :title, class: 'p-1 col-12', placeholder:"例）英単語150語覚える！" %></div>
@@ -33,3 +35,11 @@
 <div class="my-5 col-2 mx-auto">
     <%= link_to 'TOPに戻る', public_root_path, class: 'btn btn-outline-info' %>
 </div>
+
+<% if @objective.errors.any? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      history.pushState('', '', '/public/objectives/new')
+    });
+  </script>
+<% end %>

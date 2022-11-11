@@ -36,6 +36,10 @@ ja:
         post:
           body: "投稿内容"
           tag_ids: "いずれかのタグにチェック"
+        goal:
+          title: "目標"
+        objective:
+          title: "どちらかの目標"
 
     errors:
       blank: を入力してください

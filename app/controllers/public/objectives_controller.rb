@@ -12,7 +12,6 @@ class Public::ObjectivesController < ApplicationController
     if @objective.save
       redirect_to public_root_path, notice: '新しい中期目標が設定されました。'
     else
-      @objective = Objective.new
       @goal = Goal.where(user_id: @current_user.id)
       @goal = @goal.where(is_completed: 0).last
       render :new
