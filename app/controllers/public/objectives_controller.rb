@@ -20,16 +20,14 @@ class Public::ObjectivesController < ApplicationController
 
   def edit
     @objective = Objective.find(params[:id])
-    @new_post = Post.new
   end
 
   def update
     @objective = Objective.find(params[:id])
-    @post = Post.new
     if @objective.update(objective_params)
-      redirect_to public_root_path
+      redirect_to public_root_path, notice: '中期目標の振り返りが登録されました。'
     else
-      render edit_public_objective_path
+      render :edit
     end
   end
 

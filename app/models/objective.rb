@@ -7,8 +7,10 @@ class Objective < ApplicationRecord
     week: 1,
     day: 2
   }
-  
+
   # 空白NG
   validates :title, presence: true
+  validates :did_it, presence: true
+  validates :could_not, presence: true
 
 end

@@ -40,6 +40,8 @@ ja:
           title: "目標"
         objective:
           title: "どちらかの目標"
+          did_it: "できたこと"
+          could_not: "できなかったこと"
 
     errors:
       blank: を入力してください
