@@ -40,8 +40,10 @@ ja:
           title: "目標"
         objective:
           title: "どちらかの目標"
-          did_it: "できたこと"
-          could_not: "できなかったこと"
+        topic:
+          title: "トピック名"
+          tag_ids: "いずれかのタグにチェック"
+
 
     errors:
       blank: を入力してください

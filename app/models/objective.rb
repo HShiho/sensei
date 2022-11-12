@@ -10,7 +10,5 @@ class Objective < ApplicationRecord
 
   # 空白NG
   validates :title, presence: true
-  validates :did_it, presence: true
-  validates :could_not, presence: true
 
 end

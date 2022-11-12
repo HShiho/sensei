@@ -16,7 +16,7 @@
     <%= form_with model: @user, url: public_user_path, method: :patch do |f| %>
     <div class="col-10  my-5 mx-auto">
 
-      <div class="d-flex bd-highlight my-5">
+      <div class="d-flex bd-highlight mt-5">
         <div class="bd-highlight col-5 px-0 text-info">
           ニックネーム
         </div>
@@ -24,8 +24,9 @@
           <%= f.text_field :nickname, class: 'col-12 px-1' %>
         </div>
       </div>
+      <%= render 'layouts/error_messages', model: f.object, attribute: :nickname %>
 
-      <div class="d-flex bd-highlight my-5">
+      <div class="d-flex bd-highlight mt-5">
         <div class="bd-highlight col-5 px-0 text-info">
           アイコン画像
         </div>
@@ -34,7 +35,7 @@
         </div>
       </div>
 
-      <div class="d-flex bd-highlight my-5">
+      <div class="d-flex bd-highlight mt-5">
         <div class="bd-highlight col-5 px-0 text-info">
           メールアドレス
         </div>
@@ -47,6 +48,7 @@
           <% end %>
         </div>
       </div>
+      <%= render 'layouts/error_messages', model: f.object, attribute: :email %>
     </div>
 
     <div class="d-flex justify-content-center mb-4">

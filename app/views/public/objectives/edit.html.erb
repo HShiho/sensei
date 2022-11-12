@@ -12,25 +12,15 @@
       <div class="text-info h5 bd-highlight pt-1">できたこと　　　</div>
       <div class="col-9 bd-highlight mx-3"><%= f.text_field :did_it, class: 'p-1 col-12', placeholder:"例）参考書を周回、苦手としている分野を把握できた。" %></div>
     </div>
-    <%= render 'layouts/error_messages', model: f.object, attribute: :did_it %>
 
     <div class="d-flex bd-highlight mt-3">
       <div class="text-info h5 bd-highlight pt-1">できなかったこと</div>
       <div class="col-9 bd-highlight mx-3"><%= f.text_field :could_not, class: 'p-1 col-12', placeholder:"例）苦手分野の勉強方法が未定。" %></div>
     </div>
-    <%= render 'layouts/error_messages', model: f.object, attribute: :could_not %>
 
     <div class="d-flex justify-content-center my-5">
       <div><%= f.submit '内容を保存', class: 'btn btn-outline-success' %></div>
     </div>
 
   </div>
-<% end %>
-
-<% if @objective.errors.any? %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      history.pushState['', '', '/public/objectives/' + #{@objective.id} + 'edit']
-    });
-  </script>
 <% end %>

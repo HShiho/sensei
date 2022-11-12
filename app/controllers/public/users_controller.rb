@@ -2,7 +2,6 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @users = User.where.not(nickname: 'ゲストユーザー')
     @users = User.where.not(is_deleted: true).page(params[:page])
     @user = @current_user
     @goal = Goal.where(user_id: @user.id)
@@ -32,14 +31,12 @@ class Public::UsersController < ApplicationController
       if @user.update(gust_user_params)
         redirect_to public_user_path(@user)
       else
-        @user = User.find(params[:id])
         render :edit
       end
     else
       if @user.update(user_params)
         redirect_to public_user_path(@user)
       else
-        @user = User.find(params[:id])
         render :edit
       end
     end

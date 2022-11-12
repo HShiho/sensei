@@ -11,7 +11,7 @@ class Public::TopicsController < ApplicationController
     if @topic.save
       redirect_to public_topic_path(@topic), notice: '最初の投稿をしましょう。'
     else
-      redirect_to public_topics_path, notice: 'トピックの作成に失敗しました。'
+      render :new
     end
   end
 

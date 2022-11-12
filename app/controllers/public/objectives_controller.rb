@@ -25,7 +25,7 @@ class Public::ObjectivesController < ApplicationController
   def update
     @objective = Objective.find(params[:id])
     if @objective.update(objective_params)
-      redirect_to public_root_path, notice: '中期目標の振り返りが登録されました。'
+      redirect_to public_root_path
     else
       render :edit
     end

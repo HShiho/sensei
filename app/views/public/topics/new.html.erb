@@ -4,11 +4,13 @@
 <%= form_with model: @topic, url: public_topics_path, method: :post do |f| %>
   <div class="my-3">
     <div class="text-info">トピック名</div>
+    <%= render 'layouts/error_messages', model: f.object, attribute: :title %>
     <div class="col-10 mt-2"><%= f.text_field :title, placeholder:"トピック名を入力", class: 'px-1 col-12' %></div>
   </div>
 
     <div class="mt-5 text-info">タグ(複数選択可)</div>
-    <div class="form-group ml-3 mt-3">
+    <%= render 'layouts/error_messages', model: f.object, attribute: :tag_ids %>
+    <div class="form-group ml-3 mt-2">
       <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
         <div class="mx-1 mb-2 form-check-inline">
           <%= tag.label class: 'form-check-label' do %>
@@ -22,4 +24,12 @@
   <div class="d-flex justify-content-center my-5">
     <div><%= f.submit "作成", class: 'btn btn-outline-info' %></div>
   </div>
+<% end %>
+
+<% if @topic.errors.any? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      history.pushState('', '', '/public/topics/new')
+    });
+  </script>
 <% end %>
