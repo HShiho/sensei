@@ -15,7 +15,6 @@ class Admin::TagsController < ApplicationController
 
   def tag_params
     params.permit(:name)
-    # params.require(:tag).permit(:name)
   end
 
 end

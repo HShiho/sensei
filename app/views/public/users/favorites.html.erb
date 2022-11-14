@@ -1,14 +1,12 @@
 <div class="container row">
 
-  <!--サイドバー-->
+  <%# サイドバー %>
   <div class="col-3 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
   </div>
 
 
-<!--メイン-->
   <div class="col-9">
-
     <div class="d-flex justify-content-center">
       <div class="h5">
         <% if @type.present? %>
@@ -46,7 +44,6 @@
         <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
       <% end %>
     </div>
-
   </div>
 
 </div>

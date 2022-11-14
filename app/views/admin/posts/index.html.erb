@@ -1,12 +1,12 @@
 <div class="row">
 
-  <!--サイドバー-->
+  <%# サイドバー %>
   <div class="col-3">
       <%= form_tag(admin_posts_index_path, method: :get) do %>
         <%= render partial: 'layouts/tag_search' %>
       <% end %>
   </div>
-  <!---->
+
 
   <div class="col-9">
   <div class="d-flex justify-content-center">

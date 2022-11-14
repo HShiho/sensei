@@ -1,6 +1,6 @@
 <div class="border border-info m-3 py-2 px-2">
   <div class="d-flex bd-hightlight">
-<!--ユーザー名または公開非公開選択-->
+<%# ユーザー名または公開非公開選択 %>
     <% if user == current_user %>
       <div class="mr-auto bd-hightlight">
         <div class="d-flex justify-content-between">
@@ -32,17 +32,17 @@
         <span class="mr-auto bd-hightlight">退会済みのユーザー</span>
       <% end %>
     <% end %>
-<!--非公開アイコン-->
+<%# 非公開アイコン %>
     <% if post.is_released == false %>
       <div class="mx-2">
         <i class="fa-solid fa-lock fa-lg" style="color:#17a2b8"></i>
       </div>
     <% end %>
-<!--投稿日時-->
+<%# 投稿日時 %>
     <div class="bd-hightlight text-secondary">
       <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
     </div>
-<!--達成度アイコン-->
+<%# 達成度アイコン %>
       <div class="bd-hightlight ml-3">
         <% if post.achivement == "excellence" %>
           <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
@@ -53,30 +53,30 @@
         <% end %>
       </div>
    </div>
-<!--投稿本文-->
+<%# 投稿本文 %>
     <div class="border border-secondary mt-2 mx-3 px-1">
       <%= post.body %>
     </div>
-<!--タグ-->
+<%# タグ %>
     <div class="ml-4 text-info">
       <% post.tags.each do |tag| %>
           # <%= tag.name %>
       <% end %>
     </div>
-<!--投稿画像-->
+<%# 投稿画像 %>
     <% if post.image.filename != 'default-image.jpg' %>
       <div class="d-flex justify-content-center">
         <div><%= image_tag post.get_image(200,200) %></div>
       </div>
     <% end %>
-<!--明日の目標-->
+<%# 明日の目標 %>
     <% if post.tomorrow_objective.present? %>
       <div class="pl-2 mt-2">明日の目標</div>
       <div class="border border-secondary mx-3 px-1">
         <%= post.tomorrow_objective %>
       </div>
     <% end %>
-<!--いいねアイコン-->
+<%# いいねアイコン %>
     <div class="d-flex bd-hightlight m-3">
       <div class="bd-hightlight">
       <% if post.favorited_by?(current_user) %>
@@ -109,4 +109,4 @@
         合計 <%= post.favorites.count %>
       </div>
     </div>
-<!--footlimeまたは</div>を以下に持ってくること-->
+<%# footlimeまたは</div>を以下に持ってくること %>

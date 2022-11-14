@@ -1,13 +1,13 @@
 <div class="row">
 
-  <!--サイドバー-->
+  <%# サイドバー %>
   <div class="col-md-3 col-12 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
     <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
       <%= render partial: 'layouts/tag_search' %>
     <% end %>
   </div>
-  <!---->
+
 
   <div class="col-md-9 col-12">
     <div class="d-flex justify-content-center">

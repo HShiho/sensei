@@ -1,6 +1,6 @@
 <div class="row">
 
-  <!--サイドバー-->
+  <%# サイドバー %>
   <div class="col-md-3 col-12 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
     <%= form_tag({controller:"posts",action:"user_index"}, method: :get) do %>

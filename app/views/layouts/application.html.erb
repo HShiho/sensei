@@ -91,7 +91,7 @@
           <%= render partial: 'layouts/flash_notice' %>
           <p class="notice m-0"><% notice %></p>
         </div>
-        <% if user_signed_in? %><!--検索窓-->
+        <% if user_signed_in? %><%# 検索窓 %>
           <div class="search-form col-xs-7 col-sm-6 col-md-5 col-lg-4 py-1 px-1 my-2 mr-3 ml-auto  border border-secondary">
           <%= form_tag({controller:"public/posts", action:"index"}, method: :get) do %>
             <%= text_field_tag( "search","",{ placeholder: "投稿をキーワードで検索", class: "p-0 col-11", style: "border: none" }) %>
