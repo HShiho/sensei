@@ -29,8 +29,8 @@ class Public::HomesController < ApplicationController
       Tag.create(name: params[:tag])
     end
 
-    @hash = [{enum: 'excellence', icon: 'laugh-squint', checked: true}, {enum: 'good', icon: 'smile', checked: false}, {enum: 'almost', icon: 'rolling-eyes', checked: false}]
-
+    @hash = achivement_hash
+    
   end
 
   def about

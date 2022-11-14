@@ -95,7 +95,7 @@ class Public::PostsController < ApplicationController
       if params[:tag]
         Tag.create(name: params[:tag])
       end
-      @hash = [{enum: 'excellence', icon: 'laugh-squint', checked: true}, {enum: 'good', icon: 'smile', checked: false}, {enum: 'almost', icon: 'rolling-eyes', checked: false}]
+      @hash = achivement_hash
 
       flash.now[:alert] = "投稿できませんでした。入力内容を確認の上、もう一度お願いします。"
       render template: "public/homes/top"
