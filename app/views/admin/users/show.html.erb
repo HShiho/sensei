@@ -6,7 +6,7 @@
       <div><%= link_to 'ユーザー情報編集ページへ', edit_admin_user_path(@user), class: 'btn btn-outline-success' %></div>
     </div>
 
-　　<%= render partial: 'layouts/common_user_show',locals: { user: @user } %>
+    <%= render partial: 'layouts/common_user_show',locals: { user: @user } %>
     
       <div class="d-flex bd-highlight mt-5 mb-3">
         <div class="bd-highlight col-5 px-0 text-info">
@@ -42,7 +42,6 @@
         <div><%= link_to 'コメント一覧を見る',admin_topic_comments_index_path(@user.id), class: 'btn btn-outline-primary' %></div>
       </div>
     </div>
-
   </div>
 
 </div>

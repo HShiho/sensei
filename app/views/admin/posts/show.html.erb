@@ -18,7 +18,6 @@
           <div><%= link_to 'ユーザーの投稿一覧を見る',admin_posts_index_path(@post.user.id), class: 'btn btn-outline-secondary mr-3' %></div>
         </div>
       </div>
-      <%# コメント一覧 %>
       <div>
         <label class="text-secondary">コメント件数：<%= @post.post_comments.count %></label>
         <div class="overflow-auto"  style="height:250px;">

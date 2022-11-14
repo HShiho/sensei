@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="h5 text-info">トピック新規作成</div>
 </div>
+
 <%= form_with model: @topic, url: public_topics_path, method: :post do |f| %>
   <div class="my-3">
     <div class="text-info">トピック名</div>
@@ -25,6 +26,7 @@
     <div><%= f.submit "作成", class: 'btn btn-outline-info' %></div>
   </div>
 <% end %>
+
 
 <% if @topic.errors.any? %>
   <script type="text/javascript">
