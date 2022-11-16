@@ -7,7 +7,7 @@
     <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field my-4">
         <%= f.label :メールアドレス, class:'h6' %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@exanple.com", class:'col-12 px-1' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", class:'col-12 px-1' %>
       </div>
 
       <div class="field mt-4 mb-5">
