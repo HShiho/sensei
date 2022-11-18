@@ -29,13 +29,17 @@ class Public::HomesController < ApplicationController
     if params[:tag]
       Tag.create(name: params[:tag])
     end
-    
+
     # ランキング
-    @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }
-    
+    @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }.first(3)
   end
 
   def about
+  end
+
+  def rank
+    @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }.first(5)
+    @post_favorite_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))
   end
 
 

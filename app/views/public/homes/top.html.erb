@@ -123,13 +123,24 @@
   </div>
 </div>
 
-<div class="col-12">
+<div class="col-12 dashed-top py-4">
   <h5 class="text-info"><%= @current_user.nickname %>さんの投稿ランキング：いいねTOP3</h5>
-  <div class="row">
+  <div class="row d-flex bd-hightlightn">
     <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
-      <div class ="col-3 border border-info p-2 m-1">
-        第<%= i %>位 : <%= post.body %>
+      <div class ="col-3 border border-info p-2 m-1 bd-hightlight d-flex justify-content-between">
+        <div class="text-info">
+          第<%= i %>位
+          <%=link_to public_post_path(post) do %>
+            <%= post.body.truncate(9) %>
+          <% end %>
+        </div>
+        <div class="text-secondary">
+          <%= post.favorites.count %>いいね
+        </div>
       </div>
     <% end %>
+    <div class=" ml-auto bd-hightlight">
+      <%= link_to '他のランキングも見る', public_rank_path, class: 'btn btn-info my-1' %>
+    </div>
   </div>
 </div>

@@ -29,7 +29,16 @@
       <%= render partial: 'layouts/post_partial/comment_post',locals: { post: @post, post_comment: @post_comment, current_user: @current_user }  %>
     </div>
     <% else %>
-      <div>この投稿は非公開に設定されています。</div>
+      <div>
+        <%= render partial: 'layouts/fish_line' %>
+        <div class="d-flex justify-content-center py-3">
+          <div class="h3 text-primary">Sorry!</div>
+        </div>
+        <div class="d-flex justify-content-center py-3">
+          <div class="h5 text-info">この投稿は現在、非公開に設定されているため閲覧できません。</div>
+        </div>
+        <%= render partial: 'layouts/fish_line' %>
+      </div>
     <% end %>
   <% end %>
   </div>
