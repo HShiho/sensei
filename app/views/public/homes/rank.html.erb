@@ -35,7 +35,12 @@
             </div>
             <div class="p-1">
               <%=link_to public_post_path(post) do %>
-                <%= post.body.truncate(15) %>
+                <%= post.body.truncate(5) %>
+              <% end %>
+            </div>
+            <div class="p-1 text-secondary">
+              <% post.tags.each do |tag| %>
+                # <%= tag.name %>
               <% end %>
             </div>
           </div>
