@@ -4,6 +4,7 @@ class Public::HomesController < ApplicationController
   def top
     @new_post = Post.new
     @user = @current_user
+    @hash = achivement_hash
 
     # カレンダーに使用
     @posts = Post.where(user_id: @user.id)
@@ -28,8 +29,9 @@ class Public::HomesController < ApplicationController
     if params[:tag]
       Tag.create(name: params[:tag])
     end
-
-    @hash = achivement_hash
+    
+    # ランキング
+    @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }
     
   end
 
