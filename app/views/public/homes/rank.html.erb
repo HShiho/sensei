@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-6 py-4">
-    <h5 class="text-info"><%= @current_user.nickname %>さんのランキング</h5>
-    <h6 class="text-info mt-3">いいねTOP5</h6>
+    <h4 class="text-info"><%= @current_user.nickname %>さんのランキング</h4>
+    <h5 class="text-info mt-3">いいねTOP5</h5>
     <div class="">
       <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
         <div class ="border border-info p-2 m-1 d-flex justify-content-between">
@@ -20,13 +20,13 @@
   </div>
 
   <div class="col-6 py-4">
-    <h5 class="text-info">みんなのランキング</h5>
-    <h6 class="text-info mt-3">いいねTOP5</h6>
+    <h4 class="text-success">みんなのランキング</h4>
+    <h5 class="text-success mt-3">いいねTOP5</h5>
     <div class="">
       <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-        <div class ="border border-info p-2 m-1 d-flex bd-hightlight">
+        <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
           <div class="d-flex bd-hightlight">
-            <div class="text-info p-1">
+            <div class="text-success p-1">
               第<%= i %>位
             </div>
             <div class="text-dark p-1">
