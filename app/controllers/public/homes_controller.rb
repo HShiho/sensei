@@ -39,7 +39,7 @@ class Public::HomesController < ApplicationController
 
   def rank
     @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }.first(5)
-    @post_favorite_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+    @post_favorite_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id)).first(5)
   end
 
 
