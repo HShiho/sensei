@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'follows/show'
+  end
   # 全体のルート
   devise_scope :user do
     get '/', to: 'public/sessions#new'
@@ -63,6 +66,7 @@ Rails.application.routes.draw do
       member do
         get :favorites
       end
+      resources :follows,only: [:show, :create, :destroy]
     end
 
     resources :inquiries,only: [:new, :create]
