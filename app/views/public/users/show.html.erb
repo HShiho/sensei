@@ -44,11 +44,24 @@
     <div class="d-flex justify-content-center mb-4">
       <% if @user == @current_user %>
         <div>
-          <%= link_to 'ユーザー情報編集ページへ', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
+          <%= link_to 'ユーザー情報編集ページへ', edit_public_user_path(@user), class: 'btn btn-outline-success mr-2' %>
         </div>
+      <% else %>
+        <% if @follow.nil? %>
+          <div>
+          <%= link_to 'フォローする', public_user_follows_path(@user, follower_id: @user.id), method: :post, class: 'btn btn-outline-success' %>
+          </div>
+         <% else %>
+           <div>
+             <%= link_to 'フォローを外す', public_user_follows_path(@user, follower_id: @user.id), method: :delete, class: 'btn btn-outline-danger' %>
+           </div>
+        <% end %>
       <% end %>
       <div class="d-flex justify-content-end">
           <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@user.id), class: 'btn btn-outline-secondary ml-5' %></div>
+          <% if @user == @current_user %>
+            <div><%= link_to 'フォロワー 一覧へ', public_user_follows_path(@user), class: 'btn btn-outline-info ml-2' %></div>
+          <% end %>
         </div>
     </div>
   </div>

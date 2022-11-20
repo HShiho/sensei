@@ -62,11 +62,11 @@ Rails.application.routes.draw do
     # 論理削除
     get '/users/withdrawal' => 'users#withdrawal',as: 'withdrawal' #退会確認画面
     patch '/users/breakaway' => 'users#breakaway',as: 'breakaway'
+    resource :follows,only: [:show, :create, :destroy]
     # id付きで取得
       member do
         get :favorites
       end
-      resources :follows,only: [:show, :create, :destroy]
     end
 
     resources :inquiries,only: [:new, :create]

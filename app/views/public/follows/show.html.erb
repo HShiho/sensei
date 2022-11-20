@@ -1,2 +1,10 @@
-<h1>Public::Follows#show</h1>
-<p>Find me in app/views/public/follows/show.html.erb</p>
+<div class="row">
+  <div class="col-12 py-4">
+    <h4 class="text-info"><%= @user.nickname %>さんのフォロー 一覧</h4>
+    <% @follows.each do |follow| %>
+      <div>
+        <%= follow.follower_id %>
+      </div>
+    <% end %>
+  </div>
+</div>

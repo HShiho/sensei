@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :post_comments,  dependent: :destroy
   has_many :favorites,  dependent: :destroy
   has_many :inquiries,  dependent: :destroy
+  has_many :follows,  dependent: :destroy
 
   # 空白NG
   validates :nickname, presence: true
@@ -41,7 +42,7 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   def withdrawal_or_valibity
     "#{is_deleted ? '退会' : '有効'}"
   end
