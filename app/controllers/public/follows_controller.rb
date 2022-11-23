@@ -3,9 +3,8 @@ class Public::FollowsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+    @follows = Follow.where(user_id: params[:user_id])
 
-    @follows = Follow.where(user_id: @user.id)
-    @followers = Follow.where(follower_id: @user.id)
   end
 
   def create
@@ -20,6 +19,13 @@ class Public::FollowsController < ApplicationController
     follow = current_user.follows.find_by(follower_id: params[:follower_id])
     follow.destroy
     redirect_to public_user_follows_path(user_id: current_user.id)
+  end
+
+
+  private
+
+  def follow_params
+    params.require(:follow).permit(:user_id, :follower_id)
   end
 
 

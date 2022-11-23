@@ -3,7 +3,9 @@
     <h4 class="text-info"><%= @user.nickname %>さんのフォロー 一覧</h4>
     <% @follows.each do |follow| %>
       <div>
-        <%= follow.follower_id %>
+        <% @follower_of_id = follow.follower_id  %>
+        <% follower = User.find_user(@follower_of_id) %>
+        <%= follower.nickname %>
       </div>
     <% end %>
   </div>
