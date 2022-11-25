@@ -11,8 +11,11 @@ class User < ApplicationRecord
   has_many :post_comments,  dependent: :destroy
   has_many :favorites,  dependent: :destroy
   has_many :inquiries,  dependent: :destroy
-  has_many :follows, dependent: :destroy
-  has_many :users, through: :follows
+  
+  
+  
+  # has_many :follows, dependent: :destroy
+  # has_many :users, through: :follows
 
   # 空白NG
   validates :nickname, presence: true
