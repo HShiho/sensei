@@ -58,11 +58,8 @@
         <% end %>
       <% end %>
       <div class="d-flex justify-content-end">
-          <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@user.id), class: 'btn btn-outline-secondary ml-5' %></div>
-          <% if @user == @current_user %>
-            <div><%= link_to 'フォロワー 一覧へ', public_user_relationships_path(@user), class: 'btn btn-outline-info ml-2' %></div>
-          <% end %>
-        </div>
+        <div><%= link_to 'ユーザーの投稿一覧を見る',public_user_posts_path(@user.id), class: 'btn btn-outline-secondary ml-5' %></div>
+      </div>
     </div>
   </div>
 

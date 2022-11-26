@@ -3,7 +3,8 @@ class Public::RelationshipsController < ApplicationController
 
   def show
     @user = current_user
-    @users = @user.followings
+    @following_users = @user.followings
+    @follower_users = @user.followers
   end
 
   def create

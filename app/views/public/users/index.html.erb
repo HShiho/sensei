@@ -3,6 +3,7 @@
   <%# サイドバー %>
   <div class="col-3 mb-5 sidebar">
     <%= render partial: 'layouts/user_info',locals: { user: @user, goal: @goal } %><br>
+    <div><%= link_to 'フォロー 一覧へ', public_user_relationships_path(@user), class: 'btn btn-outline-info ml-2' %></div>
   </div>
 
 
