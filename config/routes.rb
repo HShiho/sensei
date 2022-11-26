@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     get '/rank' => 'homes#rank',as: 'rank'
 
     get '/post/:id/index' => 'posts#user_index',as: 'user_posts'
+    get '/post/followed_index' => 'posts#followed_index',as: 'followed_user_posts'
     patch 'post/:id/inex' => 'posts#update',as: 'edit_post'
     resources :posts,except: [:edit] do
       resource :favorites,only: [:create, :destroy]
