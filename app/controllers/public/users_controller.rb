@@ -12,8 +12,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @goals = Goal.where(user_id: "#{params[:id]}")
     @goal = @goals.where(is_completed: 0).last
-    @follow = Follow.find(1)
-    # @follow = Follow.find_by(user_id: @current_user.id, follower_id: @user.id)
+    @follow = Relationship.find_by(follower_id: @current_user.id, followed_id: @user.id)
     if @user.is_deleted == true
       redirect_to public_not_browse_path
     end

@@ -13,13 +13,10 @@ class User < ApplicationRecord
   has_many :inquiries,  dependent: :destroy
   
   
-  has_many :follows, class_name: "Follow", foreign_key: "follower_id",  dependent: :destroy
-  has_many :reverse_of_follows, class_name: "Follow", foreign_key: "user_id",  dependent: :destroy
-  
-  has_many :followings, through: :follows, source: :user
-  has_many :followers, through: :reverse_of_follows, source: :follower
-  # has_many :follows, dependent: :destroy
-  # has_many :users, through: :follows
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   # 空白NG
   validates :nickname, presence: true
