@@ -1,0 +1,2 @@
+class Follw < ApplicationRecord
+end
