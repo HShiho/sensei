@@ -8,15 +8,13 @@ class Public::FollowsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    follow = current_user.follows.new(follower_id: params[:follower_id])
+    follow = Follow.new(follower_id: params[:user_id], user_id: current_user.id)
     follow.save
     redirect_to public_user_follows_path(user_id: current_user.id)
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    follow = current_user.follows.find_by(follower_id: params[:follower_id])
+    follow = Follow.find_by(follower_id: params[:user_id], user_id: current_user.id)
     follow.destroy
     redirect_to public_user_follows_path(user_id: current_user.id)
   end
