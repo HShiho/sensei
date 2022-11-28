@@ -59,9 +59,6 @@ class Public::PostsController < ApplicationController
   def followed_index
     @user = @current_user
     @following_users = @user.followings
-    @following_users.each do |follow_user|
-      @posts = follow_user.posts
-    end
   end
 
   def destroy
