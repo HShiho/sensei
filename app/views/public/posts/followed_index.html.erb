@@ -5,19 +5,17 @@
       </div>
     </div>
     <div>
-      <% @following_users.each do |follow_user| %>
-        <% follow_user.posts.each do |post| %>
-          <% if post.user.is_deleted == false %>
-            <% if post.is_released == true %>
-              <%= render partial: 'layouts/post_partial/body',locals: { post: post, user: post.user, current_user: @current_user }  %>
-              <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
-            <% end %>
+      <% @posts.each do |post| %>
+        <% if post.user.is_deleted == false %>
+          <% if post.is_released == true %>
+            <%= render partial: 'layouts/post_partial/body',locals: { post: post, user: post.user, current_user: @current_user }  %>
+            <%= render partial: 'layouts/post_partial/footline_go_to_show',locals: { post: post, user: @user, current_user: @current_user }  %>
           <% end %>
         <% end %>
       <% end %>
     </div>
 
     <div class="d-flex justify-content-center">
-      <div><%#= paginate @posts %></div>
+      <div><%= paginate @posts %></div>
     </div>
   </div>
