@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
   def followed_index
     @user = @current_user
     @following_users = @user.followings
-    @posts = Post.where(user_id: [current_user.following_ids]).page(params[:page])
+    @posts = Post.where(user_id: [current_user.following_ids]).order("created_at DESC").page(params[:page])
   end
 
   def destroy
