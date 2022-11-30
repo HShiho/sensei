@@ -5,7 +5,9 @@
   <% posts.each do |post| %>
     <div>
       <% if post.present? %>
-        <i class="fa-solid fa-paw" style="color:#007bff"></i>
+        <%= link_to public_user_posts_path(@user, date) do %>
+          <i class="fa-solid fa-paw" style="color:#007bff"></i>
+        <% end %>
       <% end %>
     </div>
   <% end %>

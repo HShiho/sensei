@@ -50,6 +50,9 @@ class Public::PostsController < ApplicationController
           end
         end
       end
+    elsif params[:format]
+      @day = params[:format]
+      @posts = Post.where(user_id: @user.id, created_at: @day.in_time_zone.all_day).order("created_at DESC").page(params[:page])
     else
       @posts = Post.where(user_id: @user.id).order("created_at DESC").page(params[:page]) #current_user用(非公開込み)
       @posts_released = @posts.where(is_released: true).order("created_at DESC").page(params[:page]) #他userの投稿一覧(公開のみ)
@@ -101,6 +104,7 @@ class Public::PostsController < ApplicationController
         Tag.create(name: params[:tag])
       end
       @hash = achivement_hash
+      @my_post_favorite_ranks = current_user.posts.sort { |a, b| b.favorites.count <=> a.favorites.count }.first(3)
 
       flash.now[:alert] = "投稿できませんでした。入力内容を確認の上、もう一度お願いします。"
       render template: "public/homes/top"
@@ -129,7 +133,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :start_time, :image, tag_ids: [])
+    params.require(:post).permit(:user_id, :achivement, :body, :tomorrow_objective, :is_released, :start_time, :image, tag_ids: [], date: [])
   end
 
 

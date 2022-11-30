@@ -12,7 +12,12 @@
   <div class="col-md-9 col-12">
     <div class="d-flex justify-content-center">
       <% if @user == @current_user %>
-        <div class="h5">あなたの投稿一覧</div>
+        <div class="h5">
+          <% if params[:format] %>
+            <%= @posts.first.created_at.strftime('%Y年%-m月%-d日(%a)') %>
+          <% end %>
+          あなたの投稿一覧
+        </div>
       <% else %>
         <div class="h5"><%= @user.nickname %>さんの投稿一覧</div>
       <% end %>
