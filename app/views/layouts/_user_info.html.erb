@@ -2,7 +2,7 @@
   <h4 class="text-info">User Info</h4>
   <div>
     <%= link_to public_user_path(user) do %>
-      <%= image_tag user.get_icon_image(40,40), class: 'border rounded-circle' %>
+      <%= image_tag user.get_icon_image(40,40), class: 'frame-circle' %>
       <b><%= user.nickname %></b>
     <% end %>
     さん

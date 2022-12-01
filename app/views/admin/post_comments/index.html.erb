@@ -4,7 +4,7 @@
   </div>
   <div>
     <% @post_comments.each do |post_comment| %>
-      <div class="border-bottom border-info my-3 mx-5">
+      <div class="delimiter-b my-3 mx-5">
         <div class="d-flex bd-hightlight">
           <div class="bd-hightlight">
             <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>

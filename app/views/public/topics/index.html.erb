@@ -30,7 +30,7 @@
           <div class="d-flex bd-hightlight">
             <div class="bd-hightlight">
               <% if topic.user.is_deleted == false %>
-                <%= image_tag topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+                <%= image_tag topic.user.get_icon_image(30,30), class: 'frame-circle' %>
                 <%= topic.user.nickname %>
               <% else %>
                 作成者：退会済みのユーザー

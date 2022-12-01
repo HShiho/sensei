@@ -81,6 +81,24 @@
 
 .border {
   border-radius: 5px;
+  border: #17a2b8;
+}
+
+// border-bottom border-info p-2 m-3
+.delimiter-b {
+  border: #17a2b8;
+  border-width: 1px;
+  border-style: none none solid none;
+  padding: 0.5rem;
+  mergin: 1rem;
+}
+
+// border rouended-circle
+.frame-circle {
+  border-radius: 50%;
+  border: #6c757d;
+  border-style: solid;
+  border-width: 0.5px;
 }
 
 .back-fish {

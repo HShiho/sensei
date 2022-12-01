@@ -17,8 +17,10 @@
         <div class="d-flex bd-hightlight">
           <div class="bd-hightlight">
             <% if post_comment.user.is_deleted == false %>
-              <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-                <span class="border-bottom border-dark"><%= post_comment.user.nickname %></span>
+              <%= link_to public_user_path(post_comment.user) do %>
+                <%= image_tag post_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
+                <span class="border-bottom border-dark text-dark"><%= post_comment.user.nickname %></span>
+              <% end %>
             <% else %>
               退会済みのユーザー
             <% end %>
