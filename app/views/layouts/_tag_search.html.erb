@@ -1,9 +1,9 @@
-<div class="border-top border-info">
-  <div class="d-flex justify-content-center my-3">
+<div class="delimiter-t">
+  <div class="d-flex justify-content-center mb-3">
     <h5 class="text-info mb-0 pt-2">タグ検索</h5>
     <div class="ml-4"><%= submit_tag '検索', class: 'btn btn-outline-info' %></div>
 　 </div>
-  <div class="form-inline ">
+  <div class="form-inline">
 　  <% Tag.all.each do |tag| %>
   　 <div><%= check_box :tag_ids, tag.name %><%= tag.name %></div>
   　 <% end %>

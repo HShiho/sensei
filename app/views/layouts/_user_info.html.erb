@@ -3,7 +3,7 @@
   <div>
     <%= link_to public_user_path(user) do %>
       <%= image_tag user.get_icon_image(40,40), class: 'frame-circle' %>
-      <b><%= user.nickname %></b>
+      <b class="link-name"><%= user.nickname %></b>
     <% end %>
     さん
   </div>

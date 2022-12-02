@@ -7,7 +7,7 @@
   </div>
 
   <div class="d-felx flex-column col-lg-8 col-12 pl-4">
-    <div class="border border-info mb-4 p-4 top-gradient">
+    <div class="border-info mb-4 p-4 top-gradient">
       こんにちは、<%= @current_user.nickname %>さん！<br>
       今日はどんな一日になりましたか？<br>
       一日を振り返って、達成度を投稿しましょう！
@@ -87,7 +87,7 @@
       </div>
     </div>
     <% if @goal.present? %>
-      <div class="border border-info mt-5 p-4 back-fish">
+      <div class=" border-info mt-5 p-4 back-fish">
         <div class="text-primary h5 pb-3">中期目標一覧</div>
           <div class="text-info">月の目標</div>
           <div class="">
@@ -111,7 +111,7 @@
           </div>
       </div>
     <% end %>
-    <div class="border border-success mt-5 p-4">
+    <div class="border-success mt-5 p-4">
       <div class="text-success h5 pb-3">タグ新規作成（投稿・トピック共通）</div>
       <div class="d-flex justify-content-center">
         <%= form_tag({controller:"homes", action:"top"}, method: :get) do %>
@@ -127,7 +127,7 @@
   <h5 class="text-info"><%= @current_user.nickname %>さんの投稿ランキング：いいねTOP3</h5>
   <div class="row d-flex bd-hightlightn">
     <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
-      <div class ="col-3 border border-info p-2 m-1 bd-hightlight d-flex justify-content-between">
+      <div class ="col-3 border-info p-2 m-1 bd-hightlight d-flex justify-content-between">
         <div class="text-info">
           第<%= i %>位
           <%=link_to public_post_path(post) do %>

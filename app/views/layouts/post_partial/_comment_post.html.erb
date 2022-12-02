@@ -19,7 +19,7 @@
             <% if post_comment.user.is_deleted == false %>
               <%= link_to public_user_path(post_comment.user) do %>
                 <%= image_tag post_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
-                <span class="border-bottom border-dark text-dark"><%= post_comment.user.nickname %></span>
+                <span class="link-name"><%= post_comment.user.nickname %></span>
               <% end %>
             <% else %>
               退会済みのユーザー

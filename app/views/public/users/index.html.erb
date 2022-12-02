@@ -14,9 +14,9 @@
     <div>
       <% @users.each do |user| %>
         <div class="border-bottom border-info m-3 p-2">
-          <%= link_to public_user_path(user), class: 'text-dark mr-auto bd-hightlight h5' do %>
+          <%= link_to public_user_path(user), class: 'mr-auto bd-hightlight h5' do %>
             <%= image_tag user.get_icon_image(30,30), class: 'frame-circle' %>
-            <span class="border-bottom border-dark"><%= user.nickname %></span>
+            <span class="link-name"><%= user.nickname %></span>
           <% end %>
         </div>
       <% end %>

@@ -14,8 +14,8 @@
       <div><%= link_to '新しいトピックを作成する', new_public_topic_path, class: 'btn btn-info' %></div>
     </div>
 
-    <div class="d-flex justify-content-center border-top border-info">
-      <div class="h5 pt-4">
+    <div class="d-flex justify-content-center delimiter-t">
+      <div class="h5 pt-1">
         <% if @selects.present? %>
           タグ検索結果
         <% else %>
@@ -25,7 +25,7 @@
     </div>
 
     <% @topics.each do |topic| %>
-      <div class="border-bottom border-info py-2 col-12">
+      <div class="delimiter-b col-12">
         <%= link_to public_topic_path(topic), class: 'text-dark mr-auto bd-hightlight' do %>
           <div class="d-flex bd-hightlight">
             <div class="bd-hightlight">

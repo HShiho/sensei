@@ -1,4 +1,4 @@
-<div class="border border-info m-3 py-2 px-2">
+<div class="border-info m-3 py-2 px-2">
   <div class="d-flex bd-hightlight">
 <%# ユーザー名または公開非公開選択 %>
     <% if user == current_user %>
@@ -24,9 +24,9 @@
       </div>
     <% else %>
       <% if user.is_deleted == false %>
-        <%= link_to public_user_path(post.user.id), class: 'text-dark mr-auto bd-hightlight h5' do %>
+        <%= link_to public_user_path(post.user.id), class: 'mr-auto bd-hightlight h5' do %>
           <%= image_tag post.user.get_icon_image(30,30), class: 'frame-circle' %>
-            <span class="border-bottom border-dark"><%= post.user.nickname %></span>
+            <span class="link-name"><%= post.user.nickname %></span>
         <% end %>
       <% else %>
         <span class="mr-auto bd-hightlight">退会済みのユーザー</span>
@@ -72,7 +72,7 @@
 
     <% if post.tomorrow_objective.present? %>
       <div class="pl-2 mt-2">明日の目標</div>
-      <div class="border border-secondary mx-3 px-1">
+      <div class="border-secondary mx-3 px-1">
         <%= post.tomorrow_objective %>
       </div>
     <% end %>
@@ -105,7 +105,7 @@
         <% end %>
       <% end %>
       </div>
-      <div class="border border-info ml-auto px-2 bd-hightlight d-flex align-items-center text-info">
+      <div class="border-info ml-auto px-2 bd-hightlight d-flex align-items-center text-info">
         合計 <%= post.favorites.count %>
       </div>
     </div>
