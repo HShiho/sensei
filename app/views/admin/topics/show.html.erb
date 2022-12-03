@@ -1,12 +1,12 @@
 <h4 class="text-info"><%= @topic.title %></h4>
 <div class="overflow-auto"  style="height:400px;">
   <% @topic_comments.each do |comment| %>
-    <div class="border-bottom border-info my-2 mx-5">
+    <div class="delimiter-b">
       <div class="d-flex bd-hightlight">
         <div class="bd-hightlight">
           <%= link_to admin_user_path(id: comment.user_id) do %>
-            <%= image_tag comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
-            <%= comment.user.nickname %>
+            <%= image_tag comment.user.get_icon_image(30,30), class: 'frame-circle' %>
+            <span class="link-name"><%= comment.user.nickname %></span>
           <% end %>
           <% if comment.user.is_deleted == true %>
             <span class="text-secondary">※退会済みユーザー</span>

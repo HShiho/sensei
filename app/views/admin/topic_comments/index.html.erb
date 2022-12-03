@@ -7,16 +7,16 @@
       <div class="delimiter-b my-3 mx-5">
         <div class="d-flex bd-hightlight">
           <div class="bd-hightlight">
-            <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
             <%= link_to admin_user_path do %>
-              <%= topic_comment.user.nickname %>
+              <span class="link-name"><%= topic_comment.user.nickname %></span>
             <% end %>
           </div>
           <span>　>>>　</span>
           <div class="bd-hightlight">
-            <%= image_tag topic_comment.topic.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+            <%= image_tag topic_comment.topic.user.get_icon_image(30,30), class: 'frame-circle' %>
             <%= link_to admin_user_path(topic_comment.topic.user) do %>
-              <%= topic_comment.topic.user.nickname %>
+              <span class="link-name"><%= topic_comment.topic.user.nickname %></span>
             <% end %>
           </div>
           <div class="bd-hightlight text-secondary ml-3"><%= topic_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>

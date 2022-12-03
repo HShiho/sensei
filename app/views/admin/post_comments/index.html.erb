@@ -9,14 +9,14 @@
           <div class="bd-hightlight">
             <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
             <%= link_to admin_user_path do %>
-              <%= post_comment.user.nickname %>
+              <span class="link-name"><%= post_comment.user.nickname %></span>
             <% end %>
           </div>
           <span>　>>>　</span>
           <div class="bd-hightlight">
             <%= image_tag post_comment.post.user.get_icon_image(30,30), class: 'border rounded-circle' %>
             <%= link_to admin_user_path(post_comment.post.user) do %>
-              <%= post_comment.post.user.nickname %>
+              <span class="link-name"><%= post_comment.post.user.nickname %></span>
             <% end %>
           </div>
           <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
