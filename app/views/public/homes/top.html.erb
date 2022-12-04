@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="row py-2 px-3">
-        <div class="col-2 px-0  text-info">今週の目標</div>
+        <div class="col-2 px-0 text-info">今週の目標</div>
         <div class="col-6">
           <% if @objective_week.present? %>
             <%= @objective_week.title %>
@@ -79,7 +79,7 @@
       </div>
       <div class="row py-2 px-3">
         <% if @objective_day.present? %>
-          <div class="col-2 px-0  text-info"><%= @objective_day.created_at.since(1.days).strftime('%m/%d') %>の目標</div>
+          <div class="col-2 px-0 text-info"><%= @objective_day.created_at.since(1.days).strftime('%m/%d') %>の目標</div>
           <div class="col-10">
             <%= @objective_day.tomorrow_objective %>
           </div>
@@ -90,7 +90,7 @@
       <div class=" border-info mt-5 p-4 back-fish">
         <div class="text-primary h5 pb-3">中期目標一覧</div>
           <div class="text-info">月の目標</div>
-          <div class="">
+          <div>
             <div class="pl-4 overflow-auto"  style="height:150px;">
               <% @objectives_months.each do |month| %>
                 <i class="fa-solid fa-fire-flame-curved"></i> <%= month.title %><br>
@@ -100,7 +100,7 @@
             </div>
           </div>
           <div class="text-info">週の目標</div>
-          <div class="">
+          <div>
             <div class="pl-4 overflow-auto"  style="height:150px;">
               <% @objectives_weeks.each do |week| %>
                 <i class="fa-solid fa-fire-flame-curved"></i> <%= week.title %><br>

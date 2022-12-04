@@ -103,26 +103,27 @@
   border-radius: 5px;
 }
 
-// border-bottom border-info p-2 m-3
+.top-objective-title {
+  color: #17a2b8;
+  padding: none;
+}
+
 .delimiter-b {
   border-bottom: solid 1px #17a2b8;
   padding: 0.5rem;
   margin: 1rem;
 }
 
-// border-top border-info pt-3
 .delimiter-t {
   border-top: solid 1px #17a2b8;
   padding-top: 1rem;
 }
 
-// border rouended-circle
 .frame-circle {
   border-radius: 50%;
   border: solid 0.5px #6c757d;
 }
 
-//text-dark border-bottom border-dark
 .link-name {
   color: #343a40;
   border-bottom: dashed 2px #87CEFA;
