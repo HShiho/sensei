@@ -31,12 +31,12 @@
 
       <p class="mb-0">タグ(複数選択可)</p>
         <%= render 'layouts/error_messages', model: f.object, attribute: :tag_ids %>
-        <div class="form-group ml-3">
+        <div class="form-group ml-3 tag-check">
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name)  do |tag| %>
-            <div class="mx-1 mb-2 form-check-inline">
-              <%= tag.label class: 'form-check-label' do %>
+            <div class="mb-2 form-check-inline">
+              <%= tag.label class: 'form-check-label check-btn' do %>
                 <%= tag.check_box class: 'form-check-input' %>
-                <%= tag.text %>
+                <span class="check-text"><%= tag.text %></span>
               <% end %>
             </div>
           <% end %>

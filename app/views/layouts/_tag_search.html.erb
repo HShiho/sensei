@@ -2,10 +2,13 @@
   <div class="d-flex justify-content-center mb-3">
     <h5 class="text-info mb-0 pt-2">タグ検索</h5>
     <div class="ml-4"><%= submit_tag '検索', class: 'btn btn-outline-info' %></div>
-　 </div>
+  </div>
   <div class="form-inline">
 　  <% Tag.all.each do |tag| %>
-  　 <div><%= check_box :tag_ids, tag.name %><%= tag.name %></div>
-  　 <% end %>
+      <div class="check-btn tag-check mr-3 mb-2">
+        <%= check_box :tag_ids, tag.name, class: "" %>
+        <label for="tag_ids_<%= tag.name%>", class="check-text"><%= tag.name %></label>
+      </div>
+    <% end %>
 　</div>
 </div>

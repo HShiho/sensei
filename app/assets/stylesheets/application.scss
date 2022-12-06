@@ -33,6 +33,26 @@
   background: #02beac4d;
 }
 
+.tag-check input {
+  display: none;
+}
+
+.check-btn {
+  border: thin dashed #17a2b8;
+  border-radius: 5px;
+  color: #6c757d;
+  text-align: center;
+}
+
+.tag-check input:checked + .check-text {
+  font-weight: 600;
+  color: #17a2b8;
+  border-radius: 5px;
+  background-color: #02beac4d;
+  text-align: center;
+  padding: 0.15rem 0 0.15rem 0;
+}
+
 .simple-calendar {
   .day {
     height: 15px;
@@ -73,7 +93,6 @@
   border: #17a2b8;
   border-style:  dashed none none none;
 }
-
 
 .top-gradient {
   background: linear-gradient(to right, #fff 50%, #6dc7d6);
