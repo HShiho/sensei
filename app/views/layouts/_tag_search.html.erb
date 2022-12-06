@@ -6,7 +6,7 @@
   <div class="form-inline">
 　  <% Tag.all.each do |tag| %>
       <div class="check-btn tag-check mr-3 mb-2">
-        <%= check_box :tag_ids, tag.name, class: "" %>
+        <%= check_box :tag_ids, tag.name %>
         <label for="tag_ids_<%= tag.name%>", class="check-text"><%= tag.name %></label>
       </div>
     <% end %>
