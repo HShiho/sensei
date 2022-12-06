@@ -44,6 +44,13 @@
   text-align: center;
 }
 
+.tag-check input:hover + .check-text {
+  color: #17a2b8;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.15rem 0 0.15rem 0;
+}
+
 .tag-check input:checked + .check-text {
   font-weight: 600;
   color: #17a2b8;
