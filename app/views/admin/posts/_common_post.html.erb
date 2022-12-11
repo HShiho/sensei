@@ -3,21 +3,20 @@
 <%# 非公開アイコン%>
   <% if post.is_released == false %>
     <div class="mx-2">
-      <i class="fa-solid fa-lock fa-lg" style="color:#17a2b8"></i>
+      <i class="fa-solid fa-lock fa-lg icon-info"></i>
     </div>
   <% end %>
 
-  <%# 投稿日時 %>
   <div class="bd-hightlight text-secondary"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></div>
 
   <%# 達成度アイコン %>
   <div class="bd-hightlight ml-3">
     <% if post.achivement == "excellence" %>
-      <span><i class="fa-regular fa-face-laugh-squint fa-2x" style="color:#17a2b8"></i></span>
+      <span><i class="fa-regular fa-face-laugh-squint fa-2x icon-info"></i></span>
     <% elsif post.achivement == "good" %>
-      <span><i class="fa-regular fa-face-smile fa-2x" style="color:#17a2b8"></i></span>
+      <span><i class="fa-regular fa-face-smile fa-2x icon-info"></i></span>
     <% else %>
-      <span><i class="fa-regular fa-face-rolling-eyes fa-2x" style="color:#17a2b8"></i></span>
+      <span><i class="fa-regular fa-face-rolling-eyes fa-2x icon-info"></i></span>
     <% end %>
   </div>
 </div>

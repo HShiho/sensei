@@ -91,7 +91,7 @@
         <div class="text-primary h5 pb-3">中期目標一覧</div>
           <div class="text-info">月の目標</div>
           <div>
-            <div class="pl-4 overflow-auto"  style="height:150px;">
+            <div class="pl-4 overflow-auto height150">
               <% @objectives_months.each do |month| %>
                 <i class="fa-solid fa-fire-flame-curved"></i> <%= month.title %><br>
                   <% if month.did_it.present? %>　<i class="fa-solid fa-crop"></i>　<%= month.did_it %><br><% end %>
@@ -101,7 +101,7 @@
           </div>
           <div class="text-info">週の目標</div>
           <div>
-            <div class="pl-4 overflow-auto"  style="height:150px;">
+            <div class="pl-4 overflow-auto height150">
               <% @objectives_weeks.each do |week| %>
                 <i class="fa-solid fa-fire-flame-curved"></i> <%= week.title %><br>
                   <% if week.did_it.present? %>　<i class="fa-solid fa-crop"></i>　<%= week.did_it %><br><% end %>

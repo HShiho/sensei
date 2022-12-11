@@ -3,7 +3,7 @@
     <div class="h5"><%= @post.user.nickname %> さんの投稿詳細ページ</div>
   </div>
   <div>
-    <div class="border border-info m-3 py-3 px-2">
+    <div class="border-info m-3 py-3 px-2">
       <div class="d-flex bd-hightlight">
         <div class="mr-auto bd-hightlight">
           <div class="d-flex justify-content-between">
@@ -20,12 +20,12 @@
       </div>
       <div>
         <label class="text-secondary">コメント件数：<%= @post.post_comments.count %></label>
-        <div class="overflow-auto"  style="height:250px;">
+        <div class="overflow-auto height250">
           <% @post_comments.each do |post_comment| %>
-            <div class="border-bottom border-info my-3 mx-5">
+            <div class="delimiter-b">
               <div class="d-flex bd-hightlight">
                 <div class="bd-hightlight">
-                  <%= image_tag post_comment.user.get_icon_image(30,30), class: 'border rounded-circle' %>
+                  <%= image_tag post_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
                   <span class="text-secondary"><%= post_comment.user.nickname %></span>
                 </div>
                 <div class="bd-hightlight text-secondary ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>

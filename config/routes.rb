@@ -60,7 +60,6 @@ Rails.application.routes.draw do
     end
 
     resources :users,except: [:new, :create, :destroy] do
-    # 論理削除
     get '/users/withdrawal' => 'users#withdrawal',as: 'withdrawal' #退会確認画面
     patch '/users/breakaway' => 'users#breakaway',as: 'breakaway'
     resource :relationships,only: [:show, :create, :destroy]

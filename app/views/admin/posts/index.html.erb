@@ -21,7 +21,7 @@
 
   <div>
     <% @posts.each do |post| %>
-      <div class="border border-info m-3 py-3 px-2">
+      <div class="border-info m-3 py-3 px-2">
         <div class="d-flex bd-hightlight">
           <div class="mr-auto bd-hightlight">
             <%= link_to '削除', admin_post_path(post), method: :delete, class: "delete-btn btn btn-outline-danger" %>

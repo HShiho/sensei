@@ -11,7 +11,7 @@
 
 <div>
   <label class="text-secondary">コメント件数：<%= post.post_comments.count %></label>
-  <div class="overflow-auto"  style="height:250px;">
+  <div class="overflow-auto height250" >
     <% @post_comments.each do |post_comment| %>
       <div class="delimiter-b">
         <div class="d-flex bd-hightlight">
