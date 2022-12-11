@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    if params[:tag_ids] #タグ検索
+    if params[:tag_ids]
       @posts = []
       @selects = params[:tag_ids].select{|key, value| value == "1"}
       if @selects.empty?

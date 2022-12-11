@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
   def index
     @user = @current_user
     set_goal
-    if params[:tag_ids] #タグ検索
+    if params[:tag_ids]
       @posts = []
       @selects = params[:tag_ids].select{|key, value| value == "1"}
       if @selects.empty?
@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
           return @posts = @posts.blank? ? tag_posts : @posts & tag_posts
         end
       end
-    elsif params[:search] #キーワード検索
+    elsif params[:search]
       @posts = Post.where("body LIKE ? OR tomorrow_objective LIKE ?",'%' + params[:search] + '%','%' + params[:search] + '%').order("created_at DESC")
       @posts = @posts.where(is_released: true).page(params[:page])
     else
@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
     is_deleted_redirect
     @post = Post.where(user_id: @user.id)
     set_goal
-    if params[:tag_ids] # タグ検索
+    if params[:tag_ids]
       @selects = params[:tag_ids].select{|key, value| value == "1"}
       @posts = []
       if @user == @current_user
@@ -54,8 +54,8 @@ class Public::PostsController < ApplicationController
       @day = params[:format]
       @posts = Post.where(user_id: @user.id, created_at: @day.in_time_zone.all_day).order("created_at DESC").page(params[:page])
     else
-      @posts = Post.where(user_id: @user.id).order("created_at DESC").page(params[:page]) #current_user用(非公開込み)
-      @posts_released = @posts.where(is_released: true).order("created_at DESC").page(params[:page]) #他userの投稿一覧(公開のみ)
+      @posts = Post.where(user_id: @user.id).order("created_at DESC").page(params[:page])
+      @posts_released = @posts.where(is_released: true).order("created_at DESC").page(params[:page])
     end
   end
 
