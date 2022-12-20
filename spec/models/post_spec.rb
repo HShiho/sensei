@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
   let(:user) {create(:user)}
-  let(:post) {create(:post, user_id: user.id, body:'hoge')}
+  let(:tag) {create(:tag, name:'振り返り')}
+  let(:post) {create(:post, user_id: user.id, body:'hoge', tag_ids: tag.id)}
 
 describe 'モデルのテスト' do
   it "有効な投稿の場合は登録されるか" do
@@ -35,7 +36,7 @@ end
 
 describe '投稿画面のテスト' do
   let!(:user) {create(:user)}
-  let!(:post) {create(:post, user_id: user.id, body:'hoge')}
+  let!(:post) {create(:post, user_id: user.id, body:'hoge', tag_ids: tag.id)}
     before do
       sign_in user
       visit public_root_path
@@ -48,6 +49,7 @@ describe '投稿画面のテスト' do
   context '投稿処理のテスト' do
     it '投稿後のリダイレクト先は正しいか' do
       fill_in 'post[body]', with: Faker::Lorem.characters(number:20)
+      fill_in 'post[tag_ids]', with: tag.id
       click_button '投稿'
       expect(page).to have_current_path public_user_posts_path(user)
     end
@@ -56,7 +58,7 @@ end
 
 describe '一覧画面のテスト' do
   let!(:user) {create(:user)}
-  let!(:post) {create(:post, user_id: user.id, body:'hoge')}
+  let!(:post) {create(:post, user_id: user.id, body:'hoge', tag_ids: tag.id)}
     before do
       sign_in user
       visit public_posts_path
@@ -71,7 +73,7 @@ end
 
 describe '詳細画面のテスト' do
   let!(:user) {create(:user)}
-  let!(:post) {create(:post, user_id: user.id, body:'hoge')}
+  let!(:post) {create(:post, user_id: user.id, body:'hoge', tag_ids: tag.id)}
     before do
       sign_in user
       visit public_post_path(user)
