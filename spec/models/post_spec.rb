@@ -46,14 +46,6 @@ describe '投稿画面のテスト' do
       expect(page).to have_button '投稿'
     end
   end
-  context '投稿処理のテスト' do
-    it '投稿後のリダイレクト先は正しいか' do
-      fill_in 'post[body]', with: Faker::Lorem.characters(number:20)
-      fill_in 'post[tag_ids]', with: tag.id
-      click_button '投稿'
-      expect(page).to have_current_path public_user_posts_path(user)
-    end
-  end
 end
 
 describe '一覧画面のテスト' do
