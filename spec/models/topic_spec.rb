@@ -31,5 +31,19 @@ RSpec.describe "Topics", type: :request do
   end
 end
 
+describe '投稿画面のテスト' do
+  let!(:user) {create(:user)}
+  let!(:topic) {create(:topic, user_id: user.id, title:'hoge', tag_ids: tag.id)}
+    before do
+      sign_in user
+      visit new_public_topic_path
+    end
+  context '表示の確認' do
+    it '投稿ボタンが表示されているか' do
+      expect(page).to have_button '作成'
+    end
+  end
+end
+
 
 end
