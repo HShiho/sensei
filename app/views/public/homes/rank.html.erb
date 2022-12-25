@@ -17,6 +17,23 @@
         </div>
       <% end %>
     </div>
+
+    <h5 class="text-info mt-3">コメント数TOP5</h5>
+    <div class="">
+      <% @my_post_comment_ranks.each.with_index(1) do |post, i| %>
+        <div class ="border border-info p-2 m-1 d-flex justify-content-between">
+          <div class="text-info p-1">
+            第<%= i %>位
+            <%=link_to public_post_path(post) do %>
+              <%= post.body.truncate(20) %>
+            <% end %>
+          </div>
+          <div class="text-secondary p-1">
+            <%= post.post_comments.count %>コメント
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="col-lg-6 col-12 py-4">
@@ -46,6 +63,36 @@
           </div>
           <div class="text-secondary ml-auto bd-hightlight p-1">
             <%= post.favorites.count %>いいね
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h5 class="text-success mt-3">コメント数TOP5</h5>
+    <div class="">
+      <% @post_comment_ranks.each.with_index(1) do |post, i| %>
+        <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
+          <div class="d-flex bd-hightlight">
+            <div class="text-success p-1">
+              第<%= i %>位
+            </div>
+            <div class="text-dark p-1">
+              <%= image_tag post.user.get_icon_image(20,20), class: 'frame-circle' %>
+              <%= post.user.nickname  %>：
+            </div>
+            <div class="p-1">
+              <%=link_to public_post_path(post) do %>
+                <%= post.body.truncate(5) %>
+              <% end %>
+            </div>
+            <div class="p-1 text-secondary">
+              <% post.tags.each do |tag| %>
+                # <%= tag.name %>
+              <% end %>
+            </div>
+          </div>
+          <div class="text-secondary ml-auto bd-hightlight p-1">
+            <%= post.post_comments.count %>コメント
           </div>
         </div>
       <% end %>
