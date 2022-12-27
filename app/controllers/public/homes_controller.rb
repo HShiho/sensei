@@ -38,6 +38,8 @@ class Public::HomesController < ApplicationController
 
     @my_post_comment_ranks = current_user.posts.sort { |a, b| b.post_comments.count <=> a.post_comments.count }.first(5)
     @post_comment_ranks = Post.find(PostComment.group(:post_id).order('count(post_id) desc').pluck(:post_id)).first(5)
+
+    @follower_ranks = User.find(Relationship.group(:followed_id).order('count(followed_id) desc').pluck(:followed_id)).first(5)
   end
 
 
