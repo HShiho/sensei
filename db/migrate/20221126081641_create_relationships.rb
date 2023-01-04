@@ -9,7 +9,16 @@ class CreateRelationships < ActiveRecord::Migration[6.1]
   end
 
   def change
-    drop_table :follows do
+    create_table :rfollows do |t|
+      t.integer :user_id, null: false
+      t.integer :follower_id, null: false
+      t.timestamps
+    end
+
+    drop_table :follows do |t|
+      t.integer :user_id, null: false
+      t.integer :follower_id, null: false
+      t.timestamps
     end
   end
 end
