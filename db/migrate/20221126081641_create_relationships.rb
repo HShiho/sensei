@@ -11,7 +11,5 @@ class CreateRelationships < ActiveRecord::Migration[6.1]
   def change
     drop_table :follows do
     end
-    drop_table :follws do
-    end
   end
 end
