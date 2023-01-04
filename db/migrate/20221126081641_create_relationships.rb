@@ -7,4 +7,11 @@ class CreateRelationships < ActiveRecord::Migration[6.1]
       t.timestamps
     end
   end
+
+  def change
+    drop_table :follows do
+    end
+    drop_table :follws do
+    end
+  end
 end
