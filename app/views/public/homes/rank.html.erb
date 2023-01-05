@@ -4,17 +4,17 @@
     <h5 class="text-info mt-3">いいねTOP5</h5>
     <div class="">
       <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
-        <div class ="border border-info p-2 m-1 d-flex justify-content-between">
-          <div class="text-info p-1">
-            第<%= i %>位
-            <%=link_to public_post_path(post) do %>
+        <%=link_to public_post_path(post) do %>
+          <div class ="border border-info p-2 m-1 d-flex justify-content-between">
+            <div class="text-info p-1">
+              第<%= i %>位
               <%= post.body.truncate(20) %>
-            <% end %>
-          </div>
-          <div class="text-secondary p-1">
-            <%= post.favorites.count %>いいね
-          </div>
-        </div>
+            </div>
+            <div class="text-secondary p-1">
+              <%= post.favorites.count %>いいね
+            </div>
+         </div>
+        <% end %>
       <% end %>
     </div>
 
