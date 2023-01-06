@@ -2,13 +2,13 @@
   <div class="col-lg-6 col-12 py-4">
     <h4 class="text-info"><%= @current_user.nickname %>さんのランキング</h4>
     <h5 class="text-info mt-3">いいねTOP5</h5>
-    <div class="rank-link">
+    <div class="">
       <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
-        <%=link_to public_post_path(post) do %>
+        <%=link_to public_post_path(post), class:'rank-link' do %>
           <div class ="border border-info p-2 m-1 d-flex justify-content-between">
             <div class="text-info p-1">
-              <b class="rank-num">第<%= i %>位</b>
-              <%= post.body.truncate(20) %>
+              第<%= i %>位
+              <span class="text-secondary"><%= post.body.truncate(20) %></span>
             </div>
             <div class="text-secondary p-1">
               <%= post.favorites.count %>いいね
@@ -21,17 +21,17 @@
     <h5 class="text-info mt-3">コメント数TOP5</h5>
     <div class="">
       <% @my_post_comment_ranks.each.with_index(1) do |post, i| %>
-        <div class ="border border-info p-2 m-1 d-flex justify-content-between">
-          <div class="text-info p-1">
-            第<%= i %>位
-            <%=link_to public_post_path(post) do %>
-              <%= post.body.truncate(20) %>
-            <% end %>
+        <%=link_to public_post_path(post), class:'rank-link' do %>
+          <div class ="border border-info p-2 m-1 d-flex justify-content-between">
+            <div class="text-info p-1">
+              第<%= i %>位
+              <span class="text-secondary"><%= post.body.truncate(20) %></span>
+            </div>
+            <div class="text-secondary p-1">
+              <%= post.post_comments.count %>コメント
+            </div>
           </div>
-          <div class="text-secondary p-1">
-            <%= post.post_comments.count %>コメント
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -41,82 +41,82 @@
     <h5 class="text-success mt-3">いいねTOP5</h5>
     <div class="">
       <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-        <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
-          <div class="d-flex bd-hightlight">
-            <div class="text-success p-1">
-              第<%= i %>位
-            </div>
-            <div class="text-dark p-1">
-              <%= image_tag post.user.get_icon_image(20,20), class: 'frame-circle' %>
-              <%= post.user.nickname  %>：
-            </div>
-            <div class="p-1">
-              <%=link_to public_post_path(post) do %>
+        <%=link_to public_post_path(post), class:'rank-link' do %>
+          <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
+            <div class="d-flex bd-hightlight">
+              <div class="text-success p-1">
+                第<%= i %>位
+              </div>
+              <div class="text-success p-1">
+                <%= image_tag post.user.get_icon_image(20,20), class: 'frame-circle' %>
+                <%= post.user.nickname  %>：
+              </div>
+              <div class="p-1 text-secondary">
                 <%= post.body.truncate(5) %>
-              <% end %>
+              </div>
+              <div class="p-1 text-success">
+                <% post.tags.each do |tag| %>
+                  #<%= tag.name %>
+                <% end %>
+              </div>
             </div>
-            <div class="p-1 text-secondary">
-              <% post.tags.each do |tag| %>
-                # <%= tag.name %>
-              <% end %>
+            <div class="text-secondary ml-auto bd-hightlight p-1">
+              <%= post.favorites.count %>いいね
             </div>
           </div>
-          <div class="text-secondary ml-auto bd-hightlight p-1">
-            <%= post.favorites.count %>いいね
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
     <h5 class="text-success mt-3">コメント数TOP5</h5>
     <div class="">
       <% @post_comment_ranks.each.with_index(1) do |post, i| %>
-        <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
-          <div class="d-flex bd-hightlight">
-            <div class="text-success p-1">
-              第<%= i %>位
-            </div>
-            <div class="text-dark p-1">
-              <%= image_tag post.user.get_icon_image(20,20), class: 'frame-circle' %>
-              <%= post.user.nickname  %>：
-            </div>
-            <div class="p-1">
-              <%=link_to public_post_path(post) do %>
+        <%=link_to public_post_path(post), class:'rank-link' do %>
+          <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
+            <div class="d-flex bd-hightlight">
+              <div class="text-success p-1">
+                第<%= i %>位
+              </div>
+              <div class="text-success p-1">
+                <%= image_tag post.user.get_icon_image(20,20), class: 'frame-circle' %>
+                <%= post.user.nickname  %>：
+              </div>
+              <div class="text-secondary p-1">
                 <%= post.body.truncate(5) %>
-              <% end %>
+              </div>
+              <div class="text-success p-1">
+                <% post.tags.each do |tag| %>
+                  #<%= tag.name %>
+                <% end %>
+              </div>
             </div>
-            <div class="p-1 text-secondary">
-              <% post.tags.each do |tag| %>
-                # <%= tag.name %>
-              <% end %>
+            <div class="text-secondary ml-auto bd-hightlight p-1">
+              <%= post.post_comments.count %>コメント
             </div>
           </div>
-          <div class="text-secondary ml-auto bd-hightlight p-1">
-            <%= post.post_comments.count %>コメント
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
     <h5 class="text-success mt-3">フォロワー数TOP5</h5>
     <div class="">
       <% @follower_ranks.each.with_index(1) do |user, i| %>
-        <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
-          <div class="d-flex bd-hightlight">
-            <div class="text-success p-1">
-              第<%= i %>位
-            </div>
-            <div class="text-dark p-1">
-              <%=link_to public_user_path(user) do %>
+        <%=link_to public_user_path(user), class:'rank-link' do %>
+          <div class ="border border-success p-2 m-1 d-flex bd-hightlight">
+            <div class="d-flex bd-hightlight">
+              <div class="text-success p-1">
+                第<%= i %>位
+              </div>
+              <div class="text-secondary p-1">
                 <%= image_tag user.get_icon_image(20,20), class: 'frame-circle' %>
                 <%= user.nickname  %>
-              <% end %>
+              </div>
+            </div>
+            <div class="text-secondary ml-auto bd-hightlight p-1">
+              <%= user.followers.count %>人
             </div>
           </div>
-          <div class="text-secondary ml-auto bd-hightlight p-1">
-            <%= user.followers.count %>人
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

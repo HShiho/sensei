@@ -16,7 +16,6 @@
 
  @import "simple_calendar";
 
-
 .nav-item {
   width: 100px;
   border: thin dashed #17a2b8;
@@ -59,15 +58,14 @@
   text-align: center;
   padding: 0.15rem 0 0.15rem 0;
 }
-.rank-num {
-  color: #009688;
+
+.rank-link:hover {
+  text-decoration: none;
+  font-weight: 600;
 }
-.rank-link input:hover + .text-info {
-  color: #009688;
-  border-radius: 5px;
-  background-color: #02beac4d;
-  text-align: center;
-  padding: 0.15rem 0 0.15rem 0;
+
+.rank-link:hover .border {
+  background-color: #3fd0b62b;
 }
 
 .simple-calendar {
