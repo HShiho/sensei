@@ -4,7 +4,7 @@
     <div class="delimiter-b">
       <div class="d-flex bd-hightlight">
         <div class="bd-hightlight">
-          <%= link_to admin_user_path(id: comment.user_id) do %>
+          <%= link_to admin_user_path(id: comment.user_id), class:'link-hover' do %>
             <%= image_tag comment.user.get_icon_image(30,30), class: 'frame-circle' %>
             <span class="link-name"><%= comment.user.nickname %></span>
           <% end %>

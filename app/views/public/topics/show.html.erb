@@ -5,7 +5,7 @@
       <div class="d-flex bd-hightlight">
         <div class="bd-hightlight">
           <% if topic_comment.user.is_deleted == false %>
-            <%= link_to public_user_path(id: topic_comment.user_id) do %>
+            <%= link_to public_user_path(id: topic_comment.user_id), class:'link-hover' do %>
               <%= image_tag topic_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
               <span class="link-name"><%= topic_comment.user.nickname %></span>
             <% end %>

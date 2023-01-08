@@ -8,14 +8,14 @@
         <div class="d-flex bd-hightlight">
           <div class="bd-hightlight">
             <%= image_tag post_comment.user.get_icon_image(30,30), class: 'frame-circle' %>
-            <%= link_to admin_user_path do %>
+            <%= link_to admin_user_path, class:'link-hover' do %>
               <span class="link-name"><%= post_comment.user.nickname %></span>
             <% end %>
           </div>
           <span>　>>>　</span>
           <div class="bd-hightlight">
             <%= image_tag post_comment.post.user.get_icon_image(30,30), class: 'frame-circle' %>
-            <%= link_to admin_user_path(post_comment.post.user) do %>
+            <%= link_to admin_user_path(post_comment.post.user), class:'link-hover' do %>
               <span class="link-name"><%= post_comment.post.user.nickname %></span>
             <% end %>
           </div>
