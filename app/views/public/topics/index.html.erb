@@ -26,7 +26,7 @@
 
     <% @topics.each do |topic| %>
       <div class="delimiter-b col-12">
-        <%= link_to public_topic_path(topic), class: 'text-dark mr-auto bd-hightlight' do %>
+        <%= link_to public_topic_path(topic), class: 'text-dark mr-auto bd-hightlight link-hover' do %>
           <div class="d-flex bd-hightlight">
             <div class="bd-hightlight">
               <% if topic.user.is_deleted == false %>
