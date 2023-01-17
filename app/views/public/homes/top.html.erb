@@ -127,17 +127,17 @@
   <h5 class="text-info"><%= @current_user.nickname %>さんの投稿ランキング：いいねTOP3</h5>
   <div class="row d-flex bd-hightlightn">
     <% @my_post_favorite_ranks.each.with_index(1) do |post, i| %>
-      <div class ="col-3 border-info p-2 m-1 bd-hightlight d-flex justify-content-between">
+      <%=link_to public_post_path(post), class: 'col-3 rank-link' do %>
+      <div class ="border border-info p-2 m-1 bd-hightlight d-flex justify-content-between">
         <div class="text-info">
           第<%= i %>位
-          <%=link_to public_post_path(post) do %>
-            <%= post.body.truncate(9) %>
-          <% end %>
+          <%= post.body.truncate(9) %>
         </div>
         <div class="text-secondary">
           <%= post.favorites.count %>いいね
         </div>
       </div>
+      <% end %>
     <% end %>
     <div class=" ml-auto bd-hightlight">
       <%= link_to '他のランキングも見る', public_rank_path, class: 'btn btn-info my-1' %>
