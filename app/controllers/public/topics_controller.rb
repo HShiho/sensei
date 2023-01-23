@@ -26,7 +26,7 @@ class Public::TopicsController < ApplicationController
       else
         @selects.each do |key, value|
           tag_topics = Tag.find_by(name: key).topics.order("created_at DESC").page(params[:page])
-          return @topics = @topics.empty? ? tag_topics : @topics & tag_topics
+          return @topics = @topics.blank? ? tag_topics : @topics & tag_topics
         end
       end
     else
